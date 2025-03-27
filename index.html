@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sînziana & Ionuț - Wedding</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FA8072" stroke="white" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+        }
+        
+        body {
+            background-color: #f8fbf9;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .header-content {
+            z-index: 2;
+            animation: fadeIn 2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+		nav {
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            padding: 20px 15px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #829672;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #829672;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #829672;
+            font-family: 'Times New Roman', serif;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #829672, transparent);
+            margin: 10px auto 0;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #5a5a5a;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+		.date {
+            font-size: 1.7rem;
+            margin: 20px 0;
+            letter-spacing: 4px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-box {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+        
+        .event {
+            flex: 0 0 30%;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .event:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event i {
+            font-size: 2.5rem;
+            color: #829672;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+		.gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #7dc383;
+            box-shadow: 0 0 0 3px rgba(125, 195, 131, 0.1);
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #829672;
+            color: #334c3d;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 3px 10px rgba(125, 195, 131, 0.3);
+        }
+        
+        button:hover {
+            background-color: #829672;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(125, 195, 131, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(125, 195, 131, 0.2);
+        }
+		.map {
+            height: 400px;
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+		
+		#interactive-map {
+			height: 500px;
+			margin: 40px 0;
+			border-radius: 15px;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+			overflow: hidden;
+		}
+		
+		#interactive-map:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+		
+		form {
+			max-width: 600px;
+			margin: 0 auto;
+			background-color: white;
+			padding: 40px;
+			border-radius: 15px;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		form:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		}
+        
+        footer {
+            background-color: #829672;
+            color: white;
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+        }
+        
+        .countdown {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .countdown-item {
+            background-color: #829672;
+            color: white;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(125, 195, 131, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .countdown-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+        
+        .language-button {
+            padding: 8px 12px;
+            margin-left: 10px;
+            background-color: transparent;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: none;
+        }
+        
+        .language-button:hover, .language-button.active {
+            background-color: #829672;
+            color: white;
+            transform: none;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+		@media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .date {
+                font-size: 1.2rem;
+            }
+            
+            .event {
+                flex: 0 0 100%;
+            }
+            
+            .countdown-item {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .language-selector {
+                margin-bottom: 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                flex: 0 0 40%;
+                margin-bottom: 10px;
+            }
+        }
+        
+        .response-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .heart-icon {
+            font-size: 0;
+            color: #829672;
+            opacity: 0;
+            transition: opacity 0.5s, font-size 0.5s;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            position: relative;
+        }
+        
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.1);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.1);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+        
+        select {
+            color: #333;
+            background-color: white;
+        }
+        
+        select option {
+            color: #333;
+            background-color: white;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="response-animation-container" id="responseAnimation">
+        <i class="heart-icon fas fa-heart" id="responseIcon"></i>
+    </div>
+    
+    <header id="home">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Sînziana & Ionuț</h1>
+            <p class="date" data-translate="header_date"></p>
+            <p data-translate="header_invite"></p>
+        </div>
+    </header>
+    
+    <nav id="mainNav">
+        <div class="language-selector">
+            <button class="language-button active" data-lang="ro" onclick="updateLanguage('ro')">RO</button>
+            <button class="language-button" data-lang="en" onclick="updateLanguage('en')">EN</button>
+        </div>
+        <ul>
+            <li><a href="#home" data-translate="nav_home"></a></li>
+            <li><a href="#couple" data-translate="nav_couple"></a></li>
+            <li><a href="#details" data-translate="nav_details"></a></li>
+            <li><a href="#rsvp" data-translate="nav_rsvp"></a></li>
+            <li><a href="#gallery" data-translate="nav_gallery"></a></li>
+            <li><a href="#photos" data-translate="nav_photos"></a></li>
+            <li><a href="#location" data-translate="nav_location"></a></li>
+        </ul>
+    </nav>
+	<section id="intro" class="container">
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">--</span>
+                <span class="countdown-text" data-translate="countdown_days"></span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">--</span>
+                <span class="countdown-text" data-translate="countdown_hours"></span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">--</span>
+                <span class="countdown-text" data-translate="countdown_minutes"></span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">--</span>
+                <span class="countdown-text" data-translate="countdown_seconds"></span>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3 data-translate="home_greeting"></h3>
+            <p data-translate="home_invite"></p>
+            <p data-translate="home_message"></p>
+            <p><span data-translate="home_signature"></span><br>Sînziana & Ionuț</p>
+        </div>
+    </section>
+	<section id="couple" class="container">
+        <h2 data-translate="couple_title"></h2>
+        <div class="info-box">
+            <p data-translate="couple_story"></p>
+            <p data-translate="couple_message"></p>
+        </div>
+    </section>
+	<section id="details" class="container">
+        <h2 data-translate="details_title"></h2>
+        <div class="timeline">
+            <div class="event">
+                <i class="fas fa-church"></i>
+                <h3 data-translate="ceremony_title"></h3>
+                <p data-translate="ceremony_date"></p>
+                <p data-translate="ceremony_time"></p>
+                <p data-translate="ceremony_location"></p>
+                <p data-translate="ceremony_address"></p>
+            </div>
+            
+            <div class="event">
+                <i class="fas fa-glass-cheers"></i>
+                <h3 data-translate="reception_title"></h3>
+                <p data-translate="reception_date"></p>
+                <p data-translate="reception_time"></p>
+                <p data-translate="reception_location"></p>
+                <p data-translate="reception_address"></p>
+            </div>
+            
+            <div class="event">
+                <i class="fas fa-music"></i>
+                <h3 data-translate="party_title"></h3>
+                <p data-translate="party_start"></p>
+                <p data-translate="party_end"></p>
+                <p data-translate="party_dress"></p>
+                <p data-translate="party_details"></p>
+            </div>
+            
+            <div class="event">
+                <i class="fas fa-utensils"></i>
+                <h3 data-translate="food_title"></h3>
+                <p data-translate="food_start"></p>
+                <p data-translate="food_details"></p>
+            </div>
+
+            <div class="event">
+                <i class="fas fa-birthday-cake"></i>
+                <h3 data-translate="cake_title"></h3>
+                <p data-translate="cake_start"></p>
+                <p data-translate="cake_details"></p>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3 data-translate="info_title"></h3>
+            <p data-translate="info_accommodation"></p>
+            <p data-translate="info_transport"></p>
+            <p data-translate="info_children"></p>
+            <p data-translate="info_gifts"></p>
+        </div>
+    </section>
+	<section id="rsvp" class="container">
+        <h2 data-translate="rsvp_title"></h2>
+        <p class="text-center" data-translate="rsvp_deadline"></p>
+        
+        <form id="rsvp-form">
+            <div class="form-group">
+                <label for="name" data-translate="rsvp_name"></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="attendance" data-translate="rsvp_attendance"></label>
+                <select id="attendance" name="attendance" required>
+                    <option value=""></option>
+                    <option value="yes" data-translate="rsvp_yes"></option>
+                    <option value="no" data-translate="rsvp_no"></option>
+                </select>
+            </div>
+            
+            <div id="additional-fields" style="display: none;">
+                <div class="form-group">
+                    <label for="email" data-translate="rsvp_email"></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" data-translate="rsvp_phone"></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plusone" data-translate="rsvp_plusone"></label>
+                    <select id="plusone" name="plusone">
+                        <option value="no" data-translate="rsvp_option_no"></option>
+						<option value="yes" data-translate="rsvp_option_yes"></option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="plusone-name-group" style="display: none;">
+                    <label for="plusone-name" data-translate="rsvp_plusone_name"></label>
+                    <input type="text" id="plusone-name" name="plusone-name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="children" data-translate="rsvp_children_q"></label>
+                    <select id="children" name="children">
+                        <option value="no" data-translate="rsvp_option_no"></option>
+						<option value="yes" data-translate="rsvp_option_yes"></option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="children-number-group" style="display: none;">
+                    <label for="children-number" data-translate="rsvp_children_number"></label>
+                    <input type="number" id="children-number" name="children-number" min="0" max="5" value="0">
+                </div>
+                
+                <div id="children-names-container"></div>
+                
+                <div class="form-group">
+                    <label for="meal" data-translate="rsvp_meal"></label>
+                    <select id="meal" name="meal">
+                        <option value="standard" data-translate="rsvp_meal_standard"></option>
+                        <option value="vegetarian" data-translate="rsvp_meal_vegetarian"></option>
+                        <option value="vegan" data-translate="rsvp_meal_vegan"></option>
+                        <option value="gluten-free" data-translate="rsvp_meal_glutenfree"></option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergies" data-translate="rsvp_allergies"></label>
+                    <textarea id="allergies" name="allergies"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accommodation" data-translate="rsvp_accommodation_q"></label>
+                    <select id="accommodation" name="accommodation">
+                        <option value="no">Nu</option>
+                        <option value="yes">Da</option>
+                    </select>
+                </div>
+                
+                <div id="accommodation-details" style="display: none;">
+                    <div class="info-box" style="margin: 15px 0; padding: 20px; background-color: #f8fff9;">
+                        <p><strong data-translate="rsvp_accommodation_recommendation"></strong></p>
+                        <p data-translate="rsvp_accommodation_details"></p>
+                        <p data-translate="rsvp_accommodation_dates"></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="booking-help" data-translate="rsvp_booking_help"></label>
+                        <select id="booking-help" name="booking-help">
+                            <option value="hotel-books" data-translate="rsvp_booking_hotel"></option>
+                            <option value="self-book" data-translate="rsvp_booking_self"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" data-translate="rsvp_message"></label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" data-translate="rsvp_submit"></button>
+        </form>
+    </section>
+	<section id="gallery" class="container">
+        <h2 data-translate="nav_gallery"></h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
+                <div class="gallery-caption"></div>
+            </div>
+        </div>
+    </section>
+	<section id="photos" class="container">
+        <h2 data-translate="photos_title"></h2>
+        <div class="info-box">
+            <h3 data-translate="photos_heading"></h3>
+            <p data-translate="photos_description"></p>
+            
+            <div style="margin: 30px auto; max-width: 250px;">
+                <a href="https://www.dropbox.com/request/ucE41k6X1sUfZPMxmonp" target="_blank" style="color: #829672; text-decoration: none;"><img src="qr-code.png" alt="QR" style="width: 100%; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></a>
+            </div>
+           
+            <div style="margin-top: 40px; background-color: #f8fbf9; padding: 25px; border-radius: 10px;">
+                <h4 style="margin-bottom: 15px; color: #829672;" data-translate="photos_how"></h4>
+                <p data-translate="photos_step1"></p>
+                <p data-translate="photos_step2"></p>
+                <p data-translate="photos_step3"></p>
+                <p style="margin-top: 20px; font-style: italic;" data-translate="photos_note"></p>
+            </div>
+        </div>
+    </section>
+	<section id="location" class="container">
+        <h2 data-translate="location_title"></h2>
+        <div class="info-box">
+            <h3 data-translate="location_heading"></h3>
+            <p data-translate="location_church"></p>
+            <p data-translate="location_reception"></p>
+            <p data-translate="location_distance"></p>
+        </div>
+        
+        <div class="info-box">
+            <h3 data-translate="weather_title"></h3>
+            <div id="weather-widget" class="text-center">
+                <div class="weather-content">
+                    <div class="weather-icon" style="font-size: 3rem; margin-bottom: 10px; color: #829672;">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="weather-temp" style="font-size: 1.5rem; margin-bottom: 10px;">28°C</div>
+                    <div class="weather-minmax" style="margin-bottom: 10px; font-size: 1.1rem;">
+                        <span class="temp-min">Min: 22°C</span> / <span class="temp-max">Max: 32°C</span>
+                    </div>
+                    <div class="weather-desc" data-translate="weather_description"></div>
+                    <div class="weather-details" style="margin-top: 15px; display: flex; justify-content: space-around;">
+                        <div>
+                            <i class="fas fa-cloud"></i>
+                            <div><span data-translate="weather_clouds"></span> <span class="clouds">30%</span></div>
+                        </div>
+                        <div>
+                            <i class="fas fa-tint"></i>
+                            <div><span data-translate="weather_rain"></span> <span class="rain-chance">15%</span></div>
+                        </div>
+                        <div>
+                            <i class="fas fa-wind"></i>
+                            <div><span data-translate="weather_wind"></span> <span class="wind">10 km/h NE</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="interactive-map" style="height: 500px; margin: 40px 0; border-radius: 10px;"></div>
+    </section>
+	<footer>
+        <p>Sînziana & Ionuț | 16 August 2025</p>
+        <p data-translate="footer_message"></p>
+    </footer>
+	<script>
+const translations = {
+ro: {
+    // Navigație
+    "nav_home": "Acasă",
+    "nav_couple": "Despre Noi",
+    "nav_details": "Detalii Eveniment",
+    "nav_rsvp": "RSVP",
+    "nav_gallery": "Galerie",
+    "nav_photos": "Upload Poze",
+    "nav_location": "Locație",
+    
+    // Header
+    "header_date": "16 AUGUST 2025",
+    "header_invite": "Avem plăcerea să vă invităm să ne fiți alături în ziua cea mare",
+    
+    // Countdown
+    "countdown_days": "Zile",
+    "countdown_hours": "Ore",
+    "countdown_minutes": "Minute",
+    "countdown_seconds": "Secunde",
+    
+    // Acasă
+    "home_greeting": "Dragi prieteni și familie,",
+    "home_invite": "Cu inimile pline de fericire, vă invităm să fiți alături de noi în această zi specială, când ne vom uni destinele",
+    "home_message": "Suntem încântați să împărtășim acest moment unic cu voi și sperăm că veți putea fi prezenți pentru a sărbători împreună cu noi începutul acestei noi călătorii.",
+    "home_signature": "Cu dragoste,",
+    
+    // Despre Noi
+    "couple_title": "Despre Noi",
+    "couple_story": "Ne-am întâlnit în urmă cu ",
+    "couple_message": "Suntem încântați să vă avem alături de noi în această zi specială și să împărtășim fericirea noastră cu cei mai dragi oameni din viața noastră.",
+    
+    // Detalii Eveniment
+    "details_title": "Detalii Eveniment",
+    "ceremony_title": "Ceremonia Religioasă",
+    "ceremony_date": "Data: 16 August 2025",
+    "ceremony_time": "Ora: 12:00",
+    "ceremony_location": "Locația: Biserica Sfântul Nicolae",
+    "ceremony_address": "Adresa: Strada Bisericii nr. 10, București",
+    
+    "reception_title": "Recepția",
+    "reception_date": "Data: 16 August 2025",
+    "reception_time": "Ora: 14:00",
+    "reception_location": "Locația: ",
+    "reception_address": "Adresa: ",
+    
+    "party_title": "Petrecerea",
+    "party_start": "Ora de început: 14:30",
+    "party_end": "Ora de încheiere: 05:00",
+    "party_dress": "Dress code: ",
+    "party_details": "Muzică live",
+    
+    "food_title": "Servirea Mesei",
+    "food_start": "Ora de început: 14:30",
+    "food_details": "whateva",
+
+    "cake_title": "Tort",
+    "cake_start": "Ora de început: 14:30",
+    "cake_details": "whateva",
+    
+    "info_title": "Informații Suplimentare",
+    "info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la , situat la 5 minute de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare.",
+    "info_transport": "Transport: Vom asigura transport de la biserică la locația recepției. De asemenea, la finalul evenimentului, vor fi disponibile mașini pentru transport la hotel.",
+    "info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
+    "info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
+    
+    // RSVP
+    "rsvp_title": "Confirmă Prezența (RSVP)",
+    "rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 15 iulie 2025",
+    "rsvp_name": "Nume și Prenume",
+    "rsvp_attendance": "Vei participa?",
+    "rsvp_yes": "Da, voi participa",
+    "rsvp_no": "Nu pot participa",
+    "rsvp_email": "Email",
+    "rsvp_phone": "Telefon",
+    "rsvp_plusone": "Vei veni cu partener/parteneră?",
+    "rsvp_plusone_name": "Numele partenerului/partenerei",
+    "rsvp_children_q": "Vei veni cu copii?",
+    "rsvp_children_number": "Câți copii?",
+    "rsvp_child_name": "Numele copilului",
+    "rsvp_meal": "Preferințe alimentare",
+    "rsvp_meal_standard": "Meniu standard",
+    "rsvp_meal_vegetarian": "Meniu vegetarian",
+    "rsvp_meal_vegan": "Meniu vegan",
+    "rsvp_allergies": "Alergii sau restricții alimentare",
+    "rsvp_meal_glutenfree": "Fără gluten",
+    "rsvp_accommodation_q": "Ai nevoie de cazare?",
+    "rsvp_accommodation_recommendation": "Recomandarea noastră: Hotel ",
+    "rsvp_accommodation_details": "Situat la doar 5 minute de locația recepției, oferă camere confortabile la prețul de 350 lei/noapte.",
+    "rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
+    "rsvp_booking_help": "Doriți să facem noi rezervarea sau vă ocupați dumneavoastră?",
+    "rsvp_booking_hotel": "Vă rugăm să faceți dumneavoastră rezervarea pentru mine",
+    "rsvp_booking_self": "Mă voi ocupa eu de rezervare",
+    "rsvp_message": "Mesaj pentru miri (opțional)",
+    "rsvp_submit": "Trimite",
+    "rsvp_success": "Mulțumim pentru confirmare!",
+    "rsvp_regret": "Ne pare rău că nu poți participa!",
+	"rsvp_option_yes": "Da",
+	"rsvp_option_no": "Nu",
+
+    
+    // Upload Poze
+    "photos_title": "Încarcă Fotografii",
+    "photos_heading": "Împărtășește-ți amintirile cu noi!",
+    "photos_description": "Salvează amintirile noastre din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
+    "photos_how": "Cum funcționează?",
+    "photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus",
+    "photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești",
+    "photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru",
+    "photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
+    
+    // Locație
+    "location_title": "Locația",
+    "location_heading": "Cum ajungi la noi",
+    "location_church": "Biserica: ",
+    "location_reception": "Recepția: ",
+    "location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Va fi asigurat transport între cele două locații.",
+    "location_map": "Găsește locația pe hartă",
+    "location_directions": "Pentru indicații rutiere, vă recomandăm",
+    
+    // Weather
+    "weather_title": "Prognoza meteo pentru ziua nunții",
+    "weather_description": "În general însorit și cald",
+    "weather_clouds": "Acoperire nori:",
+    "weather_rain": "Șanse ploaie:",
+    "weather_wind": "Vânt:",
+    
+    // Footer
+    "footer_message": "Ne bucurăm să vă avem alături de noi în această zi specială!"
+  },
+  en: {
+    // Navigation
+    "nav_home": "Home",
+    "nav_couple": "About Us",
+    "nav_details": "Event Details",
+    "nav_rsvp": "RSVP",
+    "nav_gallery": "Gallery",
+    "nav_photos": "Upload Photos",
+    "nav_location": "Location",
+    
+    // Header
+    "header_date": "AUGUST 16, 2025",
+    "header_invite": "We are pleased to invite you to join us on our special day",
+    
+    // Countdown
+    "countdown_days": "Days",
+    "countdown_hours": "Hours",
+    "countdown_minutes": "Minutes",
+    "countdown_seconds": "Seconds",
+    
+    // Home
+    "home_greeting": "Dear friends and family,",
+    "home_invite": "With hearts full of joy, we invite you to join us on this special day when we unite our destinies",
+    "home_message": "We are excited to share this unique moment with you and hope you can be present to celebrate with us the beginning of this new journey.",
+    "home_signature": "With love,",
+    
+    // About Us
+    "couple_title": "About Us",
+    "couple_story": "We met ",
+    "couple_message": "We are excited to have you with us on this special day and share our happiness with the dearest people in our lives.",
+    
+    // Event Details
+    "details_title": "Event Details",
+    "ceremony_title": "Religious Ceremony",
+    "ceremony_date": "Date: August 16, 2025",
+    "ceremony_time": "Time: 12:00",
+    "ceremony_location": "Location: ",
+    "ceremony_address": "Address: ",
+    
+    "reception_title": "Reception",
+    "reception_date": "Date: August 16, 2025",
+    "reception_time": "Time: 14:00",
+    "reception_location": "Location: ",
+    "reception_address": "Address: ",
+    
+    "party_title": "Party",
+    "party_start": "Start time: 14:30",
+    "party_end": "End time: 05:00",
+    "party_dress": "Dress code: ",
+    "party_details": "Live music",
+    
+    "food_title": "Dinner",
+    "food_start": "Start time: 14:30",
+    "food_details": "Whatever",
+
+    "cake_title": "Cake",
+    "cake_start": "Start time: 14:30",
+    "cake_details": "Whatever",
+    
+    "info_title": "Additional Information",
+    "info_accommodation": "Accommodation: For guests from other locations, we have reserved rooms at , located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation.",
+    "info_transport": "Transport: We will provide transportation from the church to the reception venue. Also, at the end of the event, cars will be available for transport to the hotel.",
+    "info_children": "Children: They are welcome! We will have a specially arranged area for the little ones, with activities and supervision.",
+    "info_gifts": "Gifts: Your presence is the most beautiful gift. If you still wish to offer us something, we would appreciate a contribution to our honeymoon.",
+    
+    // RSVP
+    "rsvp_title": "Confirm Attendance (RSVP)",
+    "rsvp_deadline": "Please confirm your attendance by July 15, 2025",
+    "rsvp_name": "Full Name",
+    "rsvp_attendance": "Will you attend?",
+    "rsvp_yes": "Yes, I will attend",
+    "rsvp_no": "I cannot attend",
+    "rsvp_email": "Email",
+    "rsvp_phone": "Phone",
+    "rsvp_plusone": "Will you bring a partner?",
+    "rsvp_plusone_name": "Partner's name",
+    "rsvp_children_q": "Will you bring children?",
+    "rsvp_children_number": "How many children?",
+    "rsvp_child_name": "Child's name",
+    "rsvp_meal": "Dietary preferences",
+    "rsvp_meal_standard": "Standard menu",
+    "rsvp_meal_vegetarian": "Vegetarian menu",
+    "rsvp_meal_vegan": "Vegan menu",
+    "rsvp_meal_glutenfree": "Gluten-free",
+    "rsvp_allergies": "Allergies or dietary restrictions",
+    "rsvp_accommodation_q": "Do you need accommodation?",
+    "rsvp_accommodation_recommendation": "Our recommendation: ",
+    "rsvp_accommodation_details": "Located just 5 minutes from the reception venue, it offers comfortable rooms at a price of 350 lei/night.",
+    "rsvp_accommodation_dates": "Availability: August 15-17, 2025",
+    "rsvp_booking_help": "Would you like us to make the reservation or will you handle it yourself?",
+    "rsvp_booking_hotel": "Please make the reservation for me",
+    "rsvp_booking_self": "I will make the reservation myself",
+    "rsvp_message": "Message for the couple (optional)",
+    "rsvp_submit": "Submit",
+    "rsvp_success": "Thank you for your confirmation!",
+    "rsvp_regret": "We're sorry you can't attend!",
+	"rsvp_option_yes": "Yes",
+	"rsvp_option_no": "No",
+    
+    // Upload Photos
+    "photos_title": "Upload Photos",
+    "photos_heading": "Share your memories with us!",
+    "photos_description": "Save our memories from the wedding day! Scan this QR code to upload your photos directly to our digital album.",
+    "photos_how": "How does it work?",
+    "photos_step1": "Step 1: Scan the QR code with your phone camera or access the link above",
+    "photos_step2": "Step 2: Select the photos you want to share",
+    "photos_step3": "Step 3: Upload the photos to our album",
+    "photos_note": "Your photos will be automatically added to our shared album, and after the wedding, we will send all guests the link to the complete album!",
+    
+    // Location
+    "location_title": "Location",
+    "location_heading": "How to get to us",
+    "location_church": "Church: ",
+    "location_reception": "Reception: ",
+    "location_distance": "The locations are approximately 15 minutes apart. Transportation between the two locations will be provided.",
+    "location_map": "Find the location on the map",
+    "location_directions": "For directions, we recommend",
+    
+    // Weather
+    "weather_title": "Weather forecast for the wedding day",
+    "weather_description": "Generally sunny and warm",
+    "weather_clouds": "Cloud coverage:",
+    "weather_rain": "Chance of rain:",
+    "weather_wind": "Wind:",
+    
+    // Footer
+    "footer_message": "We look forward to having you with us on this special day!"
+  }
+};
+
+function updateLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
+        }
+    });
+    
+    document.querySelectorAll('[data-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-placeholder');
+        if (translations[lang][key]) {
+            element.placeholder = translations[lang][key];
+        }
+    });
+    
+    document.querySelectorAll('option[data-translate]').forEach(option => {
+        const key = option.getAttribute('data-translate');
+        if (translations[lang][key]) {
+            option.innerHTML = translations[lang][key];
+        }
+    });
+    
+    document.querySelectorAll('.language-button').forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('data-lang') === lang) {
+            button.classList.add('active');
+        }
+    });
+    
+    localStorage.setItem('preferred_language', lang);
+}
+
+function initCountdown() {
+    const weddingDate = new Date("Aug 16, 2025 12:00:00").getTime();
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+        
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("days").textContent = "0";
+            document.getElementById("hours").textContent = "0";
+            document.getElementById("minutes").textContent = "0";
+            document.getElementById("seconds").textContent = "0";
+        }
+    }
+    
+    updateCountdown();
+    
+    const countdown = setInterval(updateCountdown, 1000);
+}
+
+function showHeartAnimation(isAttending) {
+    const responseIcon = document.getElementById('responseIcon');
+    
+    if (isAttending) {
+        responseIcon.className = 'heart-icon fas fa-heart';
+        responseIcon.style.color = '#829672';
+    } else {
+        responseIcon.className = 'heart-icon fas fa-heart-broken';
+        responseIcon.style.color = '#d8959b';
+    }
+    
+    responseIcon.style.opacity = '1';
+    responseIcon.style.fontSize = '400px';
+    
+    responseIcon.style.animation = 'heartBeat 1.3s ease-in-out';
+    
+    setTimeout(() => {
+        responseIcon.style.opacity = '0';
+        responseIcon.style.fontSize = '0';
+        
+        setTimeout(() => {
+            responseIcon.style.animation = '';
+        }, 500);
+    }, 3000);
+}
+
+function initSections() {
+    const attendanceSelect = document.getElementById('attendance');
+    const additionalFields = document.getElementById('additional-fields');
+    
+    if (attendanceSelect && additionalFields) {
+        attendanceSelect.addEventListener('change', function() {
+            const requiredFields = additionalFields.querySelectorAll('[required]');
+            
+            if (this.value === 'yes') {
+                additionalFields.style.display = 'block';
+                
+                const emailField = document.getElementById('email');
+                const phoneField = document.getElementById('phone');
+                if (emailField) emailField.setAttribute('required', '');
+                if (phoneField) phoneField.setAttribute('required', '');
+            } else {
+                additionalFields.style.display = 'none';
+                requiredFields.forEach(field => {
+                    field.removeAttribute('required');
+                });
+            }
+        });
+    }
+    
+    const plusOneSelect = document.getElementById('plusone');
+    const plusOneNameGroup = document.getElementById('plusone-name-group');
+    
+    if (plusOneSelect && plusOneNameGroup) {
+        plusOneSelect.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                plusOneNameGroup.style.display = 'block';
+            } else {
+                plusOneNameGroup.style.display = 'none';
+                document.getElementById('plusone-name').value = '';
+            }
+        });
+    }
+    
+    const childrenSelect = document.getElementById('children');
+    const childrenNumberGroup = document.getElementById('children-number-group');
+    const childrenNumber = document.getElementById('children-number');
+    const childrenNamesContainer = document.getElementById('children-names-container');
+    
+    if (childrenSelect && childrenNumberGroup && childrenNumber && childrenNamesContainer) {
+        childrenSelect.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                childrenNumberGroup.style.display = 'block';
+                updateChildrenFields();
+            } else {
+                childrenNumberGroup.style.display = 'none';
+                childrenNumber.value = 0;
+                childrenNamesContainer.innerHTML = '';
+            }
+        });
+        
+        childrenNumber.addEventListener('change', updateChildrenFields);
+        
+        function updateChildrenFields() {
+            const numChildren = parseInt(childrenNumber.value);
+            childrenNamesContainer.innerHTML = '';
+            
+            for (let i = 0; i < numChildren; i++) {
+                const childDiv = document.createElement('div');
+                childDiv.className = 'form-group';
+                childDiv.innerHTML = `
+                    <label for="child-name-${i}">Numele copilului ${i + 1}</label>
+                    <input type="text" id="child-name-${i}" name="child-name-${i}">
+                `;
+                childrenNamesContainer.appendChild(childDiv);
+            }
+        }
+    }
+    
+    const accommodationSelect = document.getElementById('accommodation');
+    const accommodationDetails = document.getElementById('accommodation-details');
+    
+    if (accommodationSelect && accommodationDetails) {
+        accommodationSelect.addEventListener('change', function() {
+            if (this.value === 'yes') {
+                accommodationDetails.style.display = 'block';
+            } else {
+                accommodationDetails.style.display = 'none';
+            }
+        });
+    }
+    
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (rsvpForm && attendanceSelect && additionalFields) {
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const isAttending = attendanceSelect.value === 'yes';
+            showHeartAnimation(isAttending);
+            
+            setTimeout(function() {
+                rsvpForm.reset();
+                additionalFields.style.display = 'none';
+            }, 3000);
+        });
+    }
+}
+function initMap() {
+    const mapElement = document.getElementById('interactive-map');
+    if (!mapElement) return;
+    
+    try {
+        const weddingLocation = [45.929585674218764, 25.09248460621327];
+        const partyLocation = [45.951143208213, 25.051906816582328];
+        const bedLocation = [45.9441090720315, 25.04846811817492];
+        
+        const screenWidth = window.innerWidth;
+        let zoomLevel = 14;
+        
+        if (screenWidth < 768) {
+            zoomLevel = 13;
+        }
+        if (screenWidth < 480) {
+            zoomLevel = 12;
+        }
+        
+        const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
+        
+        const churchicon = L.divIcon({
+            html: '<i class="fas fa-church" style="font-size: 30px; color: #829672;"></i>',
+            iconSize: [30, 30],
+            className: 'myDivIcon'
+        });
+
+        const partyicon = L.divIcon({
+            html: '<i class="fas fa-glass-cheers" style="font-size: 30px; color: #829672;"></i>',
+            iconSize: [30, 30],
+            className: 'myDivIcon'
+        });
+
+        const bedicon = L.divIcon({
+            html: '<i class="fas fa-bed" style="font-size: 30px; color: #829672;"></i>',
+            iconSize: [30, 30],
+            className: 'myDivIcon'
+        });
+        
+        const markers = [
+            L.marker(weddingLocation, { icon: churchicon }),
+            L.marker(partyLocation, { icon: partyicon }),
+            L.marker(bedLocation, { icon: bedicon })
+        ];
+        
+        markers.forEach(marker => marker.addTo(map));
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+        
+        const group = new L.featureGroup(markers);
+        map.fitBounds(group.getBounds().pad(0.1));
+        
+    } catch (error) {
+        console.error("Error initializing map:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
+    updateLanguage(preferredLanguage);
+   
+    initCountdown();
+	initSections();
+		
+		setTimeout(initMap, 500);
+	});
+	
+document.addEventListener('DOMContentLoaded', function() {
+  const rsvpForm = document.getElementById('rsvp-form');
+  
+  if (rsvpForm) {
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden-form-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    
+    rsvpForm.addEventListener('submit', function(e) {
+      try {
+        const formData = new FormData(rsvpForm);
+        const formDataObject = {};
+        formData.forEach((value, key) => {
+          formDataObject[key] = value;
+        });
+        
+        if (formDataObject.plusone === 'yes') {
+          formDataObject.plusoneName = document.getElementById('plusone-name').value;
+        }
+        
+        const isAttending = document.getElementById('attendance').value === 'yes';
+        if (isAttending && formDataObject.children === 'yes') {
+          console.log('Children number:', formDataObject.childrenNumber);
+          
+          const childrenNames = [];
+          const childInputs = document.querySelectorAll('[id^="child-name-"]');
+          
+          childInputs.forEach(input => {
+            if (input.value) {
+              childrenNames.push(input.value);
+              console.log('Found child name:', input.value);
+            }
+          });
+          
+          formDataObject.childrenNames = childrenNames.join(', ');
+          console.log('Final children names:', formDataObject.childrenNames);
+        }
+        
+        console.log('Collected form data:', formDataObject);
+        
+        const hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxs3UVpbUSAhT2THJYM5eCALUxak58LKpx9_4NRFH-PsE84UiquEvinMzXJgmzAyu7h/exec';
+        hiddenForm.target = 'hidden-form-iframe';
+        
+        for (const [key, value] of Object.entries(formDataObject)) {
+          if (value !== undefined && value !== null) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            hiddenForm.appendChild(input);
+          }
+        }
+        
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+        
+        setTimeout(() => {
+          document.body.removeChild(hiddenForm);
+          notification.remove();
+        }, 3000);
+        
+        console.log('Form data sent to Google Sheets:', formDataObject);
+      } catch (error) {
+        console.error('Error preparing form data:', error);
+      }
+    });
+  }
+});
+	</script>
+	</body>
+	</html>
