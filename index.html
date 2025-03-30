@@ -469,6 +469,7 @@
             }
         }
         
+
         .response-animation-container {
             position: fixed;
             top: 0;
@@ -519,6 +520,244 @@
             background-color: white;
             padding: 8px;
         }
+
+
+		.slideshow-container {
+			position: relative;
+			width: 100%;
+			margin: 40px auto;
+			overflow: hidden;
+			aspect-ratio: 16/9;
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		.slideshow-container:hover {
+			transform: translateY(-5px);
+		}
+
+		.slideshow-inner {
+			position: relative;
+			height: 100%;
+			width: 100%;
+		}
+
+		.slide {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.slide.active {
+			opacity: 1;
+			z-index: 1;
+		}
+
+		.slide img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			border-radius: 15px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+
+		.prev, .next {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			background-color: rgba(130, 150, 114, 0.8);
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 20px;
+			z-index: 5;
+			transition: all 0.3s ease;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+			opacity: 0;
+		}
+
+		.slideshow-container:hover .prev,
+		.slideshow-container:hover .next {
+			opacity: 1;
+		}
+
+		.prev {
+			left: 15px;
+		}
+
+		.next {
+			right: 15px;
+		}
+
+		.prev:hover, .next:hover {
+			background-color: #829672;
+			transform: translateY(-50%) scale(1.1);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		}
+
+
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.9);
+		}
+
+		.modal-content {
+			position: relative;
+			width: 95%;
+			max-width: 1400px;
+			height: 85%;
+			margin: 3% auto;
+		}
+
+		.modal-slides {
+			position: relative;
+			height: 100%;
+			width: 100%;
+		}
+
+		.modal-slide {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1.2s ease;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.modal-slide.active {
+			opacity: 1;
+			z-index: 1;
+		}
+
+		.modal-slide img {
+			max-width: 90%;
+			max-height: 90%;
+			object-fit: contain;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+		}
+
+		.modal-prev, .modal-next {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 56px;
+			height: 56px;
+			border-radius: 50%;
+			background-color: rgba(130, 150, 114, 0.7);
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			z-index: 5;
+			transition: all 0.3s ease;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		.modal-prev {
+			left: 20px;
+		}
+
+		.modal-next {
+			right: 20px;
+		}
+
+		.modal-prev:hover, .modal-next:hover {
+			background-color: rgba(130, 150, 114, 0.9);
+			transform: translateY(-50%) scale(1.1);
+		}
+
+		.close-modal {
+			position: absolute;
+			top: 20px;
+			right: 25px;
+			color: white;
+			font-size: 38px;
+			font-weight: bold;
+			cursor: pointer;
+			z-index: 10;
+			transition: transform 0.3s;
+		}
+
+		.close-modal:hover {
+			transform: scale(1.2);
+		}
+
+
+		.photo-counter {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			color: white;
+			background-color: rgba(0, 0, 0, 0.5);
+			padding: 5px 15px;
+			border-radius: 20px;
+			font-size: 14px;
+			z-index: 5;
+		}
+		
+		header {
+			position: relative;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: white;
+		}
+
+		header::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url('header.jpg') center/cover no-repeat;
+			filter: grayscale(100%);
+			z-index: -2;
+		}
+
+		.header-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+			z-index: -1;
+		}
+
+		.header-content {
+			position: relative;
+			z-index: 1;
+			animation: fadeIn 2s ease-out;
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
+		}
+
     </style>
 </head>
 <body>
@@ -701,7 +940,6 @@
                         <option value="standard" data-translate="rsvp_meal_standard"></option>
                         <option value="vegetarian" data-translate="rsvp_meal_vegetarian"></option>
                         <option value="vegan" data-translate="rsvp_meal_vegan"></option>
-                        <option value="gluten-free" data-translate="rsvp_meal_glutenfree"></option>
                     </select>
                 </div>
                 
@@ -713,8 +951,8 @@
                 <div class="form-group">
                     <label for="accommodation" data-translate="rsvp_accommodation_q"></label>
                     <select id="accommodation" name="accommodation">
-                        <option value="no">Nu</option>
-                        <option value="yes">Da</option>
+						<option value="no" data-translate="rsvp_option_no"></option>
+						<option value="yes" data-translate="rsvp_option_yes"></option>
                     </select>
                 </div>
                 
@@ -740,38 +978,37 @@
                 </div>
             </div>
             
-            <button type="submit" data-translate="rsvp_submit"></button>
+            <button type="submit" data-translate="rs`vp_submit"></button>
         </form>
     </section>
-	<section id="gallery" class="container">
-        <h2 data-translate="nav_gallery"></h2>
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
-            <div class="gallery-item">
-                <img src="/api/placeholder/300/300" alt="Sînziana și Ionuț">
-                <div class="gallery-caption"></div>
-            </div>
+<section id="gallery" class="container">
+    <h2 data-translate="nav_gallery"></h2>
+    
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <div class="slideshow-inner">
+            <!-- Slides will be generated by JavaScript -->
         </div>
-    </section>
+        
+        <!-- Previous/Next buttons -->
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+    </div>
+    
+    <!-- Fullscreen Modal -->
+    <div id="slideModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="modal-slides">
+                <!-- Modal slides will be generated by JavaScript -->
+            </div>
+            
+            <!-- Modal Previous/Next buttons -->
+            <a class="modal-prev">&#10094;</a>
+            <a class="modal-next">&#10095;</a>
+        </div>
+    </div>
+</section>
 	<section id="photos" class="container">
         <h2 data-translate="photos_title"></h2>
         <div class="info-box">
@@ -838,7 +1075,7 @@
     </footer>
 	<script>
 const translations = {
-ro: {
+  ro: {
     // Navigație
     "nav_home": "Acasă",
     "nav_couple": "Despre Noi",
@@ -850,7 +1087,7 @@ ro: {
     
     // Header
     "header_date": "16 AUGUST 2025",
-    "header_invite": "Avem plăcerea să vă invităm să ne fiți alături în ziua cea mare",
+    "header_invite": "Ne căsătorim!",
     
     // Countdown
     "countdown_days": "Zile",
@@ -859,53 +1096,53 @@ ro: {
     "countdown_seconds": "Secunde",
     
     // Acasă
-    "home_greeting": "Dragi prieteni și familie,",
-    "home_invite": "Cu inimile pline de fericire, vă invităm să fiți alături de noi în această zi specială, când ne vom uni destinele",
-    "home_message": "Suntem încântați să împărtășim acest moment unic cu voi și sperăm că veți putea fi prezenți pentru a sărbători împreună cu noi începutul acestei noi călătorii.",
-    "home_signature": "Cu dragoste,",
+    "home_greeting": "Dragii noștri,",
+    "home_invite": "Am decis ca în sfârșit să avem același nume",
+    "home_message": "Cu această ocazie, vrem sa dăm o petrecere mare la care să îi avem alături pe cei care fac parte din viața noastră",
+    "home_signature": "Cu bucurie,",
     
     // Despre Noi
     "couple_title": "Despre Noi",
-    "couple_story": "Ne-am întâlnit în urmă cu ",
-    "couple_message": "Suntem încântați să vă avem alături de noi în această zi specială și să împărtășim fericirea noastră cu cei mai dragi oameni din viața noastră.",
+    "couple_story": "Suntem împreună de 10+ ani si de 5+ ani ne distrăm alături de fetița noastră grozavă Lia, dar probabil știați aceste lucruri",
+    
     
     // Detalii Eveniment
     "details_title": "Detalii Eveniment",
     "ceremony_title": "Ceremonia Religioasă",
     "ceremony_date": "Data: 16 August 2025",
     "ceremony_time": "Ora: 12:00",
-    "ceremony_location": "Locația: Biserica Sfântul Nicolae",
-    "ceremony_address": "Adresa: Strada Bisericii nr. 10, București",
+    "ceremony_location": "Locația: Biserica Buna Vestire",
+    "ceremony_address": "Adresa: Ticușu Vechi",
     
     "reception_title": "Recepția",
     "reception_date": "Data: 16 August 2025",
-    "reception_time": "Ora: 14:00",
-    "reception_location": "Locația: ",
-    "reception_address": "Adresa: ",
+    "reception_time": "Ora: 17:00",
+    "reception_location": "Locația: Gospodăria Cobor - Șura-n bucate",
+    "reception_address": "Adresa: Strada Mare 199, Cobor",
     
     "party_title": "Petrecerea",
-    "party_start": "Ora de început: 14:30",
-    "party_end": "Ora de încheiere: 05:00",
-    "party_dress": "Dress code: ",
-    "party_details": "Muzică live",
+    "party_start": "Ora de început: 17:30",
+    "party_end": "Ora de încheiere: 01:00",
+    "party_dress": "Ținută: super lejeră",
+    "party_details": "Muzică și dans afară pe iarbă, activități pentru copii, mâncare delicioasă și voie bună",
     
     "food_title": "Servirea Mesei",
-    "food_start": "Ora de început: 14:30",
-    "food_details": "whateva",
+    "food_start": "Ora de început: 18:00",
+    "food_details": "Bufet, urmat de fel principal. Preparate concepute și realizate de Chef Daniela Graura",
 
     "cake_title": "Tort",
-    "cake_start": "Ora de început: 14:30",
-    "cake_details": "whateva",
+    "cake_start": "Ora de început: 00:00",
+    "cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
     
     "info_title": "Informații Suplimentare",
-    "info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la , situat la 5 minute de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare.",
-    "info_transport": "Transport: Vom asigura transport de la biserică la locația recepției. De asemenea, la finalul evenimentului, vor fi disponibile mașini pentru transport la hotel.",
+    "info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate COBOR, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație ",
+    "info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor",
     "info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
     "info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
-    
+     
     // RSVP
     "rsvp_title": "Confirmă Prezența (RSVP)",
-    "rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 15 iulie 2025",
+    "rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 1 iunie 2025",
     "rsvp_name": "Nume și Prenume",
     "rsvp_attendance": "Vei participa?",
     "rsvp_yes": "Da, voi participa",
@@ -922,14 +1159,16 @@ ro: {
     "rsvp_meal_vegetarian": "Meniu vegetarian",
     "rsvp_meal_vegan": "Meniu vegan",
     "rsvp_allergies": "Alergii sau restricții alimentare",
-    "rsvp_meal_glutenfree": "Fără gluten",
     "rsvp_accommodation_q": "Ai nevoie de cazare?",
-    "rsvp_accommodation_recommendation": "Recomandarea noastră: Hotel ",
-    "rsvp_accommodation_details": "Situat la doar 5 minute de locația recepției, oferă camere confortabile la prețul de 350 lei/noapte.",
+	"rsvp_option_yes": "Da",
+	"rsvp_option_no": "Nu",
+    "rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
+    "rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă",
     "rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
-    "rsvp_booking_help": "Doriți să facem noi rezervarea sau vă ocupați dumneavoastră?",
-    "rsvp_booking_hotel": "Vă rugăm să faceți dumneavoastră rezervarea pentru mine",
-    "rsvp_booking_self": "Mă voi ocupa eu de rezervare",
+    "rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
+    "rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
+    "rsvp_booking_self": "Da, 1 noapte (16-17 august)",
+    "rsvp_booking_neg": "Nu",
     "rsvp_message": "Mesaj pentru miri (opțional)",
     "rsvp_submit": "Trimite",
     "rsvp_success": "Mulțumim pentru confirmare!",
@@ -941,7 +1180,7 @@ ro: {
     // Upload Poze
     "photos_title": "Încarcă Fotografii",
     "photos_heading": "Împărtășește-ți amintirile cu noi!",
-    "photos_description": "Salvează amintirile noastre din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
+    "photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
     "photos_how": "Cum funcționează?",
     "photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus",
     "photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești",
@@ -951,9 +1190,7 @@ ro: {
     // Locație
     "location_title": "Locația",
     "location_heading": "Cum ajungi la noi",
-    "location_church": "Biserica: ",
-    "location_reception": "Recepția: ",
-    "location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Va fi asigurat transport între cele două locații.",
+    "location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3h30min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1h30min)<br><br>Cu avionul: București, Cluj, Sibiu, Brașov<br> Cu trenul: Făgăraș, Șercaia, Rupea",
     "location_map": "Găsește locația pe hartă",
     "location_directions": "Pentru indicații rutiere, vă recomandăm",
     
@@ -963,9 +1200,9 @@ ro: {
     "weather_clouds": "Acoperire nori:",
     "weather_rain": "Șanse ploaie:",
     "weather_wind": "Vânt:",
-    
+     
     // Footer
-    "footer_message": "Ne bucurăm să vă avem alături de noi în această zi specială!"
+    "footer_message": "Abia așteptăm să vă vedem!"
   },
   en: {
     // Navigation
@@ -979,7 +1216,7 @@ ro: {
     
     // Header
     "header_date": "AUGUST 16, 2025",
-    "header_invite": "We are pleased to invite you to join us on our special day",
+    "header_invite": "We are tying the knot!",
     
     // Countdown
     "countdown_days": "Days",
@@ -988,53 +1225,53 @@ ro: {
     "countdown_seconds": "Seconds",
     
     // Home
-    "home_greeting": "Dear friends and family,",
-    "home_invite": "With hearts full of joy, we invite you to join us on this special day when we unite our destinies",
-    "home_message": "We are excited to share this unique moment with you and hope you can be present to celebrate with us the beginning of this new journey.",
-    "home_signature": "With love,",
+    "home_greeting": "Dear ones,",
+    "home_invite": "We decided to finally share the last name",
+    "home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
+    "home_signature": "With love and excitement,",
     
     // About Us
     "couple_title": "About Us",
-    "couple_story": "We met ",
-    "couple_message": "We are excited to have you with us on this special day and share our happiness with the dearest people in our lives.",
+    "couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already ",
+
     
     // Event Details
     "details_title": "Event Details",
     "ceremony_title": "Religious Ceremony",
     "ceremony_date": "Date: August 16, 2025",
     "ceremony_time": "Time: 12:00",
-    "ceremony_location": "Location: ",
-    "ceremony_address": "Address: ",
+    "ceremony_location": "Location: Church Buna Vestire",
+    "ceremony_address": "Address: Ticușu Vechi",
     
     "reception_title": "Reception",
     "reception_date": "Date: August 16, 2025",
-    "reception_time": "Time: 14:00",
-    "reception_location": "Location: ",
-    "reception_address": "Address: ",
+    "reception_time": "Time: 17:00",
+    "reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
+    "reception_address": "Address: Strada Mare 199, Cobor",
     
     "party_title": "Party",
-    "party_start": "Start time: 14:30",
-    "party_end": "End time: 05:00",
-    "party_dress": "Dress code: ",
-    "party_details": "Live music",
+    "party_start": "Start time: 17:30",
+    "party_end": "End time: 01:00",
+    "party_dress": "Dress code: super casual",
+    "party_details": "Outdoor garden event, kids corner, delicious food and party vibes ",
     
     "food_title": "Dinner",
-    "food_start": "Start time: 14:30",
-    "food_details": "Whatever",
+    "food_start": "Start time: 18:00",
+    "food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
 
     "cake_title": "Cake",
-    "cake_start": "Start time: 14:30",
-    "cake_details": "Whatever",
+    "cake_start": "Start time: 00:00",
+    "cake_details": "Cake by San Grecu, Făgăraș",
     
     "info_title": "Additional Information",
-    "info_accommodation": "Accommodation: For guests from other locations, we have reserved rooms at , located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation.",
-    "info_transport": "Transport: We will provide transportation from the church to the reception venue. Also, at the end of the event, cars will be available for transport to the hotel.",
-    "info_children": "Children: They are welcome! We will have a specially arranged area for the little ones, with activities and supervision.",
+    "info_accommodation": "Accommodation: For guests from other locations, we have booked the Covor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue",
+    "info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor",
+    "info_children": "Children: They are welcome! We will have a designated area for the little ones, with activities and supervision.",
     "info_gifts": "Gifts: Your presence is the most beautiful gift. If you still wish to offer us something, we would appreciate a contribution to our honeymoon.",
     
     // RSVP
     "rsvp_title": "Confirm Attendance (RSVP)",
-    "rsvp_deadline": "Please confirm your attendance by July 15, 2025",
+    "rsvp_deadline": "Please confirm your attendance by June 1, 2025",
     "rsvp_name": "Full Name",
     "rsvp_attendance": "Will you attend?",
     "rsvp_yes": "Yes, I will attend",
@@ -1043,22 +1280,23 @@ ro: {
     "rsvp_phone": "Phone",
     "rsvp_plusone": "Will you bring a partner?",
     "rsvp_plusone_name": "Partner's name",
-    "rsvp_children_q": "Will you bring children?",
+    "rsvp_children_q": "Any children attending?",
     "rsvp_children_number": "How many children?",
     "rsvp_child_name": "Child's name",
     "rsvp_meal": "Dietary preferences",
     "rsvp_meal_standard": "Standard menu",
     "rsvp_meal_vegetarian": "Vegetarian menu",
     "rsvp_meal_vegan": "Vegan menu",
-    "rsvp_meal_glutenfree": "Gluten-free",
     "rsvp_allergies": "Allergies or dietary restrictions",
     "rsvp_accommodation_q": "Do you need accommodation?",
-    "rsvp_accommodation_recommendation": "Our recommendation: ",
-    "rsvp_accommodation_details": "Located just 5 minutes from the reception venue, it offers comfortable rooms at a price of 350 lei/night.",
+	"rsvp_option_yes": "Yes",
+	"rsvp_option_no": "No",
+    "rsvp_accommodation_recommendation": "Our recommendation: Cobor Biodiversity Farm",
+    "rsvp_accommodation_details": "We have booked the entire place, but please confirm if you prefer this one and for how many nights.",
     "rsvp_accommodation_dates": "Availability: August 15-17, 2025",
-    "rsvp_booking_help": "Would you like us to make the reservation or will you handle it yourself?",
-    "rsvp_booking_hotel": "Please make the reservation for me",
-    "rsvp_booking_self": "I will make the reservation myself",
+    "rsvp_booking_help": "Will you stay at Cobor Biodiversity Farm?",
+    "rsvp_booking_hotel": "Yes, for 2 nights (August 15-17)",
+    "rsvp_booking_self": "Yes, for 1 night (August 16-17)",
     "rsvp_message": "Message for the couple (optional)",
     "rsvp_submit": "Submit",
     "rsvp_success": "Thank you for your confirmation!",
@@ -1079,9 +1317,7 @@ ro: {
     // Location
     "location_title": "Location",
     "location_heading": "How to get to us",
-    "location_church": "Church: ",
-    "location_reception": "Reception: ",
-    "location_distance": "The locations are approximately 15 minutes apart. Transportation between the two locations will be provided.",
+	"location_distance": "The locations are approximately 15 minutes apart from each other. We can help with transportation between locations.<br><br>Distance from Bucharest: 260 km (4 hours)<br>Distance from Sibiu: 100 km (2 hours)<br>Distance from Cluj: 210 km (3h30min)<br>Distance from Făgăraș: 22 km (30 min)<br>Distance from Viscri: 45 km (1 hour)<br>Distance from Sighișoara: 60 km (1h30min)<br><br>By plane: Bucharest, Cluj, Sibiu, Brașov<br> By train: Făgăraș, Șercaia, Rupea",
     "location_map": "Find the location on the map",
     "location_directions": "For directions, we recommend",
     
@@ -1106,13 +1342,15 @@ function updateLanguage(lang) {
         }
     });
     
-    document.querySelectorAll('[data-placeholder]').forEach(element => {
-        const key = element.getAttribute('data-placeholder');
-        if (translations[lang][key]) {
-            element.placeholder = translations[lang][key];
-        }
-    });
+
+	document.querySelectorAll('[data-translate]').forEach(element => {
+		const key = element.getAttribute('data-translate');
+		if (translations[lang][key]) {
+			element.innerHTML = translations[lang][key];
+		}
+	});
     
+
     document.querySelectorAll('option[data-translate]').forEach(option => {
         const key = option.getAttribute('data-translate');
         if (translations[lang][key]) {
@@ -1120,6 +1358,7 @@ function updateLanguage(lang) {
         }
     });
     
+
     document.querySelectorAll('.language-button').forEach(button => {
         button.classList.remove('active');
         if (button.getAttribute('data-lang') === lang) {
@@ -1127,8 +1366,10 @@ function updateLanguage(lang) {
         }
     });
     
+
     localStorage.setItem('preferred_language', lang);
 }
+
 
 function initCountdown() {
     const weddingDate = new Date("Aug 16, 2025 12:00:00").getTime();
@@ -1156,14 +1397,18 @@ function initCountdown() {
         }
     }
     
+
     updateCountdown();
     
+
     const countdown = setInterval(updateCountdown, 1000);
 }
+
 
 function showHeartAnimation(isAttending) {
     const responseIcon = document.getElementById('responseIcon');
     
+
     if (isAttending) {
         responseIcon.className = 'heart-icon fas fa-heart';
         responseIcon.style.color = '#829672';
@@ -1172,15 +1417,19 @@ function showHeartAnimation(isAttending) {
         responseIcon.style.color = '#d8959b';
     }
     
+
     responseIcon.style.opacity = '1';
     responseIcon.style.fontSize = '400px';
     
+
     responseIcon.style.animation = 'heartBeat 1.3s ease-in-out';
     
+
     setTimeout(() => {
         responseIcon.style.opacity = '0';
         responseIcon.style.fontSize = '0';
         
+
         setTimeout(() => {
             responseIcon.style.animation = '';
         }, 500);
@@ -1188,21 +1437,26 @@ function showHeartAnimation(isAttending) {
 }
 
 function initSections() {
+
     const attendanceSelect = document.getElementById('attendance');
     const additionalFields = document.getElementById('additional-fields');
     
     if (attendanceSelect && additionalFields) {
+
         attendanceSelect.addEventListener('change', function() {
             const requiredFields = additionalFields.querySelectorAll('[required]');
             
             if (this.value === 'yes') {
+
                 additionalFields.style.display = 'block';
                 
+
                 const emailField = document.getElementById('email');
                 const phoneField = document.getElementById('phone');
                 if (emailField) emailField.setAttribute('required', '');
                 if (phoneField) phoneField.setAttribute('required', '');
             } else {
+
                 additionalFields.style.display = 'none';
                 requiredFields.forEach(field => {
                     field.removeAttribute('required');
@@ -1211,6 +1465,7 @@ function initSections() {
         });
     }
     
+
     const plusOneSelect = document.getElementById('plusone');
     const plusOneNameGroup = document.getElementById('plusone-name-group');
     
@@ -1225,6 +1480,7 @@ function initSections() {
         });
     }
     
+
     const childrenSelect = document.getElementById('children');
     const childrenNumberGroup = document.getElementById('children-number-group');
     const childrenNumber = document.getElementById('children-number');
@@ -1260,6 +1516,7 @@ function initSections() {
         }
     }
     
+
     const accommodationSelect = document.getElementById('accommodation');
     const accommodationDetails = document.getElementById('accommodation-details');
     
@@ -1273,14 +1530,19 @@ function initSections() {
         });
     }
     
+
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm && attendanceSelect && additionalFields) {
         rsvpForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+
             const isAttending = attendanceSelect.value === 'yes';
+            
+
             showHeartAnimation(isAttending);
             
+
             setTimeout(function() {
                 rsvpForm.reset();
                 additionalFields.style.display = 'none';
@@ -1289,17 +1551,21 @@ function initSections() {
     }
 }
 function initMap() {
+    
     const mapElement = document.getElementById('interactive-map');
     if (!mapElement) return;
     
     try {
+    
         const weddingLocation = [45.929585674218764, 25.09248460621327];
         const partyLocation = [45.951143208213, 25.051906816582328];
         const bedLocation = [45.9441090720315, 25.04846811817492];
         
+    
         const screenWidth = window.innerWidth;
         let zoomLevel = 14;
         
+    
         if (screenWidth < 768) {
             zoomLevel = 13;
         }
@@ -1307,7 +1573,9 @@ function initMap() {
             zoomLevel = 12;
         }
         
+        
         const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
+        
         
         const churchicon = L.divIcon({
             html: '<i class="fas fa-church" style="font-size: 30px; color: #829672;"></i>',
@@ -1327,19 +1595,23 @@ function initMap() {
             className: 'myDivIcon'
         });
         
+       
         const markers = [
             L.marker(weddingLocation, { icon: churchicon }),
             L.marker(partyLocation, { icon: partyicon }),
             L.marker(bedLocation, { icon: bedicon })
         ];
         
+       
         markers.forEach(marker => marker.addTo(map));
         
+       
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             subdomains: 'abcd',
             maxZoom: 20
         }).addTo(map);
         
+     
         const group = new L.featureGroup(markers);
         map.fitBounds(group.getBounds().pad(0.1));
         
@@ -1348,41 +1620,56 @@ function initMap() {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
+
     const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
     updateLanguage(preferredLanguage);
-   
+    
+
     initCountdown();
-	initSections();
+    
+
+		initSections();
 		
+
 		setTimeout(initMap, 500);
 	});
 	
+
 document.addEventListener('DOMContentLoaded', function() {
   const rsvpForm = document.getElementById('rsvp-form');
   
   if (rsvpForm) {
+ 
     const iframe = document.createElement('iframe');
     iframe.name = 'hidden-form-iframe';
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
     
+ 
     rsvpForm.addEventListener('submit', function(e) {
+ 
       try {
+ 
         const formData = new FormData(rsvpForm);
         const formDataObject = {};
         formData.forEach((value, key) => {
           formDataObject[key] = value;
         });
         
+ 
         if (formDataObject.plusone === 'yes') {
           formDataObject.plusoneName = document.getElementById('plusone-name').value;
         }
         
+ 
         const isAttending = document.getElementById('attendance').value === 'yes';
         if (isAttending && formDataObject.children === 'yes') {
+ 
           console.log('Children number:', formDataObject.childrenNumber);
           
+ 
           const childrenNames = [];
           const childInputs = document.querySelectorAll('[id^="child-name-"]');
           
@@ -1399,10 +1686,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Collected form data:', formDataObject);
         
+        
         const hiddenForm = document.createElement('form');
         hiddenForm.method = 'POST';
         hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxs3UVpbUSAhT2THJYM5eCALUxak58LKpx9_4NRFH-PsE84UiquEvinMzXJgmzAyu7h/exec';
         hiddenForm.target = 'hidden-form-iframe';
+        
         
         for (const [key, value] of Object.entries(formDataObject)) {
           if (value !== undefined && value !== null) {
@@ -1414,9 +1703,26 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
         
+
         document.body.appendChild(hiddenForm);
+        
+
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.right = '20px';
+        notification.style.background = '#4CAF50';
+        notification.style.color = 'white';
+        notification.style.padding = '10px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '1000';
+        notification.textContent = 'RSVP sent successfully!';
+        document.body.appendChild(notification);
+        
+
         hiddenForm.submit();
         
+
         setTimeout(() => {
           document.body.removeChild(hiddenForm);
           notification.remove();
@@ -1428,6 +1734,244 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+});
+
+// Initialize slideshow with embedded image data
+function initSlideshow() {
+    // Get slideshow containers
+    const slideshowInner = document.querySelector('.slideshow-inner');
+    const modal = document.getElementById('slideModal');
+    const modalSlides = document.querySelector('.modal-slides');
+    const modalContent = document.querySelector('.modal-content');
+    
+    // Current slide index
+    let currentSlide = 0;
+    let slideInterval;
+    let modalInterval;
+    let playing = true;
+    let slides = [];
+    let modalSlideElements = [];
+    
+    // Add photo counter to modal
+    const photoCounter = document.createElement('div');
+    photoCounter.className = 'photo-counter';
+    modalContent.appendChild(photoCounter);
+    
+    // Embedded image data - REPLACE THIS ARRAY WITH YOUR ACTUAL IMAGES
+    const images = ["pics/20150820.jpg", "pics/20150828.jpg", "pics/20150905.jpg", "pics/20151109.jpg", "pics/20151115.jpg", "pics/20160220.jpg", "pics/20160722.jpg", "pics/20161011.jpg", "pics/20161018.jpg", "pics/20161020.jpg", "pics/20161025.jpg", "pics/20170513.jpg", "pics/20170520.jpg", "pics/20170523.jpg", "pics/20170528.jpg", "pics/20170528_2.jpg", "pics/20170530.jpg", "pics/20170531.jpg", "pics/20170906.jpg", "pics/20170910.jpg", "pics/20180519.jpg", "pics/20180530.jpg", "pics/20180602.jpg", "pics/20180816.jpg", "pics/20180816_2.jpg", "pics/20180817.jpg", "pics/20181104.jpg", "pics/20181115.jpg", "pics/20181222.jpg", "pics/20181231.jpg", "pics/20190823.jpg", "pics/20190913.jpg", "pics/20190922.jpg", "pics/20190930.jpg", "pics/20200422.jpg", "pics/20200620.jpg", "pics/20201003.jpg", "pics/20210115.jpg", "pics/20210719.jpg", "pics/20210919.jpg", "pics/20210924.jpg", "pics/20211117.jpg", "pics/20220508.jpg", "pics/20230803.jpg", "pics/20230912.jpg", "pics/20240529.jpg", "pics/20240531.jpg", "pics/20240817.jpg", "pics/20240929.jpg", "pics/20241117.jpg", "pics/20250101.jpg", "pics/20250124.jpg", "pics/20250330.jpg", "pics/20250330_10.jpg", "pics/20250330_11.jpg", "pics/20250330_12.jpg", "pics/20250330_13.jpg", "pics/20250330_14.jpg", "pics/20250330_15.jpg", "pics/20250330_16.jpg", "pics/20250330_17.jpg", "pics/20250330_2.jpg", "pics/20250330_3.jpg", "pics/20250330_4.jpg", "pics/20250330_5.jpg", "pics/20250330_6.jpg", "pics/20250330_7.jpg", "pics/20250330_8.jpg", "pics/20250330_9.jpg"];
+    
+    // Create slides based on image array
+    function createSlides() {
+        // Clear containers
+        slideshowInner.innerHTML = '';
+        modalSlides.innerHTML = '';
+        slides = [];
+        modalSlideElements = [];
+        
+        // Create slides
+        images.forEach((image, index) => {
+            // Create regular slide
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            if (index === 0) slide.classList.add('active');
+            slide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
+            slideshowInner.appendChild(slide);
+            slides.push(slide);
+            
+            // Create modal slide
+            const modalSlide = document.createElement('div');
+            modalSlide.className = 'modal-slide';
+            if (index === 0) modalSlide.classList.add('active');
+            modalSlide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
+            modalSlides.appendChild(modalSlide);
+            modalSlideElements.push(modalSlide);
+        });
+        
+        // Update counter
+        updatePhotoCounter();
+        
+        // Start the slideshow
+        startSlideshow();
+        
+        // Setup event listeners for navigation
+        setupEventListeners();
+    }
+    
+    // Function to go to a specific slide with transition
+    function goToSlide(n, isModal = false) {
+        // Remove active class from current slide
+        slides[currentSlide].classList.remove('active');
+        modalSlideElements[currentSlide].classList.remove('active');
+        
+        // Update current slide index
+        currentSlide = n;
+        if (currentSlide >= images.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = images.length - 1;
+        
+        // Add active class to new current slide
+        slides[currentSlide].classList.add('active');
+        modalSlideElements[currentSlide].classList.add('active');
+        
+        // Update counter
+        updatePhotoCounter();
+        
+        // Reset the modal interval if we're in modal view and a slide was changed
+        if (isModal && modal.style.display === 'block') {
+            startModalSlideshow(); // This will clear and restart the interval
+        }
+    }
+    
+    // Update photo counter
+    function updatePhotoCounter() {
+        photoCounter.textContent = `${currentSlide + 1} / ${images.length}`;
+    }
+    
+    // Setup event listeners for navigation
+    function setupEventListeners() {
+        // Next/Previous controls
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        if (prevButton) {
+            prevButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                goToSlide(currentSlide - 1);
+                resetInterval();
+            });
+        }
+        
+        if (nextButton) {
+            nextButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                goToSlide(currentSlide + 1);
+                resetInterval();
+            });
+        }
+        
+        // Modal Next/Previous controls
+        const modalPrevButton = document.querySelector('.modal-prev');
+        const modalNextButton = document.querySelector('.modal-next');
+        
+        if (modalPrevButton) {
+            modalPrevButton.addEventListener('click', function() {
+                goToSlide(currentSlide - 1, true);
+            });
+        }
+        
+        if (modalNextButton) {
+            modalNextButton.addEventListener('click', function() {
+                goToSlide(currentSlide + 1, true);
+            });
+        }
+        
+        // Open modal on slideshow click
+        const slideContainer = document.querySelector('.slideshow-container');
+        if (slideContainer) {
+            slideContainer.addEventListener('click', function() {
+                modal.style.display = 'block';
+                
+                // Start modal autoplay
+                startModalSlideshow();
+            });
+        }
+        
+        // Close modal on X click
+        const closeButton = document.querySelector('.close-modal');
+        if (closeButton) {
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                pauseModalSlideshow();
+            });
+        }
+        
+        // Close modal when clicking outside of the image
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    pauseModalSlideshow();
+                }
+            });
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1, true);
+                } else if (e.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1, true);
+                } else if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                    pauseModalSlideshow();
+                }
+            }
+        });
+    }
+    
+    // Autoplay functionality for normal view
+    function startSlideshow() {
+        playing = true;
+        clearInterval(slideInterval); // Clear existing interval first
+        slideInterval = setInterval(function() {
+            goToSlide(currentSlide + 1);
+        }, 5000); // Change slide every 5 seconds
+    }
+    
+    function pauseSlideshow() {
+        clearInterval(slideInterval);
+        playing = false;
+    }
+    
+    function resumeSlideshow() {
+        if (!playing) {
+            playing = true;
+            startSlideshow();
+        }
+    }
+    
+    function resetInterval() {
+        if (playing) {
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
+    }
+    
+    // Autoplay functionality for modal/fullscreen view
+    function startModalSlideshow() {
+        // Clear any existing interval first
+        clearInterval(modalInterval);
+        
+        // Then set a new interval with consistent timing
+        modalInterval = setInterval(function() {
+            goToSlide(currentSlide + 1, true);
+        }, 8000); // Consistent 8 seconds for all slides
+    }
+    
+    function pauseModalSlideshow() {
+        clearInterval(modalInterval);
+    }
+    
+    // Pause slideshow when page is not visible
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            pauseSlideshow();
+            pauseModalSlideshow();
+        } else {
+            resumeSlideshow();
+            if (modal.style.display === 'block') {
+                startModalSlideshow();
+            }
+        }
+    });
+    
+    // Start creating the slideshow
+    createSlides();
+}
+
+// Add slideshow initialization after page is fully loaded
+window.addEventListener('load', function() {
+    initSlideshow();
 });
 	</script>
 	</body>
