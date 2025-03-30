@@ -1671,6 +1671,34 @@ document.addEventListener('DOMContentLoaded', function() {
  
         const formData = new FormData(rsvpForm);
         const formDataObject = {};
+
+	formData.forEach((value, key) => {
+	  formDataObject[key] = value;
+	  console.log(`Form field: ${key} = ${value}`);
+	});
+	
+	
+	if (formDataObject.accommodation === 'yes') {
+	
+	  const bookingHelp = formDataObject['booking-help'];
+	  console.log(`Booking help value: ${bookingHelp}`);
+	  
+	  
+	  if (bookingHelp === 'hotel-books') {
+	    formDataObject.accommodationNights = '2'; 
+	  } else if (bookingHelp === 'self-book') {
+	    formDataObject.accommodationNights = '1'; 
+	  }
+	  console.log(`Set accommodation nights to: ${formDataObject.accommodationNights}`); 
+	} else {
+	  
+	  formDataObject.accommodationNights = '0';
+	  console.log('No accommodation requested, set nights to 0');
+	}
+	
+	
+	console.log('Final form data object:', formDataObject);
+	      
         formData.forEach((value, key) => {
           formDataObject[key] = value;
         });
@@ -1706,7 +1734,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const hiddenForm = document.createElement('form');
         hiddenForm.method = 'POST';
-        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxs3UVpbUSAhT2THJYM5eCALUxak58LKpx9_4NRFH-PsE84UiquEvinMzXJgmzAyu7h/exec';
+        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxNMlpn3sBvVn-EaAbc33lmuOInWeorgrwP1Pl_k43obRjWBCI-PvXVT3lnA8N3fepN/exec';
         hiddenForm.target = 'hidden-form-iframe';
         
         
