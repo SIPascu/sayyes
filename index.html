@@ -1624,7 +1624,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
             }
             
             // Send using fetch
-            fetch('YOUR_GOOGLE_SCRIPT_URL', {
+            fetch('https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&', {
                 method: 'POST',
                 body: new URLSearchParams(formObject)
             })
