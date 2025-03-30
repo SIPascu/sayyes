@@ -1549,22 +1549,29 @@ function initSections() {
     
 
     const rsvpForm = document.getElementById('rsvp-form');
-
+	
+	
+	
+	
+	
+	
+	
+	
 if (rsvpForm && attendanceSelect && additionalFields) {
     rsvpForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const isAttending = attendanceSelect.value === 'yes';
         
-        
+        // Show heart animation
         showHeartAnimation(isAttending);
         
-        
+        // Detect iOS or Google Pixel
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
         const isPixel = /Pixel/.test(navigator.userAgent);
         
         if (isIOS || isPixel) {
-            
+            // Use more compatible method for iOS/Pixel
             const formData = new FormData(this);
             const formObject = {};
             
@@ -1572,7 +1579,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                 formObject[key] = value;
             });
             
-            
+            // Process accommodation nights
             if (formObject.accommodation === 'yes') {
                 if (formObject['booking-help'] === 'hotel-books') {
                     formObject.accommodationNights = '2';
@@ -1583,13 +1590,13 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                 formObject.accommodationNights = '0';
             }
             
-            
+            // Send using JSONP approach (more compatible with iOS)
             const script = document.createElement('script');
             script.src = 'YOUR_GOOGLE_SCRIPT_URL?callback=formCallback&' + 
                         new URLSearchParams(formObject).toString();
             document.body.appendChild(script);
             
-            
+            // Define callback
             window.formCallback = function(response) {
                 console.log('Form submitted via JSONP');
                 try {
@@ -1598,14 +1605,14 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                     console.log('Script already removed');
                 }
                 
-            
+                // Reset form after delay
                 setTimeout(function() {
                     rsvpForm.reset();
                     additionalFields.style.display = 'none';
                 }, 3000);
             };
         } else {
-            
+            // Use standard form submission for other devices
             const formData = new FormData(this);
             const formObject = {};
             
@@ -1613,7 +1620,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                 formObject[key] = value;
             });
             
-            
+            // Process accommodation nights
             if (formObject.accommodation === 'yes') {
                 if (formObject['booking-help'] === 'hotel-books') {
                     formObject.accommodationNights = '2';
@@ -1624,7 +1631,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                 formObject.accommodationNights = '0';
             }
             
-            
+            // Send using fetch
             fetch('YOUR_GOOGLE_SCRIPT_URL', {
                 method: 'POST',
                 body: new URLSearchParams(formObject)
@@ -1636,7 +1643,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
                 console.error('Error submitting form:', error);
             });
             
-            
+            // Reset form after delay
             setTimeout(function() {
                 rsvpForm.reset();
                 additionalFields.style.display = 'none';
