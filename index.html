@@ -1549,24 +1549,106 @@ function initSections() {
     
 
     const rsvpForm = document.getElementById('rsvp-form');
-    if (rsvpForm && attendanceSelect && additionalFields) {
-        rsvpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
 
-            const isAttending = attendanceSelect.value === 'yes';
+if (rsvpForm && attendanceSelect && additionalFields) {
+    rsvpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const isAttending = attendanceSelect.value === 'yes';
+        
+        
+        showHeartAnimation(isAttending);
+        
+        
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isPixel = /Pixel/.test(navigator.userAgent);
+        
+        if (isIOS || isPixel) {
             
-
-            showHeartAnimation(isAttending);
+            const formData = new FormData(this);
+            const formObject = {};
             
-
+            formData.forEach(function(value, key) {
+                formObject[key] = value;
+            });
+            
+            
+            if (formObject.accommodation === 'yes') {
+                if (formObject['booking-help'] === 'hotel-books') {
+                    formObject.accommodationNights = '2';
+                } else if (formObject['booking-help'] === 'self-book') {
+                    formObject.accommodationNights = '1';
+                }
+            } else {
+                formObject.accommodationNights = '0';
+            }
+            
+            
+            const script = document.createElement('script');
+            script.src = 'YOUR_GOOGLE_SCRIPT_URL?callback=formCallback&' + 
+                        new URLSearchParams(formObject).toString();
+            document.body.appendChild(script);
+            
+            
+            window.formCallback = function(response) {
+                console.log('Form submitted via JSONP');
+                try {
+                    document.body.removeChild(script);
+                } catch(err) {
+                    console.log('Script already removed');
+                }
+                
+            
+                setTimeout(function() {
+                    rsvpForm.reset();
+                    additionalFields.style.display = 'none';
+                }, 3000);
+            };
+        } else {
+            
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            formData.forEach(function(value, key) {
+                formObject[key] = value;
+            });
+            
+            
+            if (formObject.accommodation === 'yes') {
+                if (formObject['booking-help'] === 'hotel-books') {
+                    formObject.accommodationNights = '2';
+                } else if (formObject['booking-help'] === 'self-book') {
+                    formObject.accommodationNights = '1';
+                }
+            } else {
+                formObject.accommodationNights = '0';
+            }
+            
+            
+            fetch('YOUR_GOOGLE_SCRIPT_URL', {
+                method: 'POST',
+                body: new URLSearchParams(formObject)
+            })
+            .then(response => {
+                console.log('Form submitted successfully');
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+            });
+            
+            
             setTimeout(function() {
                 rsvpForm.reset();
                 additionalFields.style.display = 'none';
             }, 3000);
-        });
-    }
+        }
+    });
 }
+
+
+
+
+		
 function initMap() {
     
     const mapElement = document.getElementById('interactive-map');
@@ -1734,7 +1816,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const hiddenForm = document.createElement('form');
         hiddenForm.method = 'POST';
-        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxNMlpn3sBvVn-EaAbc33lmuOInWeorgrwP1Pl_k43obRjWBCI-PvXVT3lnA8N3fepN/exec';
+        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec';
         hiddenForm.target = 'hidden-form-iframe';
         
         
