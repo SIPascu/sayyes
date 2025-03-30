@@ -1592,7 +1592,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
             
             // Send using JSONP approach (more compatible with iOS)
             const script = document.createElement('script');
-            script.src = 'YOUR_GOOGLE_SCRIPT_URL?callback=formCallback&' + 
+            script.src = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&' + 
                         new URLSearchParams(formObject).toString();
             document.body.appendChild(script);
             
