@@ -1368,6 +1368,14 @@ function updateLanguage(lang) {
     
 
     localStorage.setItem('preferred_language', lang);
+
+    const submitButton = document.querySelector('button[data-translate="rsvp_submit"]');
+    if (submitButton) {
+        console.log("Found submit button, setting text to:", translations[lang]["rsvp_submit"]);
+        submitButton.textContent = translations[lang]["rsvp_submit"];
+    } else {
+        console.log("Submit button not found!");
+    }
 }
 
 
