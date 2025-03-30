@@ -978,7 +978,7 @@
                 </div>
             </div>
             
-            <button type="submit" data-translate="rsvp_submit"></button>
+            <button type="submit" data-translate="rs`vp_submit"></button>
         </form>
     </section>
 <section id="gallery" class="container">
@@ -1500,29 +1500,21 @@ function initSections() {
         
         childrenNumber.addEventListener('change', updateChildrenFields);
         
-function updateChildrenFields() {
-    const numChildren = parseInt(childrenNumber.value);
-    childrenNamesContainer.innerHTML = '';
-    
-    // Get current language
-    const currentLang = document.documentElement.lang || 'ro';
-    
-    for (let i = 0; i < numChildren; i++) {
-        const childDiv = document.createElement('div');
-        childDiv.className = 'form-group';
-        
-        // Create label with correct language 
-        const labelText = currentLang === 'en' ? 
-            `Child's name ${i + 1}` : 
-            `Numele copilului ${i + 1}`;
-        
-        childDiv.innerHTML = `
-            <label for="child-name-${i}">${labelText}</label>
-            <input type="text" id="child-name-${i}" name="child-name-${i}">
-        `;
-        childrenNamesContainer.appendChild(childDiv);
+        function updateChildrenFields() {
+            const numChildren = parseInt(childrenNumber.value);
+            childrenNamesContainer.innerHTML = '';
+            
+            for (let i = 0; i < numChildren; i++) {
+                const childDiv = document.createElement('div');
+                childDiv.className = 'form-group';
+                childDiv.innerHTML = `
+                    <label for="child-name-${i}">Numele copilului ${i + 1}</label>
+                    <input type="text" id="child-name-${i}" name="child-name-${i}">
+                `;
+                childrenNamesContainer.appendChild(childDiv);
+            }
+        }
     }
-}
     
 
     const accommodationSelect = document.getElementById('accommodation');
@@ -1623,7 +1615,7 @@ if (rsvpForm && attendanceSelect && additionalFields) {
             }
             
             // Send using fetch
-            fetch('https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec', {
+            fetch('YOUR_GOOGLE_SCRIPT_URL', {
                 method: 'POST',
                 body: new URLSearchParams(formObject)
             })
