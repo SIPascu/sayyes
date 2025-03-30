@@ -31,17 +31,19 @@
             padding: 0 20px;
         }
         
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/500') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
+	header {
+	    background: url('header.jpg') center/cover no-repeat;
+	    filter: grayscale(100%);
+	    height: 100vh;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: flex-end; /* Changed from center to flex-end */
+	    align-items: center;
+	    text-align: center;
+	    color: white;
+	    position: relative;
+	    padding-bottom: 15%; /* Add padding at the bottom */
+	}
         .header-content {
 	    z-index: 2;
 	    animation: fadeIn 2s ease-out;
