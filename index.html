@@ -1,2110 +1,1883 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sînziana & Ionuț - Wedding</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FA8072" stroke="white" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
-        }
-        
-        body {
-            background-color: #f8fbf9;
-            color: #5a5a5a;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/500') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        
-        .header-content {
-            z-index: 2;
-            animation: fadeIn 2s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
-        }
-		nav {
-            background-color: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            padding: 20px 15px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-        
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #829672;
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #829672;
-        }
-        
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h1 {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            font-family: 'Times New Roman', serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            text-align: center;
-            color: #829672;
-            font-family: 'Times New Roman', serif;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        h2:after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #829672, transparent);
-            margin: 10px auto 0;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #5a5a5a;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sînziana & Ionuț - Wedding</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-maptiler/0.4.0/leaflet-maptiler.js"></script>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Helvetica Neue', Arial, sans-serif;
+		cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FA8072" stroke="white" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+	}
+
+	body {
+		background-color: #f8fbf9;
+		color: #5a5a5a;
+		line-height: 1.6;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	header {
+		background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/500') center/cover no-repeat;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		color: white;
+		position: relative;
+	}
+
+	.header-content {
+		z-index: 2;
+		animation: fadeIn 2s ease-out;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.header-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+	}
+
+	nav {
+		background-color: #fff;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
+	}
+
+	nav ul {
+		display: flex;
+		list-style: none;
+	}
+
+	nav ul li {
+		padding: 20px 15px;
+	}
+
+	nav ul li a {
+		text-decoration: none;
+		color: #333;
+		font-weight: 500;
+		transition: color 0.3s;
+		position: relative;
+	}
+
+	nav ul li a:after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: -5px;
+		left: 0;
+		background-color: #829672;
+		transition: width 0.3s;
+	}
+
+	nav ul li a:hover {
+		color: #829672;
+	}
+
+	nav ul li a:hover:after {
+		width: 100%;
+	}
+
+	section {
+		padding: 80px 0;
+	}
+
+	h1 {
+		font-size: 4.5rem;
+		margin-bottom: 20px;
+		font-family: 'Times New Roman', serif;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	h2 {
+		font-size: 2.5rem;
+		margin-bottom: 40px;
+		text-align: center;
+		color: #829672;
+		font-family: 'Times New Roman', serif;
+		position: relative;
+		display: inline-block;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	h2:after {
+		content: '';
+		display: block;
+		width: 50%;
+		height: 3px;
+		background: linear-gradient(to right, transparent, #829672, transparent);
+		margin: 10px auto 0;
+	}
+
+	h3 {
+		font-size: 1.8rem;
+		margin-bottom: 20px;
+		color: #5a5a5a;
+	}
+
+	p {
+		margin-bottom: 20px;
+		font-size: 1.1rem;
+	}
+
+	.date {
+		font-size: 1.7rem;
+		margin: 20px 0;
+		letter-spacing: 4px;
+		font-weight: 300;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	}
+
+	.info-box {
+		background-color: white;
+		border-radius: 15px;
+		padding: 40px;
+		margin: 20px 0;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+		text-align: center;
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.info-box:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	.timeline {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		margin: 40px 0;
+	}
+
+	.event {
+		flex: 0 0 30%;
+		text-align: center;
+		padding: 30px;
+		margin-bottom: 30px;
+		background-color: white;
+		border-radius: 15px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.event:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	.event i {
+		font-size: 2.5rem;
+		color: #829672;
+		margin-bottom: 20px;
+		opacity: 0.9;
+	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 20px;
+		margin: 40px 0;
+	}
+
+	.gallery-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 15px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		transition: transform 0.5s ease;
+	}
+
+	.gallery-item:hover {
+		transform: scale(1.03);
+	}
+
+	.gallery-item img {
+		width: 100%;
+		height: 300px;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+	}
+
+	.gallery-item:hover img {
+		transform: scale(1.1);
+	}
+
+	.gallery-caption {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding: 15px;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+		color: white;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.gallery-item:hover .gallery-caption {
+		opacity: 1;
+	}
+
+	form {
+		max-width: 600px;
+		margin: 0 auto;
+		background-color: white;
+		padding: 40px;
+		border-radius: 15px;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+	}
+
+	.form-group {
+		margin-bottom: 25px;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 500;
+		color: #444;
+	}
+
+	input,
+	select,
+	textarea {
+		width: 100%;
+		padding: 12px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		font-size: 1rem;
+		transition: border-color 0.3s, box-shadow 0.3s;
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: none;
+		border-color: #7dc383;
+		box-shadow: 0 0 0 3px rgba(125, 195, 131, 0.1);
+	}
+
+	textarea {
+		height: 120px;
+		resize: vertical;
+	}
+
+	button {
+		background-color: #829672;
+		color: #334c3d;
+		border: none;
+		padding: 15px 30px;
+		font-size: 1rem;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s, transform 0.2s;
+		box-shadow: 0 3px 10px rgba(125, 195, 131, 0.3);
+	}
+
+	button:hover {
+		background-color: #829672;
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(125, 195, 131, 0.4);
+	}
+
+	button:active {
+		transform: translateY(0);
+		box-shadow: 0 2px 5px rgba(125, 195, 131, 0.2);
+	}
+
+	.map {
+		height: 400px;
+		margin: 40px 0;
+		border-radius: 15px;
+		overflow: hidden;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	#interactive-map {
+		height: 500px;
+		margin: 40px 0;
+		border-radius: 15px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+		overflow: hidden;
+	}
+
+	#interactive-map:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	form {
+		max-width: 600px;
+		margin: 0 auto;
+		background-color: white;
+		padding: 40px;
+		border-radius: 15px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	form:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	footer {
+		background-color: #829672;
+		color: white;
+		text-align: center;
+		padding: 40px 0 30px;
+		position: relative;
+	}
+
+	.countdown {
+		margin: 40px 0;
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
+
+	.countdown-item {
+		background-color: #829672;
+		color: white;
+		width: 90px;
+		height: 90px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		box-shadow: 0 5px 15px rgba(125, 195, 131, 0.3);
+		transition: transform 0.3s;
+	}
+
+	.countdown-item:hover {
+		transform: translateY(-5px);
+	}
+
+	.countdown-number {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+
+	.countdown-text {
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.language-selector {
+		display: flex;
+		align-items: center;
+	}
+
+	.language-button {
+		padding: 8px 12px;
+		margin-left: 10px;
+		background-color: transparent;
+		color: #333;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: all 0.3s;
+		box-shadow: none;
+	}
+
+	.language-button:hover,
+	.language-button.active {
+		background-color: #829672;
+		color: white;
+		transform: none;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 2.8rem;
+		}
+
 		.date {
-            font-size: 1.7rem;
-            margin: 20px 0;
-            letter-spacing: 4px;
-            font-weight: 300;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .info-box {
-            background-color: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .info-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 40px 0;
-        }
-        
-        .event {
-            flex: 0 0 30%;
-            text-align: center;
-            padding: 30px;
-            margin-bottom: 30px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .event:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .event i {
-            font-size: 2.5rem;
-            color: #829672;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-		.gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
-        
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #444;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #7dc383;
-            box-shadow: 0 0 0 3px rgba(125, 195, 131, 0.1);
-        }
-        
-        textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        button {
-            background-color: #829672;
-            color: #334c3d;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 3px 10px rgba(125, 195, 131, 0.3);
-        }
-        
-        button:hover {
-            background-color: #829672;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(125, 195, 131, 0.4);
-        }
-        
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 5px rgba(125, 195, 131, 0.2);
-        }
-		.map {
-            height: 400px;
-            margin: 40px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-        }
-		
-		#interactive-map {
-			height: 500px;
-			margin: 40px 0;
-			border-radius: 15px;
-			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-			overflow: hidden;
-		}
-		
-		#interactive-map:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-			transition: transform 0.3s, box-shadow 0.3s;
-		}
-		
-		form {
-			max-width: 600px;
-			margin: 0 auto;
-			background-color: white;
-			padding: 40px;
-			border-radius: 15px;
-			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-			transition: transform 0.3s, box-shadow 0.3s;
+			font-size: 1.2rem;
 		}
 
-		form:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-		}
-        
-        footer {
-            background-color: #829672;
-            color: white;
-            text-align: center;
-            padding: 40px 0 30px;
-            position: relative;
-        }
-        
-        .countdown {
-            margin: 40px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .countdown-item {
-            background-color: #829672;
-            color: white;
-            width: 90px;
-            height: 90px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(125, 195, 131, 0.3);
-            transition: transform 0.3s;
-        }
-        
-        .countdown-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        .countdown-text {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .language-selector {
-            display: flex;
-            align-items: center;
-        }
-        
-        .language-button {
-            padding: 8px 12px;
-            margin-left: 10px;
-            background-color: transparent;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: none;
-        }
-        
-        .language-button:hover, .language-button.active {
-            background-color: #829672;
-            color: white;
-            transform: none;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-		@media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            .date {
-                font-size: 1.2rem;
-            }
-            
-            .event {
-                flex: 0 0 100%;
-            }
-            
-            .countdown-item {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-            
-            nav {
-                flex-direction: column;
-                padding: 10px;
-            }
-            
-            .language-selector {
-                margin-bottom: 10px;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                padding: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .countdown {
-                flex-wrap: wrap;
-            }
-            
-            .countdown-item {
-                flex: 0 0 40%;
-                margin-bottom: 10px;
-            }
-        }
-        
-
-        .response-animation-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-            z-index: 1000;
-        }
-        
-        .heart-icon {
-            font-size: 0;
-            color: #829672;
-            opacity: 0;
-            transition: opacity 0.5s, font-size 0.5s;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
-            position: relative;
-        }
-        
-        @keyframes heartBeat {
-            0% {
-                transform: scale(1);
-            }
-            14% {
-                transform: scale(1.1);
-            }
-            28% {
-                transform: scale(1);
-            }
-            42% {
-                transform: scale(1.1);
-            }
-            70% {
-                transform: scale(1);
-            }
-        }
-        
-        select {
-            color: #333;
-            background-color: white;
-        }
-        
-        select option {
-            color: #333;
-            background-color: white;
-            padding: 8px;
-        }
-
-
-		.slideshow-container {
-			position: relative;
-			width: 100%;
-			margin: 40px auto;
-			overflow: hidden;
-			aspect-ratio: 16/9;
-			transition: transform 0.3s, box-shadow 0.3s;
+		.event {
+			flex: 0 0 100%;
 		}
 
-		.slideshow-container:hover {
-			transform: translateY(-5px);
+		.countdown-item {
+			width: 70px;
+			height: 70px;
 		}
 
-		.slideshow-inner {
-			position: relative;
-			height: 100%;
-			width: 100%;
+		.countdown-number {
+			font-size: 1.5rem;
 		}
 
-		.slide {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			opacity: 0;
-			transition: opacity 1s ease-in-out;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.slide.active {
-			opacity: 1;
-			z-index: 1;
-		}
-
-		.slide img {
-			max-width: 100%;
-			max-height: 100%;
-			object-fit: contain;
-			border-radius: 15px;
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-		}
-
-
-		.prev, .next {
-			cursor: pointer;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 48px;
-			height: 48px;
-			border-radius: 50%;
-			background-color: rgba(130, 150, 114, 0.8);
-			color: white;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 20px;
-			z-index: 5;
-			transition: all 0.3s ease;
-			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-			opacity: 0;
-		}
-
-		.slideshow-container:hover .prev,
-		.slideshow-container:hover .next {
-			opacity: 1;
-		}
-
-		.prev {
-			left: 15px;
-		}
-
-		.next {
-			right: 15px;
-		}
-
-		.prev:hover, .next:hover {
-			background-color: #829672;
-			transform: translateY(-50%) scale(1.1);
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-		}
-
-
-		.modal {
-			display: none;
-			position: fixed;
-			z-index: 1000;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.9);
-		}
-
-		.modal-content {
-			position: relative;
-			width: 95%;
-			max-width: 1400px;
-			height: 85%;
-			margin: 3% auto;
-		}
-
-		.modal-slides {
-			position: relative;
-			height: 100%;
-			width: 100%;
-		}
-
-		.modal-slide {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			opacity: 0;
-			transition: opacity 1.2s ease;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.modal-slide.active {
-			opacity: 1;
-			z-index: 1;
-		}
-
-		.modal-slide img {
-			max-width: 90%;
-			max-height: 90%;
-			object-fit: contain;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-		}
-
-		.modal-prev, .modal-next {
-			cursor: pointer;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			width: 56px;
-			height: 56px;
-			border-radius: 50%;
-			background-color: rgba(130, 150, 114, 0.7);
-			color: white;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 24px;
-			z-index: 5;
-			transition: all 0.3s ease;
-			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-		}
-
-		.modal-prev {
-			left: 20px;
-		}
-
-		.modal-next {
-			right: 20px;
-		}
-
-		.modal-prev:hover, .modal-next:hover {
-			background-color: rgba(130, 150, 114, 0.9);
-			transform: translateY(-50%) scale(1.1);
-		}
-
-		.close-modal {
-			position: absolute;
-			top: 20px;
-			right: 25px;
-			color: white;
-			font-size: 38px;
-			font-weight: bold;
-			cursor: pointer;
-			z-index: 10;
-			transition: transform 0.3s;
-		}
-
-		.close-modal:hover {
-			transform: scale(1.2);
-		}
-
-
-		.photo-counter {
-			position: absolute;
-			bottom: 20px;
-			left: 50%;
-			transform: translateX(-50%);
-			color: white;
-			background-color: rgba(0, 0, 0, 0.5);
-			padding: 5px 15px;
-			border-radius: 20px;
-			font-size: 14px;
-			z-index: 5;
-		}
-		
-		header {
-			position: relative;
-			height: 100vh;
-			display: flex;
+		nav {
 			flex-direction: column;
+			padding: 10px;
+		}
+
+		.language-selector {
+			margin-bottom: 10px;
+		}
+
+		nav ul {
+			flex-wrap: wrap;
 			justify-content: center;
-			align-items: center;
-			text-align: center;
-			color: white;
 		}
 
-		header::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: url('header.jpg') center/cover no-repeat;
-			filter: grayscale(100%);
-			z-index: -2;
+		nav ul li {
+			padding: 10px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.countdown {
+			flex-wrap: wrap;
 		}
 
-		.header-overlay {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
-			z-index: -1;
+		.countdown-item {
+			flex: 0 0 40%;
+			margin-bottom: 10px;
+		}
+	}
+
+	.response-animation-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		pointer-events: none;
+		z-index: 1000;
+	}
+
+	.heart-icon {
+		font-size: 0;
+		color: #829672;
+		opacity: 0;
+		transition: opacity 0.5s, font-size 0.5s;
+		text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+		position: relative;
+	}
+
+	@keyframes heartBeat {
+		0% {
+			transform: scale(1);
 		}
 
-		.header-content {
-			position: relative;
-			z-index: 1;
-			animation: fadeIn 2s ease-out;
-			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
+		14% {
+			transform: scale(1.1);
 		}
 
-    </style>
+		28% {
+			transform: scale(1);
+		}
+
+		42% {
+			transform: scale(1.1);
+		}
+
+		70% {
+			transform: scale(1);
+		}
+	}
+
+	select {
+		color: #333;
+		background-color: white;
+	}
+
+	select option {
+		color: #333;
+		background-color: white;
+		padding: 8px;
+	}
+
+	.slideshow-container {
+		position: relative;
+		width: 100%;
+		margin: 40px auto;
+		overflow: hidden;
+		aspect-ratio: 16/9;
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+	.slideshow-container:hover {
+		transform: translateY(-5px);
+	}
+
+	.slideshow-inner {
+		position: relative;
+		height: 100%;
+		width: 100%;
+	}
+
+	.slide {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.slide.active {
+		opacity: 1;
+		z-index: 1;
+	}
+
+	.slide img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		border-radius: 15px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+
+	.prev,
+	.next {
+		cursor: pointer;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background-color: rgba(130, 150, 114, 0.8);
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 20px;
+		z-index: 5;
+		transition: all 0.3s ease;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+		opacity: 0;
+	}
+
+	.slideshow-container:hover .prev,
+	.slideshow-container:hover .next {
+		opacity: 1;
+	}
+
+	.prev {
+		left: 15px;
+	}
+
+	.next {
+		right: 15px;
+	}
+
+	.prev:hover,
+	.next:hover {
+		background-color: #829672;
+		transform: translateY(-50%) scale(1.1);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	}
+
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.9);
+	}
+
+	.modal-content {
+		position: relative;
+		width: 95%;
+		max-width: 1400px;
+		height: 85%;
+		margin: 3% auto;
+	}
+
+	.modal-slides {
+		position: relative;
+		height: 100%;
+		width: 100%;
+	}
+
+	.modal-slide {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity 1.2s ease;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.modal-slide.active {
+		opacity: 1;
+		z-index: 1;
+	}
+
+	.modal-slide img {
+		max-width: 90%;
+		max-height: 90%;
+		object-fit: contain;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	.modal-prev,
+	.modal-next {
+		cursor: pointer;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background-color: rgba(130, 150, 114, 0.7);
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 24px;
+		z-index: 5;
+		transition: all 0.3s ease;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	.modal-prev {
+		left: 20px;
+	}
+
+	.modal-next {
+		right: 20px;
+	}
+
+	.modal-prev:hover,
+	.modal-next:hover {
+		background-color: rgba(130, 150, 114, 0.9);
+		transform: translateY(-50%) scale(1.1);
+	}
+
+	.close-modal {
+		position: absolute;
+		top: 20px;
+		right: 25px;
+		color: white;
+		font-size: 38px;
+		font-weight: bold;
+		cursor: pointer;
+		z-index: 10;
+		transition: transform 0.3s;
+	}
+
+	.close-modal:hover {
+		transform: scale(1.2);
+	}
+
+	.photo-counter {
+		position: absolute;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		color: white;
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 5px 15px;
+		border-radius: 20px;
+		font-size: 14px;
+		z-index: 5;
+	}
+
+	header {
+		position: relative;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		color: white;
+	}
+
+	header::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('header.jpg') center/cover no-repeat;
+		filter: grayscale(100%);
+		z-index: -2;
+	}
+
+	.header-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+		z-index: -1;
+	}
+
+	.header-content {
+		position: relative;
+		z-index: 1;
+		animation: fadeIn 2s ease-out;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
+	}
+	</style>
 </head>
-<body>
-    <div class="response-animation-container" id="responseAnimation">
-        <i class="heart-icon fas fa-heart" id="responseIcon"></i>
-    </div>
-    
-    <header id="home">
-        <div class="header-overlay"></div>
-        <div class="header-content">
-            <h1>Sînziana & Ionuț</h1>
-            <p class="date" data-translate="header_date"></p>
-            <p data-translate="header_invite"></p>
-        </div>
-    </header>
-    
-    <nav id="mainNav">
-        <div class="language-selector">
-            <button class="language-button active" data-lang="ro" onclick="updateLanguage('ro')">RO</button>
-            <button class="language-button" data-lang="en" onclick="updateLanguage('en')">EN</button>
-        </div>
-        <ul>
-            <li><a href="#home" data-translate="nav_home"></a></li>
-            <li><a href="#couple" data-translate="nav_couple"></a></li>
-            <li><a href="#details" data-translate="nav_details"></a></li>
-            <li><a href="#rsvp" data-translate="nav_rsvp"></a></li>
-            <li><a href="#gallery" data-translate="nav_gallery"></a></li>
-            <li><a href="#photos" data-translate="nav_photos"></a></li>
-            <li><a href="#location" data-translate="nav_location"></a></li>
-        </ul>
-    </nav>
-	<section id="intro" class="container">
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">--</span>
-                <span class="countdown-text" data-translate="countdown_days"></span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">--</span>
-                <span class="countdown-text" data-translate="countdown_hours"></span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">--</span>
-                <span class="countdown-text" data-translate="countdown_minutes"></span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">--</span>
-                <span class="countdown-text" data-translate="countdown_seconds"></span>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3 data-translate="home_greeting"></h3>
-            <p data-translate="home_invite"></p>
-            <p data-translate="home_message"></p>
-            <p><span data-translate="home_signature"></span><br>Sînziana & Ionuț</p>
-        </div>
-    </section>
-	<section id="couple" class="container">
-        <h2 data-translate="couple_title"></h2>
-        <div class="info-box">
-            <p data-translate="couple_story"></p>
-            <p data-translate="couple_message"></p>
-        </div>
-    </section>
-	<section id="details" class="container">
-        <h2 data-translate="details_title"></h2>
-        <div class="timeline">
-            <div class="event">
-                <i class="fas fa-church"></i>
-                <h3 data-translate="ceremony_title"></h3>
-                <p data-translate="ceremony_date"></p>
-                <p data-translate="ceremony_time"></p>
-                <p data-translate="ceremony_location"></p>
-                <p data-translate="ceremony_address"></p>
-            </div>
-            
-            <div class="event">
-                <i class="fas fa-glass-cheers"></i>
-                <h3 data-translate="reception_title"></h3>
-                <p data-translate="reception_date"></p>
-                <p data-translate="reception_time"></p>
-                <p data-translate="reception_location"></p>
-                <p data-translate="reception_address"></p>
-            </div>
-            
-            <div class="event">
-                <i class="fas fa-music"></i>
-                <h3 data-translate="party_title"></h3>
-                <p data-translate="party_start"></p>
-                <p data-translate="party_end"></p>
-                <p data-translate="party_dress"></p>
-                <p data-translate="party_details"></p>
-            </div>
-            
-            <div class="event">
-                <i class="fas fa-utensils"></i>
-                <h3 data-translate="food_title"></h3>
-                <p data-translate="food_start"></p>
-                <p data-translate="food_details"></p>
-            </div>
 
-            <div class="event">
-                <i class="fas fa-birthday-cake"></i>
-                <h3 data-translate="cake_title"></h3>
-                <p data-translate="cake_start"></p>
-                <p data-translate="cake_details"></p>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <h3 data-translate="info_title"></h3>
-            <p data-translate="info_accommodation"></p>
-            <p data-translate="info_transport"></p>
-            <p data-translate="info_children"></p>
-            <p data-translate="info_gifts"></p>
-        </div>
-    </section>
+<body>
+	<div class="response-animation-container" id="responseAnimation">
+		<i class="heart-icon fas fa-heart" id="responseIcon"></i>
+	</div>
+	<header id="home">
+		<div class="header-overlay"></div>
+		<div class="header-content">
+			<h1>Sînziana & Ionuț</h1>
+			<p class="date" data-translate="header_date"></p>
+			<p data-translate="header_invite"></p>
+		</div>
+	</header>
+	<nav id="mainNav">
+		<div class="language-selector">
+			<button class="language-button active" data-lang="ro" onclick="updateLanguage('ro')">RO</button>
+			<button class="language-button" data-lang="en" onclick="updateLanguage('en')">EN</button>
+		</div>
+		<ul>
+			<li><a href="#home" data-translate="nav_home"></a></li>
+			<li><a href="#couple" data-translate="nav_couple"></a></li>
+			<li><a href="#details" data-translate="nav_details"></a></li>
+			<li><a href="#rsvp" data-translate="nav_rsvp"></a></li>
+			<li><a href="#gallery" data-translate="nav_gallery"></a></li>
+			<li><a href="#photos" data-translate="nav_photos"></a></li>
+			<li><a href="#location" data-translate="nav_location"></a></li>
+		</ul>
+	</nav>
+	<section id="intro" class="container">
+		<div class="countdown">
+			<div class="countdown-item">
+				<span class="countdown-number" id="days">--</span>
+				<span class="countdown-text" data-translate="countdown_days"></span>
+			</div>
+			<div class="countdown-item">
+				<span class="countdown-number" id="hours">--</span>
+				<span class="countdown-text" data-translate="countdown_hours"></span>
+			</div>
+			<div class="countdown-item">
+				<span class="countdown-number" id="minutes">--</span>
+				<span class="countdown-text" data-translate="countdown_minutes"></span>
+			</div>
+			<div class="countdown-item">
+				<span class="countdown-number" id="seconds">--</span>
+				<span class="countdown-text" data-translate="countdown_seconds"></span>
+			</div>
+		</div>
+		<div class="info-box">
+			<h3 data-translate="home_greeting"></h3>
+			<p data-translate="home_invite"></p>
+			<p data-translate="home_message"></p>
+			<p><span data-translate="home_signature"></span><br>Sînziana & Ionuț</p>
+		</div>
+	</section>
+	<section id="couple" class="container">
+		<h2 data-translate="couple_title"></h2>
+		<div class="info-box">
+			<p data-translate="couple_story"></p>
+			<p data-translate="couple_message"></p>
+		</div>
+	</section>
+	<section id="details" class="container">
+		<h2 data-translate="details_title"></h2>
+		<div class="timeline">
+			<div class="event">
+				<i class="fas fa-church"></i>
+				<h3 data-translate="ceremony_title"></h3>
+				<p data-translate="ceremony_date"></p>
+				<p data-translate="ceremony_time"></p>
+				<p data-translate="ceremony_location"></p>
+				<p data-translate="ceremony_address"></p>
+			</div>
+			<div class="event">
+				<i class="fas fa-glass-cheers"></i>
+				<h3 data-translate="reception_title"></h3>
+				<p data-translate="reception_date"></p>
+				<p data-translate="reception_time"></p>
+				<p data-translate="reception_location"></p>
+				<p data-translate="reception_address"></p>
+			</div>
+			<div class="event">
+				<i class="fas fa-music"></i>
+				<h3 data-translate="party_title"></h3>
+				<p data-translate="party_start"></p>
+				<p data-translate="party_end"></p>
+				<p data-translate="party_dress"></p>
+				<p data-translate="party_details"></p>
+			</div>
+			<div class="event">
+				<i class="fas fa-utensils"></i>
+				<h3 data-translate="food_title"></h3>
+				<p data-translate="food_start"></p>
+				<p data-translate="food_details"></p>
+			</div>
+			<div class="event">
+				<i class="fas fa-birthday-cake"></i>
+				<h3 data-translate="cake_title"></h3>
+				<p data-translate="cake_start"></p>
+				<p data-translate="cake_details"></p>
+			</div>
+		</div>
+		<div class="info-box">
+			<h3 data-translate="info_title"></h3>
+			<p data-translate="info_accommodation"></p>
+			<p data-translate="info_transport"></p>
+			<p data-translate="info_children"></p>
+			<p data-translate="info_gifts"></p>
+		</div>
+	</section>
 	<section id="rsvp" class="container">
-        <h2 data-translate="rsvp_title"></h2>
-        <p class="text-center" data-translate="rsvp_deadline"></p>
-        
-        <form id="rsvp-form">
-            <div class="form-group">
-                <label for="name" data-translate="rsvp_name"></label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="attendance" data-translate="rsvp_attendance"></label>
-                <select id="attendance" name="attendance" required>
-                    <option value=""></option>
-                    <option value="yes" data-translate="rsvp_yes"></option>
-                    <option value="no" data-translate="rsvp_no"></option>
-                </select>
-            </div>
-            
-            <div id="additional-fields" style="display: none;">
-                <div class="form-group">
-                    <label for="email" data-translate="rsvp_email"></label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" data-translate="rsvp_phone"></label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="plusone" data-translate="rsvp_plusone"></label>
-                    <select id="plusone" name="plusone">
-                        <option value="no" data-translate="rsvp_option_no"></option>
-						<option value="yes" data-translate="rsvp_option_yes"></option>
-                    </select>
-                </div>
-                
-                <div class="form-group" id="plusone-name-group" style="display: none;">
-                    <label for="plusone-name" data-translate="rsvp_plusone_name"></label>
-                    <input type="text" id="plusone-name" name="plusone-name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="children" data-translate="rsvp_children_q"></label>
-                    <select id="children" name="children">
-                        <option value="no" data-translate="rsvp_option_no"></option>
-						<option value="yes" data-translate="rsvp_option_yes"></option>
-                    </select>
-                </div>
-                
-                <div class="form-group" id="children-number-group" style="display: none;">
-                    <label for="children-number" data-translate="rsvp_children_number"></label>
-                    <input type="number" id="children-number" name="children-number" min="0" max="5" value="0">
-                </div>
-                
-                <div id="children-names-container"></div>
-                
-                <div class="form-group">
-                    <label for="meal" data-translate="rsvp_meal"></label>
-                    <select id="meal" name="meal">
-                        <option value="standard" data-translate="rsvp_meal_standard"></option>
-                        <option value="vegetarian" data-translate="rsvp_meal_vegetarian"></option>
-                        <option value="vegan" data-translate="rsvp_meal_vegan"></option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="allergies" data-translate="rsvp_allergies"></label>
-                    <textarea id="allergies" name="allergies"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="accommodation" data-translate="rsvp_accommodation_q"></label>
-                    <select id="accommodation" name="accommodation">
+		<h2 data-translate="rsvp_title"></h2>
+		<p class="text-center" data-translate="rsvp_deadline"></p>
+		<form id="rsvp-form">
+			<div class="form-group">
+				<label for="name" data-translate="rsvp_name"></label>
+				<input type="text" id="name" name="name" required>
+			</div>
+			<div class="form-group">
+				<label for="attendance" data-translate="rsvp_attendance"></label>
+				<select id="attendance" name="attendance" required>
+					<option value=""></option>
+					<option value="yes" data-translate="rsvp_yes"></option>
+					<option value="no" data-translate="rsvp_no"></option>
+				</select>
+			</div>
+			<div id="additional-fields" style="display: none;">
+				<div class="form-group">
+					<label for="email" data-translate="rsvp_email"></label>
+					<input type="email" id="email" name="email" required>
+				</div>
+				<div class="form-group">
+					<label for="phone" data-translate="rsvp_phone"></label>
+					<input type="tel" id="phone" name="phone" required>
+				</div>
+				<div class="form-group">
+					<label for="plusone" data-translate="rsvp_plusone"></label>
+					<select id="plusone" name="plusone">
 						<option value="no" data-translate="rsvp_option_no"></option>
 						<option value="yes" data-translate="rsvp_option_yes"></option>
-                    </select>
-                </div>
-                
-                <div id="accommodation-details" style="display: none;">
-                    <div class="info-box" style="margin: 15px 0; padding: 20px; background-color: #f8fff9;">
-                        <p><strong data-translate="rsvp_accommodation_recommendation"></strong></p>
-                        <p data-translate="rsvp_accommodation_details"></p>
-                        <p data-translate="rsvp_accommodation_dates"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="booking-help" data-translate="rsvp_booking_help"></label>
-                        <select id="booking-help" name="booking-help">
-                            <option value="hotel-books" data-translate="rsvp_booking_hotel"></option>
-                            <option value="self-book" data-translate="rsvp_booking_self"></option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" data-translate="rsvp_message"></label>
-                    <textarea id="message" name="message"></textarea>
-                </div>
-            </div>
-            
-            <button type="submit" data-translate="rsvp_submit"></button>
-        </form>
-    </section>
-<section id="gallery" class="container">
-    <h2 data-translate="nav_gallery"></h2>
-    
-    <!-- Slideshow container -->
-    <div class="slideshow-container">
-        <div class="slideshow-inner">
-            <!-- Slides will be generated by JavaScript -->
-        </div>
-        
-        <!-- Previous/Next buttons -->
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-    </div>
-    
-    <!-- Fullscreen Modal -->
-    <div id="slideModal" class="modal">
-        <span class="close-modal">&times;</span>
-        <div class="modal-content">
-            <div class="modal-slides">
-                <!-- Modal slides will be generated by JavaScript -->
-            </div>
-            
-            <!-- Modal Previous/Next buttons -->
-            <a class="modal-prev">&#10094;</a>
-            <a class="modal-next">&#10095;</a>
-        </div>
-    </div>
-</section>
+					</select>
+				</div>
+				<div class="form-group" id="plusone-name-group" style="display: none;">
+					<label for="plusone-name" data-translate="rsvp_plusone_name"></label>
+					<input type="text" id="plusone-name" name="plusone-name">
+				</div>
+				<div class="form-group">
+					<label for="children" data-translate="rsvp_children_q"></label>
+					<select id="children" name="children">
+						<option value="no" data-translate="rsvp_option_no"></option>
+						<option value="yes" data-translate="rsvp_option_yes"></option>
+					</select>
+				</div>
+				<div class="form-group" id="children-number-group" style="display: none;">
+					<label for="children-number" data-translate="rsvp_children_number"></label>
+					<input type="number" id="children-number" name="children-number" min="0" max="5" value="0">
+				</div>
+				<div id="children-names-container"></div>
+				<div class="form-group">
+					<label for="meal" data-translate="rsvp_meal"></label>
+					<select id="meal" name="meal">
+						<option value="standard" data-translate="rsvp_meal_standard"></option>
+						<option value="vegetarian" data-translate="rsvp_meal_vegetarian"></option>
+						<option value="vegan" data-translate="rsvp_meal_vegan"></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="allergies" data-translate="rsvp_allergies"></label>
+					<textarea id="allergies" name="allergies"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="accommodation" data-translate="rsvp_accommodation_q"></label>
+					<select id="accommodation" name="accommodation">
+						<option value="no" data-translate="rsvp_option_no"></option>
+						<option value="yes" data-translate="rsvp_option_yes"></option>
+					</select>
+				</div>
+				<div id="accommodation-details" style="display: none;">
+					<div class="info-box" style="margin: 15px 0; padding: 20px; background-color: #f8fff9;">
+						<p><strong data-translate="rsvp_accommodation_recommendation"></strong></p>
+						<p data-translate="rsvp_accommodation_details"></p>
+						<p data-translate="rsvp_accommodation_dates"></p>
+					</div>
+					<div class="form-group">
+						<label for="booking-help" data-translate="rsvp_booking_help"></label>
+						<select id="booking-help" name="booking-help">
+							<option value="hotel-books" data-translate="rsvp_booking_hotel"></option>
+							<option value="self-book" data-translate="rsvp_booking_self"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="message" data-translate="rsvp_message"></label>
+					<textarea id="message" name="message"></textarea>
+				</div>
+			</div>
+			<button type="submit" data-translate="rsvp_submit"></button>
+		</form>
+	</section>
+	<section id="gallery" class="container">
+		<h2 data-translate="nav_gallery"></h2>
+		<!-- Slideshow container -->
+		<div class="slideshow-container">
+			<div class="slideshow-inner">
+				<!-- Slides will be generated by JavaScript -->
+			</div>
+			<!-- Previous/Next buttons -->
+			<a class="prev">&#10094;</a>
+			<a class="next">&#10095;</a>
+		</div>
+		<!-- Fullscreen Modal -->
+		<div id="slideModal" class="modal">
+			<span class="close-modal">&times;</span>
+			<div class="modal-content">
+				<div class="modal-slides">
+					<!-- Modal slides will be generated by JavaScript -->
+				</div>
+				<!-- Modal Previous/Next buttons -->
+				<a class="modal-prev">&#10094;</a>
+				<a class="modal-next">&#10095;</a>
+			</div>
+		</div>
+	</section>
 	<section id="photos" class="container">
-        <h2 data-translate="photos_title"></h2>
-        <div class="info-box">
-            <h3 data-translate="photos_heading"></h3>
-            <p data-translate="photos_description"></p>
-            
-            <div style="margin: 30px auto; max-width: 250px;">
-                <a href="https://www.dropbox.com/request/ucE41k6X1sUfZPMxmonp" target="_blank" style="color: #829672; text-decoration: none;"><img src="qr-code.png" alt="QR" style="width: 100%; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></a>
-            </div>
-           
-            <div style="margin-top: 40px; background-color: #f8fbf9; padding: 25px; border-radius: 10px;">
-                <h4 style="margin-bottom: 15px; color: #829672;" data-translate="photos_how"></h4>
-                <p data-translate="photos_step1"></p>
-                <p data-translate="photos_step2"></p>
-                <p data-translate="photos_step3"></p>
-                <p style="margin-top: 20px; font-style: italic;" data-translate="photos_note"></p>
-            </div>
-        </div>
-    </section>
+		<h2 data-translate="photos_title"></h2>
+		<div class="info-box">
+			<h3 data-translate="photos_heading"></h3>
+			<p data-translate="photos_description"></p>
+			<div style="margin: 30px auto; max-width: 250px;">
+				<a href="https://www.dropbox.com/request/ucE41k6X1sUfZPMxmonp" target="_blank" style="color: #829672; text-decoration: none;"><img src="qr-code.png" alt="QR" style="width: 100%; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);"></a>
+			</div>
+			<div style="margin-top: 40px; background-color: #f8fbf9; padding: 25px; border-radius: 10px;">
+				<h4 style="margin-bottom: 15px; color: #829672;" data-translate="photos_how"></h4>
+				<p data-translate="photos_step1"></p>
+				<p data-translate="photos_step2"></p>
+				<p data-translate="photos_step3"></p>
+				<p style="margin-top: 20px; font-style: italic;" data-translate="photos_note"></p>
+			</div>
+		</div>
+	</section>
 	<section id="location" class="container">
-        <h2 data-translate="location_title"></h2>
-        <div class="info-box">
-            <h3 data-translate="location_heading"></h3>
-            <p data-translate="location_church"></p>
-            <p data-translate="location_reception"></p>
-            <p data-translate="location_distance"></p>
-        </div>
-        
-        <div class="info-box">
-            <h3 data-translate="weather_title"></h3>
-            <div id="weather-widget" class="text-center">
-                <div class="weather-content">
-                    <div class="weather-icon" style="font-size: 3rem; margin-bottom: 10px; color: #829672;">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <div class="weather-temp" style="font-size: 1.5rem; margin-bottom: 10px;">28°C</div>
-                    <div class="weather-minmax" style="margin-bottom: 10px; font-size: 1.1rem;">
-                        <span class="temp-min">Min: 22°C</span> / <span class="temp-max">Max: 32°C</span>
-                    </div>
-                    <div class="weather-desc" data-translate="weather_description"></div>
-                    <div class="weather-details" style="margin-top: 15px; display: flex; justify-content: space-around;">
-                        <div>
-                            <i class="fas fa-cloud"></i>
-                            <div><span data-translate="weather_clouds"></span> <span class="clouds">30%</span></div>
-                        </div>
-                        <div>
-                            <i class="fas fa-tint"></i>
-                            <div><span data-translate="weather_rain"></span> <span class="rain-chance">15%</span></div>
-                        </div>
-                        <div>
-                            <i class="fas fa-wind"></i>
-                            <div><span data-translate="weather_wind"></span> <span class="wind">10 km/h NE</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="interactive-map" style="height: 500px; margin: 40px 0; border-radius: 10px;"></div>
-    </section>
+		<h2 data-translate="location_title"></h2>
+		<div class="info-box">
+			<h3 data-translate="location_heading"></h3>
+			<p data-translate="location_church"></p>
+			<p data-translate="location_reception"></p>
+			<p data-translate="location_distance"></p>
+		</div>
+		<div class="info-box">
+			<h3 data-translate="weather_title"></h3>
+			<div id="weather-widget" class="text-center">
+				<div class="weather-content">
+					<div class="weather-icon" style="font-size: 3rem; margin-bottom: 10px; color: #829672;">
+						<i class="fas fa-sun"></i>
+					</div>
+					<div class="weather-temp" style="font-size: 1.5rem; margin-bottom: 10px;">28°C</div>
+					<div class="weather-minmax" style="margin-bottom: 10px; font-size: 1.1rem;">
+						<span class="temp-min">Min: 22°C</span> / <span class="temp-max">Max: 32°C</span>
+					</div>
+					<div class="weather-desc" data-translate="weather_description"></div>
+					<div class="weather-details" style="margin-top: 15px; display: flex; justify-content: space-around;">
+						<div>
+							<i class="fas fa-cloud"></i>
+							<div><span data-translate="weather_clouds"></span> <span class="clouds">30%</span></div>
+						</div>
+						<div>
+							<i class="fas fa-tint"></i>
+							<div><span data-translate="weather_rain"></span> <span class="rain-chance">15%</span></div>
+						</div>
+						<div>
+							<i class="fas fa-wind"></i>
+							<div><span data-translate="weather_wind"></span> <span class="wind">10 km/h NE</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="interactive-map" style="height: 500px; margin: 40px 0; border-radius: 10px;"></div>
+	</section>
 	<footer>
-        <p>Sînziana & Ionuț | 16 August 2025</p>
-        <p data-translate="footer_message"></p>
-    </footer>
+		<p>Sînziana & Ionuț | 16 August 2025</p>
+		<p data-translate="footer_message"></p>
+	</footer>
 	<script>
-const translations = {
-  ro: {
-    // Navigație
-    "nav_home": "Acasă",
-    "nav_couple": "Despre Noi",
-    "nav_details": "Detalii Eveniment",
-    "nav_rsvp": "RSVP",
-    "nav_gallery": "Galerie",
-    "nav_photos": "Upload Poze",
-    "nav_location": "Locație",
-    
-    // Header
-    "header_date": "16 AUGUST 2025",
-    "header_invite": "Ne căsătorim!",
-    
-    // Countdown
-    "countdown_days": "Zile",
-    "countdown_hours": "Ore",
-    "countdown_minutes": "Minute",
-    "countdown_seconds": "Secunde",
-    
-    // Acasă
-    "home_greeting": "Dragii noștri,",
-    "home_invite": "Am decis ca în sfârșit să avem același nume",
-    "home_message": "Cu această ocazie, vrem sa dăm o petrecere mare la care să îi avem alături pe cei care fac parte din viața noastră",
-    "home_signature": "Cu bucurie,",
-    
-    // Despre Noi
-    "couple_title": "Despre Noi",
-    "couple_story": "Suntem împreună de 10+ ani si de 5+ ani ne distrăm alături de fetița noastră grozavă Lia, dar probabil știați aceste lucruri",
-    
-    
-    // Detalii Eveniment
-    "details_title": "Detalii Eveniment",
-    "ceremony_title": "Ceremonia Religioasă",
-    "ceremony_date": "Data: 16 August 2025",
-    "ceremony_time": "Ora: 12:00",
-    "ceremony_location": "Locația: Biserica Buna Vestire",
-    "ceremony_address": "Adresa: Ticușu Vechi",
-    
-    "reception_title": "Recepția",
-    "reception_date": "Data: 16 August 2025",
-    "reception_time": "Ora: 17:00",
-    "reception_location": "Locația: Gospodăria Cobor - Șura-n bucate",
-    "reception_address": "Adresa: Strada Mare 199, Cobor",
-    
-    "party_title": "Petrecerea",
-    "party_start": "Ora de început: 17:30",
-    "party_end": "Ora de încheiere: 01:00",
-    "party_dress": "Ținută: super lejeră",
-    "party_details": "Muzică și dans afară pe iarbă, activități pentru copii, mâncare delicioasă și voie bună",
-    
-    "food_title": "Servirea Mesei",
-    "food_start": "Ora de început: 18:00",
-    "food_details": "Bufet, urmat de fel principal. Preparate concepute și realizate de Chef Daniela Graura",
-
-    "cake_title": "Tort",
-    "cake_start": "Ora de început: 00:00",
-    "cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
-    
-    "info_title": "Informații Suplimentare",
-    "info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație ",
-    "info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor",
-    "info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
-    "info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
-     
-    // RSVP
-    "rsvp_title": "Confirmă Prezența (RSVP)",
-    "rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 1 iunie 2025",
-    "rsvp_name": "Nume și Prenume",
-    "rsvp_attendance": "Vei participa?",
-    "rsvp_yes": "Da, voi participa",
-    "rsvp_no": "Nu pot participa",
-    "rsvp_email": "Email",
-    "rsvp_phone": "Telefon",
-    "rsvp_plusone": "Vei veni cu partener/parteneră?",
-    "rsvp_plusone_name": "Numele partenerului/partenerei",
-    "rsvp_children_q": "Vei veni cu copii?",
-    "rsvp_children_number": "Câți copii?",
-    "rsvp_child_name": "Numele copilului",
-    "rsvp_meal": "Preferințe alimentare",
-    "rsvp_meal_standard": "Meniu standard",
-    "rsvp_meal_vegetarian": "Meniu vegetarian",
-    "rsvp_meal_vegan": "Meniu vegan",
-    "rsvp_allergies": "Alergii sau restricții alimentare",
-    "rsvp_accommodation_q": "Ai nevoie de cazare?",
-	"rsvp_option_yes": "Da",
-	"rsvp_option_no": "Nu",
-    "rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
-    "rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă",
-    "rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
-    "rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
-    "rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
-    "rsvp_booking_self": "Da, 1 noapte (16-17 august)",
-    "rsvp_booking_neg": "Nu",
-    "rsvp_message": "Mesaj pentru miri (opțional)",
-    "rsvp_submit": "Trimite",
-    "rsvp_success": "Mulțumim pentru confirmare!",
-    "rsvp_regret": "Ne pare rău că nu poți participa!",
-	"rsvp_option_yes": "Da",
-	"rsvp_option_no": "Nu",
-
-    
-    // Upload Poze
-    "photos_title": "Încarcă Fotografii",
-    "photos_heading": "Împărtășește-ți amintirile cu noi!",
-    "photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
-    "photos_how": "Cum funcționează?",
-    "photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus",
-    "photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești",
-    "photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru",
-    "photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
-    
-    // Locație
-    "location_title": "Locația",
-    "location_heading": "Cum ajungi la noi",
-    "location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br><br>Cu avionul: București, Cluj, Sibiu, Brașov<br> Cu trenul: Făgăraș, Șercaia, Rupea",
-    "location_map": "Găsește locația pe hartă",
-    "location_directions": "Pentru indicații rutiere, vă recomandăm",
-    
-    // Weather
-    "weather_title": "Prognoza meteo pentru ziua nunții",
-    "weather_description": "În general însorit și cald",
-    "weather_clouds": "Acoperire nori:",
-    "weather_rain": "Șanse ploaie:",
-    "weather_wind": "Vânt:",
-     
-    // Footer
-    "footer_message": "Abia așteptăm să vă vedem!"
-  },
-  en: {
-    // Navigation
-    "nav_home": "Home",
-    "nav_couple": "About Us",
-    "nav_details": "Event Details",
-    "nav_rsvp": "RSVP",
-    "nav_gallery": "Gallery",
-    "nav_photos": "Upload Photos",
-    "nav_location": "Location",
-    
-    // Header
-    "header_date": "AUGUST 16, 2025",
-    "header_invite": "We are tying the knot!",
-    
-    // Countdown
-    "countdown_days": "Days",
-    "countdown_hours": "Hours",
-    "countdown_minutes": "Minutes",
-    "countdown_seconds": "Seconds",
-    
-    // Home
-    "home_greeting": "Dear ones,",
-    "home_invite": "We decided to finally share the last name",
-    "home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
-    "home_signature": "With love and excitement,",
-    
-    // About Us
-    "couple_title": "About Us",
-    "couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already ",
-
-    
-    // Event Details
-    "details_title": "Event Details",
-    "ceremony_title": "Religious Ceremony",
-    "ceremony_date": "Date: August 16, 2025",
-    "ceremony_time": "Time: 12:00",
-    "ceremony_location": "Location: Church Buna Vestire",
-    "ceremony_address": "Address: Ticușu Vechi",
-    
-    "reception_title": "Reception",
-    "reception_date": "Date: August 16, 2025",
-    "reception_time": "Time: 17:00",
-    "reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
-    "reception_address": "Address: Strada Mare 199, Cobor",
-    
-    "party_title": "Party",
-    "party_start": "Start time: 17:30",
-    "party_end": "End time: 01:00",
-    "party_dress": "Dress code: super casual",
-    "party_details": "Outdoor garden event, kids corner, delicious food and party vibes ",
-    
-    "food_title": "Dinner",
-    "food_start": "Start time: 18:00",
-    "food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
-
-    "cake_title": "Cake",
-    "cake_start": "Start time: 00:00",
-    "cake_details": "Cake by San Grecu, Făgăraș",
-    
-    "info_title": "Additional Information",
-    "info_accommodation": "Accommodation: For guests from other locations, we have booked the Cobor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue",
-    "info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor",
-    "info_children": "Children: They are welcome! We will have a designated area for the little ones, with activities and supervision.",
-    "info_gifts": "Gifts: Your presence is the most beautiful gift. If you still wish to offer us something, we would appreciate a contribution to our honeymoon.",
-    
-    // RSVP
-    "rsvp_title": "Confirm Attendance (RSVP)",
-    "rsvp_deadline": "Please confirm your attendance by June 1, 2025",
-    "rsvp_name": "Full Name",
-    "rsvp_attendance": "Will you attend?",
-    "rsvp_yes": "Yes, I will attend",
-    "rsvp_no": "I cannot attend",
-    "rsvp_email": "Email",
-    "rsvp_phone": "Phone",
-    "rsvp_plusone": "Will you bring a partner?",
-    "rsvp_plusone_name": "Partner's name",
-    "rsvp_children_q": "Any children attending?",
-    "rsvp_children_number": "How many children?",
-    "rsvp_child_name": "Child's name",
-    "rsvp_meal": "Dietary preferences",
-    "rsvp_meal_standard": "Standard menu",
-    "rsvp_meal_vegetarian": "Vegetarian menu",
-    "rsvp_meal_vegan": "Vegan menu",
-    "rsvp_allergies": "Allergies or dietary restrictions",
-    "rsvp_accommodation_q": "Do you need accommodation?",
-	"rsvp_option_yes": "Yes",
-	"rsvp_option_no": "No",
-    "rsvp_accommodation_recommendation": "Our recommendation: Cobor Biodiversity Farm",
-    "rsvp_accommodation_details": "We have booked the entire place, but please confirm if you prefer this one and for how many nights.",
-    "rsvp_accommodation_dates": "Availability: August 15-17, 2025",
-    "rsvp_booking_help": "Will you stay at Cobor Biodiversity Farm?",
-    "rsvp_booking_hotel": "Yes, for 2 nights (August 15-17)",
-    "rsvp_booking_self": "Yes, for 1 night (August 16-17)",
-    "rsvp_message": "Message for the couple (optional)",
-    "rsvp_submit": "Submit",
-    "rsvp_success": "Thank you for your confirmation!",
-    "rsvp_regret": "We're sorry you can't attend!",
-	"rsvp_option_yes": "Yes",
-	"rsvp_option_no": "No",
-    
-    // Upload Photos
-    "photos_title": "Upload Photos",
-    "photos_heading": "Share your memories with us!",
-    "photos_description": "Save our memories from the wedding day! Scan this QR code to upload your photos directly to our digital album.",
-    "photos_how": "How does it work?",
-    "photos_step1": "Step 1: Scan the QR code with your phone camera or access the link above",
-    "photos_step2": "Step 2: Select the photos you want to share",
-    "photos_step3": "Step 3: Upload the photos to our album",
-    "photos_note": "Your photos will be automatically added to our shared album, and after the wedding, we will send all guests the link to the complete album!",
-    
-    // Location
-    "location_title": "Location",
-    "location_heading": "How to get to us",
-	"location_distance": "The locations are approximately 15 minutes apart from each other. We can help with transportation between locations.<br><br>Distance from Bucharest: 260 km (4 hours)<br>Distance from Sibiu: 100 km (2 hours)<br>Distance from Cluj: 210 km (3 hours 30 min)<br>Distance from Făgăraș: 22 km (30 min)<br>Distance from Viscri: 45 km (1 hour)<br>Distance from Sighișoara: 60 km (1 hour 30 min)<br><br>By plane: Bucharest, Cluj, Sibiu, Brașov<br> By train: Făgăraș, Șercaia, Rupea",
-    "location_map": "Find the location on the map",
-    "location_directions": "For directions, we recommend",
-    
-    // Weather
-    "weather_title": "Weather forecast for the wedding day",
-    "weather_description": "Generally sunny and warm",
-    "weather_clouds": "Cloud coverage:",
-    "weather_rain": "Chance of rain:",
-    "weather_wind": "Wind:",
-    
-    // Footer
-    "footer_message": "We look forward to having you with us on this special day!"
-  }
-};
-
-function updateLanguage(lang) {
-    document.documentElement.lang = lang;
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang][key]) {
-            element.innerHTML = translations[lang][key];
-        }
-    });
-    
-
-	document.querySelectorAll('[data-translate]').forEach(element => {
-		const key = element.getAttribute('data-translate');
-		if (translations[lang][key]) {
-			element.innerHTML = translations[lang][key];
+	const translations = {
+		ro: {
+			// Navigație
+			"nav_home": "Acasă",
+			"nav_couple": "Despre Noi",
+			"nav_details": "Detalii Eveniment",
+			"nav_rsvp": "RSVP",
+			"nav_gallery": "Galerie",
+			"nav_photos": "Upload Poze",
+			"nav_location": "Locație",
+			// Header
+			"header_date": "16 AUGUST 2025",
+			"header_invite": "Ne căsătorim!",
+			// Countdown
+			"countdown_days": "Zile",
+			"countdown_hours": "Ore",
+			"countdown_minutes": "Minute",
+			"countdown_seconds": "Secunde",
+			// Acasă
+			"home_greeting": "Dragii noștri,",
+			"home_invite": "Am decis ca în sfârșit să avem același nume",
+			"home_message": "Cu această ocazie, vrem sa dăm o petrecere mare la care să îi avem alături pe cei care fac parte din viața noastră",
+			"home_signature": "Cu bucurie,",
+			// Despre Noi
+			"couple_title": "Despre Noi",
+			"couple_story": "Suntem împreună de 10+ ani si de 5+ ani ne distrăm alături de fetița noastră grozavă Lia, dar probabil știați aceste lucruri",
+			// Detalii Eveniment
+			"details_title": "Detalii Eveniment",
+			"ceremony_title": "Ceremonia Religioasă",
+			"ceremony_date": "Data: 16 August 2025",
+			"ceremony_time": "Ora: 12:00",
+			"ceremony_location": "Locația: Biserica Buna Vestire",
+			"ceremony_address": "Adresa: Ticușu Vechi",
+			"reception_title": "Recepția",
+			"reception_date": "Data: 16 August 2025",
+			"reception_time": "Ora: 17:00",
+			"reception_location": "Locația: Gospodăria Cobor - Șura-n bucate",
+			"reception_address": "Adresa: Strada Mare 199, Cobor",
+			"party_title": "Petrecerea",
+			"party_start": "Ora de început: 17:30",
+			"party_end": "Ora de încheiere: 01:00",
+			"party_dress": "Ținută: super lejeră",
+			"party_details": "Muzică și dans afară pe iarbă, activități pentru copii, mâncare delicioasă și voie bună",
+			"food_title": "Servirea Mesei",
+			"food_start": "Ora de început: 18:00",
+			"food_details": "Bufet, urmat de fel principal. Preparate concepute și realizate de Chef Daniela Graura",
+			"cake_title": "Tort",
+			"cake_start": "Ora de început: 00:00",
+			"cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
+			"info_title": "Informații Suplimentare",
+			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație ",
+			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor",
+			"info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
+			"info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
+			// RSVP
+			"rsvp_title": "Confirmă Prezența (RSVP)",
+			"rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 1 iunie 2025",
+			"rsvp_name": "Nume și Prenume",
+			"rsvp_attendance": "Vei participa?",
+			"rsvp_yes": "Da, voi participa",
+			"rsvp_no": "Nu pot participa",
+			"rsvp_email": "Email",
+			"rsvp_phone": "Telefon",
+			"rsvp_plusone": "Vei veni cu partener/parteneră?",
+			"rsvp_plusone_name": "Numele partenerului/partenerei",
+			"rsvp_children_q": "Vei veni cu copii?",
+			"rsvp_children_number": "Câți copii?",
+			"rsvp_child_name": "Numele copilului",
+			"rsvp_meal": "Preferințe alimentare",
+			"rsvp_meal_standard": "Meniu standard",
+			"rsvp_meal_vegetarian": "Meniu vegetarian",
+			"rsvp_meal_vegan": "Meniu vegan",
+			"rsvp_allergies": "Alergii sau restricții alimentare",
+			"rsvp_accommodation_q": "Ai nevoie de cazare?",
+			"rsvp_option_yes": "Da",
+			"rsvp_option_no": "Nu",
+			"rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
+			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă",
+			"rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
+			"rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
+			"rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
+			"rsvp_booking_self": "Da, 1 noapte (16-17 august)",
+			"rsvp_booking_neg": "Nu",
+			"rsvp_message": "Mesaj pentru miri (opțional)",
+			"rsvp_submit": "Trimite",
+			"rsvp_success": "Mulțumim pentru confirmare!",
+			"rsvp_regret": "Ne pare rău că nu poți participa!",
+			"rsvp_option_yes": "Da",
+			"rsvp_option_no": "Nu",
+			// Upload Poze
+			"photos_title": "Încarcă Fotografii",
+			"photos_heading": "Împărtășește-ți amintirile cu noi!",
+			"photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
+			"photos_how": "Cum funcționează?",
+			"photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus",
+			"photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești",
+			"photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru",
+			"photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
+			// Locație
+			"location_title": "Locația",
+			"location_heading": "Cum ajungi la noi",
+			"location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br><br>Cu avionul: București, Cluj, Sibiu, Brașov<br> Cu trenul: Făgăraș, Șercaia, Rupea",
+			"location_map": "Găsește locația pe hartă",
+			"location_directions": "Pentru indicații rutiere, vă recomandăm",
+			// Weather
+			"weather_title": "Prognoza meteo pentru ziua nunții",
+			"weather_description": "În general însorit și cald",
+			"weather_clouds": "Acoperire nori:",
+			"weather_rain": "Șanse ploaie:",
+			"weather_wind": "Vânt:",
+			// Footer
+			"footer_message": "Abia așteptăm să vă vedem!"
+		},
+		en: {
+			// Navigation
+			"nav_home": "Home",
+			"nav_couple": "About Us",
+			"nav_details": "Event Details",
+			"nav_rsvp": "RSVP",
+			"nav_gallery": "Gallery",
+			"nav_photos": "Upload Photos",
+			"nav_location": "Location",
+			// Header
+			"header_date": "AUGUST 16, 2025",
+			"header_invite": "We are tying the knot!",
+			// Countdown
+			"countdown_days": "Days",
+			"countdown_hours": "Hours",
+			"countdown_minutes": "Minutes",
+			"countdown_seconds": "Seconds",
+			// Home
+			"home_greeting": "Dear ones,",
+			"home_invite": "We decided to finally share the last name",
+			"home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
+			"home_signature": "With love and excitement,",
+			// About Us
+			"couple_title": "About Us",
+			"couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already ",
+			// Event Details
+			"details_title": "Event Details",
+			"ceremony_title": "Religious Ceremony",
+			"ceremony_date": "Date: August 16, 2025",
+			"ceremony_time": "Time: 12:00",
+			"ceremony_location": "Location: Church Buna Vestire",
+			"ceremony_address": "Address: Ticușu Vechi",
+			"reception_title": "Reception",
+			"reception_date": "Date: August 16, 2025",
+			"reception_time": "Time: 17:00",
+			"reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
+			"reception_address": "Address: Strada Mare 199, Cobor",
+			"party_title": "Party",
+			"party_start": "Start time: 17:30",
+			"party_end": "End time: 01:00",
+			"party_dress": "Dress code: super casual",
+			"party_details": "Outdoor garden event, kids corner, delicious food and party vibes ",
+			"food_title": "Dinner",
+			"food_start": "Start time: 18:00",
+			"food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
+			"cake_title": "Cake",
+			"cake_start": "Start time: 00:00",
+			"cake_details": "Cake by San Grecu, Făgăraș",
+			"info_title": "Additional Information",
+			"info_accommodation": "Accommodation: For guests from other locations, we have booked the Cobor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue",
+			"info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor",
+			"info_children": "Children: They are welcome! We will have a designated area for the little ones, with activities and supervision.",
+			"info_gifts": "Gifts: Your presence is the most beautiful gift. If you still wish to offer us something, we would appreciate a contribution to our honeymoon.",
+			// RSVP
+			"rsvp_title": "Confirm Attendance (RSVP)",
+			"rsvp_deadline": "Please confirm your attendance by June 1, 2025",
+			"rsvp_name": "Full Name",
+			"rsvp_attendance": "Will you attend?",
+			"rsvp_yes": "Yes, I will attend",
+			"rsvp_no": "I cannot attend",
+			"rsvp_email": "Email",
+			"rsvp_phone": "Phone",
+			"rsvp_plusone": "Will you bring a partner?",
+			"rsvp_plusone_name": "Partner's name",
+			"rsvp_children_q": "Any children attending?",
+			"rsvp_children_number": "How many children?",
+			"rsvp_child_name": "Child's name",
+			"rsvp_meal": "Dietary preferences",
+			"rsvp_meal_standard": "Standard menu",
+			"rsvp_meal_vegetarian": "Vegetarian menu",
+			"rsvp_meal_vegan": "Vegan menu",
+			"rsvp_allergies": "Allergies or dietary restrictions",
+			"rsvp_accommodation_q": "Do you need accommodation?",
+			"rsvp_option_yes": "Yes",
+			"rsvp_option_no": "No",
+			"rsvp_accommodation_recommendation": "Our recommendation: Cobor Biodiversity Farm",
+			"rsvp_accommodation_details": "We have booked the entire place, but please confirm if you prefer this one and for how many nights.",
+			"rsvp_accommodation_dates": "Availability: August 15-17, 2025",
+			"rsvp_booking_help": "Will you stay at Cobor Biodiversity Farm?",
+			"rsvp_booking_hotel": "Yes, for 2 nights (August 15-17)",
+			"rsvp_booking_self": "Yes, for 1 night (August 16-17)",
+			"rsvp_message": "Message for the couple (optional)",
+			"rsvp_submit": "Submit",
+			"rsvp_success": "Thank you for your confirmation!",
+			"rsvp_regret": "We're sorry you can't attend!",
+			"rsvp_option_yes": "Yes",
+			"rsvp_option_no": "No",
+			// Upload Photos
+			"photos_title": "Upload Photos",
+			"photos_heading": "Share your memories with us!",
+			"photos_description": "Save our memories from the wedding day! Scan this QR code to upload your photos directly to our digital album.",
+			"photos_how": "How does it work?",
+			"photos_step1": "Step 1: Scan the QR code with your phone camera or access the link above",
+			"photos_step2": "Step 2: Select the photos you want to share",
+			"photos_step3": "Step 3: Upload the photos to our album",
+			"photos_note": "Your photos will be automatically added to our shared album, and after the wedding, we will send all guests the link to the complete album!",
+			// Location
+			"location_title": "Location",
+			"location_heading": "How to get to us",
+			"location_distance": "The locations are approximately 15 minutes apart from each other. We can help with transportation between locations.<br><br>Distance from Bucharest: 260 km (4 hours)<br>Distance from Sibiu: 100 km (2 hours)<br>Distance from Cluj: 210 km (3 hours 30 min)<br>Distance from Făgăraș: 22 km (30 min)<br>Distance from Viscri: 45 km (1 hour)<br>Distance from Sighișoara: 60 km (1 hour 30 min)<br><br>By plane: Bucharest, Cluj, Sibiu, Brașov<br> By train: Făgăraș, Șercaia, Rupea",
+			"location_map": "Find the location on the map",
+			"location_directions": "For directions, we recommend",
+			// Weather
+			"weather_title": "Weather forecast for the wedding day",
+			"weather_description": "Generally sunny and warm",
+			"weather_clouds": "Cloud coverage:",
+			"weather_rain": "Chance of rain:",
+			"weather_wind": "Wind:",
+			// Footer
+			"footer_message": "We look forward to having you with us on this special day!"
 		}
-	});
-    
+	};
 
-    document.querySelectorAll('option[data-translate]').forEach(option => {
-        const key = option.getAttribute('data-translate');
-        if (translations[lang][key]) {
-            option.innerHTML = translations[lang][key];
-        }
-    });
-    
+	function updateLanguage(lang) {
+		document.documentElement.lang = lang;
+		document.querySelectorAll('[data-translate]').forEach(element => {
+			const key = element.getAttribute('data-translate');
+			if(translations[lang][key]) {
+				element.innerHTML = translations[lang][key];
+			}
+		});
+		document.querySelectorAll('[data-translate]').forEach(element => {
+			const key = element.getAttribute('data-translate');
+			if(translations[lang][key]) {
+				element.innerHTML = translations[lang][key];
+			}
+		});
+		document.querySelectorAll('option[data-translate]').forEach(option => {
+			const key = option.getAttribute('data-translate');
+			if(translations[lang][key]) {
+				option.innerHTML = translations[lang][key];
+			}
+		});
+		document.querySelectorAll('.language-button').forEach(button => {
+			button.classList.remove('active');
+			if(button.getAttribute('data-lang') === lang) {
+				button.classList.add('active');
+			}
+		});
+		localStorage.setItem('preferred_language', lang);
+	}
 
-    document.querySelectorAll('.language-button').forEach(button => {
-        button.classList.remove('active');
-        if (button.getAttribute('data-lang') === lang) {
-            button.classList.add('active');
-        }
-    });
-    
+	function initCountdown() {
+		const weddingDate = new Date("Aug 16, 2025 12:00:00").getTime();
 
-    localStorage.setItem('preferred_language', lang);
-}
+		function updateCountdown() {
+			const now = new Date().getTime();
+			const distance = weddingDate - now;
+			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			document.getElementById("days").textContent = days;
+			document.getElementById("hours").textContent = hours;
+			document.getElementById("minutes").textContent = minutes;
+			document.getElementById("seconds").textContent = seconds;
+			if(distance < 0) {
+				clearInterval(countdown);
+				document.getElementById("days").textContent = "0";
+				document.getElementById("hours").textContent = "0";
+				document.getElementById("minutes").textContent = "0";
+				document.getElementById("seconds").textContent = "0";
+			}
+		}
+		updateCountdown();
+		const countdown = setInterval(updateCountdown, 1000);
+	}
 
+	function showHeartAnimation(isAttending) {
+		const responseIcon = document.getElementById('responseIcon');
+		if(isAttending) {
+			responseIcon.className = 'heart-icon fas fa-heart';
+			responseIcon.style.color = '#829672';
+		} else {
+			responseIcon.className = 'heart-icon fas fa-heart-broken';
+			responseIcon.style.color = '#d8959b';
+		}
+		responseIcon.style.opacity = '1';
+		responseIcon.style.fontSize = '400px';
+		responseIcon.style.animation = 'heartBeat 1.3s ease-in-out';
+		setTimeout(() => {
+			responseIcon.style.opacity = '0';
+			responseIcon.style.fontSize = '0';
+			setTimeout(() => {
+				responseIcon.style.animation = '';
+			}, 500);
+		}, 3000);
+	}
 
-function initCountdown() {
-    const weddingDate = new Date("Aug 16, 2025 12:00:00").getTime();
-    
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
-        
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById("days").textContent = "0";
-            document.getElementById("hours").textContent = "0";
-            document.getElementById("minutes").textContent = "0";
-            document.getElementById("seconds").textContent = "0";
-        }
-    }
-    
+	function initSections() {
+		const attendanceSelect = document.getElementById('attendance');
+		const additionalFields = document.getElementById('additional-fields');
+		if(attendanceSelect && additionalFields) {
+			attendanceSelect.addEventListener('change', function() {
+				const requiredFields = additionalFields.querySelectorAll('[required]');
+				if(this.value === 'yes') {
+					additionalFields.style.display = 'block';
+					const emailField = document.getElementById('email');
+					const phoneField = document.getElementById('phone');
+					if(emailField) emailField.setAttribute('required', '');
+					if(phoneField) phoneField.setAttribute('required', '');
+				} else {
+					additionalFields.style.display = 'none';
+					requiredFields.forEach(field => {
+						field.removeAttribute('required');
+					});
+				}
+			});
+		}
+		const plusOneSelect = document.getElementById('plusone');
+		const plusOneNameGroup = document.getElementById('plusone-name-group');
+		if(plusOneSelect && plusOneNameGroup) {
+			plusOneSelect.addEventListener('change', function() {
+				if(this.value === 'yes') {
+					plusOneNameGroup.style.display = 'block';
+				} else {
+					plusOneNameGroup.style.display = 'none';
+					document.getElementById('plusone-name').value = '';
+				}
+			});
+		}
+		const childrenSelect = document.getElementById('children');
+		const childrenNumberGroup = document.getElementById('children-number-group');
+		const childrenNumber = document.getElementById('children-number');
+		const childrenNamesContainer = document.getElementById('children-names-container');
+		if(childrenSelect && childrenNumberGroup && childrenNumber && childrenNamesContainer) {
+			childrenSelect.addEventListener('change', function() {
+				if(this.value === 'yes') {
+					childrenNumberGroup.style.display = 'block';
+					updateChildrenFields();
+				} else {
+					childrenNumberGroup.style.display = 'none';
+					childrenNumber.value = 0;
+					childrenNamesContainer.innerHTML = '';
+				}
+			});
+			childrenNumber.addEventListener('change', updateChildrenFields);
 
-    updateCountdown();
-    
-
-    const countdown = setInterval(updateCountdown, 1000);
-}
-
-
-function showHeartAnimation(isAttending) {
-    const responseIcon = document.getElementById('responseIcon');
-    
-
-    if (isAttending) {
-        responseIcon.className = 'heart-icon fas fa-heart';
-        responseIcon.style.color = '#829672';
-    } else {
-        responseIcon.className = 'heart-icon fas fa-heart-broken';
-        responseIcon.style.color = '#d8959b';
-    }
-    
-
-    responseIcon.style.opacity = '1';
-    responseIcon.style.fontSize = '400px';
-    
-
-    responseIcon.style.animation = 'heartBeat 1.3s ease-in-out';
-    
-
-    setTimeout(() => {
-        responseIcon.style.opacity = '0';
-        responseIcon.style.fontSize = '0';
-        
-
-        setTimeout(() => {
-            responseIcon.style.animation = '';
-        }, 500);
-    }, 3000);
-}
-
-function initSections() {
-
-    const attendanceSelect = document.getElementById('attendance');
-    const additionalFields = document.getElementById('additional-fields');
-    
-    if (attendanceSelect && additionalFields) {
-
-        attendanceSelect.addEventListener('change', function() {
-            const requiredFields = additionalFields.querySelectorAll('[required]');
-            
-            if (this.value === 'yes') {
-
-                additionalFields.style.display = 'block';
-                
-
-                const emailField = document.getElementById('email');
-                const phoneField = document.getElementById('phone');
-                if (emailField) emailField.setAttribute('required', '');
-                if (phoneField) phoneField.setAttribute('required', '');
-            } else {
-
-                additionalFields.style.display = 'none';
-                requiredFields.forEach(field => {
-                    field.removeAttribute('required');
-                });
-            }
-        });
-    }
-    
-
-    const plusOneSelect = document.getElementById('plusone');
-    const plusOneNameGroup = document.getElementById('plusone-name-group');
-    
-    if (plusOneSelect && plusOneNameGroup) {
-        plusOneSelect.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                plusOneNameGroup.style.display = 'block';
-            } else {
-                plusOneNameGroup.style.display = 'none';
-                document.getElementById('plusone-name').value = '';
-            }
-        });
-    }
-    
-
-    const childrenSelect = document.getElementById('children');
-    const childrenNumberGroup = document.getElementById('children-number-group');
-    const childrenNumber = document.getElementById('children-number');
-    const childrenNamesContainer = document.getElementById('children-names-container');
-    
-    if (childrenSelect && childrenNumberGroup && childrenNumber && childrenNamesContainer) {
-        childrenSelect.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                childrenNumberGroup.style.display = 'block';
-                updateChildrenFields();
-            } else {
-                childrenNumberGroup.style.display = 'none';
-                childrenNumber.value = 0;
-                childrenNamesContainer.innerHTML = '';
-            }
-        });
-        
-        childrenNumber.addEventListener('change', updateChildrenFields);
-        
-function updateChildrenFields() {
-    const numChildren = parseInt(childrenNumber.value);
-    childrenNamesContainer.innerHTML = '';
-    
-    // Get current language
-    const currentLang = document.documentElement.lang || 'ro';
-    
-    for (let i = 0; i < numChildren; i++) {
-        const childDiv = document.createElement('div');
-        childDiv.className = 'form-group';
-        
-        // Create label with correct language 
-        const labelText = currentLang === 'en' ? 
-            `Child's name ${i + 1}` : 
-            `Numele copilului ${i + 1}`;
-        
-        childDiv.innerHTML = `
+			function updateChildrenFields() {
+				const numChildren = parseInt(childrenNumber.value);
+				childrenNamesContainer.innerHTML = '';
+				// Get current language
+				const currentLang = document.documentElement.lang || 'ro';
+				for(let i = 0; i < numChildren; i++) {
+					const childDiv = document.createElement('div');
+					childDiv.className = 'form-group';
+					// Create label with correct language 
+					const labelText = currentLang === 'en' ? `Child's name ${i + 1}` : `Numele copilului ${i + 1}`;
+					childDiv.innerHTML = `
             <label for="child-name-${i}">${labelText}</label>
             <input type="text" id="child-name-${i}" name="child-name-${i}">
         `;
-        childrenNamesContainer.appendChild(childDiv);
-    }
-}
-    }
-    
+					childrenNamesContainer.appendChild(childDiv);
+				}
+			}
+		}
+		const accommodationSelect = document.getElementById('accommodation');
+		const accommodationDetails = document.getElementById('accommodation-details');
+		if(accommodationSelect && accommodationDetails) {
+			accommodationSelect.addEventListener('change', function() {
+				if(this.value === 'yes') {
+					accommodationDetails.style.display = 'block';
+				} else {
+					accommodationDetails.style.display = 'none';
+				}
+			});
+		}
+		const rsvpForm = document.getElementById('rsvp-form');
+		if(rsvpForm && attendanceSelect && additionalFields) {
+			rsvpForm.addEventListener('submit', function(e) {
+				e.preventDefault();
+				const isAttending = attendanceSelect.value === 'yes';
+				// Show heart animation
+				showHeartAnimation(isAttending);
+				// Detect iOS or Google Pixel
+				const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+				const isPixel = /Pixel/.test(navigator.userAgent);
+				if(isIOS || isPixel) {
+					// Use more compatible method for iOS/Pixel
+					const formData = new FormData(this);
+					const formObject = {};
+					formData.forEach(function(value, key) {
+						formObject[key] = value;
+					});
+					// Process accommodation nights
+					if(formObject.accommodation === 'yes') {
+						if(formObject['booking-help'] === 'hotel-books') {
+							formObject.accommodationNights = '2';
+						} else if(formObject['booking-help'] === 'self-book') {
+							formObject.accommodationNights = '1';
+						}
+					} else {
+						formObject.accommodationNights = '0';
+					}
+					// Send using JSONP approach (more compatible with iOS)
+					const script = document.createElement('script');
+					script.src = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&' + new URLSearchParams(formObject).toString();
+					document.body.appendChild(script);
+					// Define callback
+					window.formCallback = function(response) {
+						console.log('Form submitted via JSONP');
+						try {
+							document.body.removeChild(script);
+						} catch (err) {
+							console.log('Script already removed');
+						}
+						// Reset form after delay
+						setTimeout(function() {
+							rsvpForm.reset();
+							additionalFields.style.display = 'none';
+						}, 3000);
+					};
+				} else {
+					// Use standard form submission for other devices
+					const formData = new FormData(this);
+					const formObject = {};
+					formData.forEach(function(value, key) {
+						formObject[key] = value;
+					});
+					// Process accommodation nights
+					if(formObject.accommodation === 'yes') {
+						if(formObject['booking-help'] === 'hotel-books') {
+							formObject.accommodationNights = '2';
+						} else if(formObject['booking-help'] === 'self-book') {
+							formObject.accommodationNights = '1';
+						}
+					} else {
+						formObject.accommodationNights = '0';
+					}
+					// Send using fetch
+					fetch('https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&', {
+						method: 'POST',
+						body: new URLSearchParams(formObject)
+					}).then(response => {
+						console.log('Form submitted successfully');
+					}).catch(error => {
+						console.error('Error submitting form:', error);
+					});
+					// Reset form after delay
+					setTimeout(function() {
+						rsvpForm.reset();
+						additionalFields.style.display = 'none';
+					}, 3000);
+				}
+			});
+		}
+	}
 
-    const accommodationSelect = document.getElementById('accommodation');
-    const accommodationDetails = document.getElementById('accommodation-details');
-    
-    if (accommodationSelect && accommodationDetails) {
-        accommodationSelect.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                accommodationDetails.style.display = 'block';
-            } else {
-                accommodationDetails.style.display = 'none';
-            }
-        });
-    }
-    
-
-    const rsvpForm = document.getElementById('rsvp-form');
-	
-	
-	
-	
-	
-	
-	
-	
-if (rsvpForm && attendanceSelect && additionalFields) {
-    rsvpForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const isAttending = attendanceSelect.value === 'yes';
-        
-        // Show heart animation
-        showHeartAnimation(isAttending);
-        
-        // Detect iOS or Google Pixel
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isPixel = /Pixel/.test(navigator.userAgent);
-        
-        if (isIOS || isPixel) {
-            // Use more compatible method for iOS/Pixel
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            formData.forEach(function(value, key) {
-                formObject[key] = value;
-            });
-            
-            // Process accommodation nights
-            if (formObject.accommodation === 'yes') {
-                if (formObject['booking-help'] === 'hotel-books') {
-                    formObject.accommodationNights = '2';
-                } else if (formObject['booking-help'] === 'self-book') {
-                    formObject.accommodationNights = '1';
-                }
-            } else {
-                formObject.accommodationNights = '0';
-            }
-            
-            // Send using JSONP approach (more compatible with iOS)
-            const script = document.createElement('script');
-            script.src = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&' + 
-                        new URLSearchParams(formObject).toString();
-            document.body.appendChild(script);
-            
-            // Define callback
-            window.formCallback = function(response) {
-                console.log('Form submitted via JSONP');
-                try {
-                    document.body.removeChild(script);
-                } catch(err) {
-                    console.log('Script already removed');
-                }
-                
-                // Reset form after delay
-                setTimeout(function() {
-                    rsvpForm.reset();
-                    additionalFields.style.display = 'none';
-                }, 3000);
-            };
-        } else {
-            // Use standard form submission for other devices
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            formData.forEach(function(value, key) {
-                formObject[key] = value;
-            });
-            
-            // Process accommodation nights
-            if (formObject.accommodation === 'yes') {
-                if (formObject['booking-help'] === 'hotel-books') {
-                    formObject.accommodationNights = '2';
-                } else if (formObject['booking-help'] === 'self-book') {
-                    formObject.accommodationNights = '1';
-                }
-            } else {
-                formObject.accommodationNights = '0';
-            }
-            
-            // Send using fetch
-            fetch('https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&', {
-                method: 'POST',
-                body: new URLSearchParams(formObject)
-            })
-            .then(response => {
-                console.log('Form submitted successfully');
-            })
-            .catch(error => {
-                console.error('Error submitting form:', error);
-            });
-            
-            // Reset form after delay
-            setTimeout(function() {
-                rsvpForm.reset();
-                additionalFields.style.display = 'none';
-            }, 3000);
-        }
-    });
-}
-
-
-
-
-
-
-
-
-}
-function initMap() {
-    
-    const mapElement = document.getElementById('interactive-map');
-    if (!mapElement) return;
-    
-    try {
-    
-        const weddingLocation = [45.929585674218764, 25.09248460621327];
-        const partyLocation = [45.951143208213, 25.051906816582328];
-        const bedLocation = [45.9441090720315, 25.04846811817492];
-        
-    
-        const screenWidth = window.innerWidth;
-        let zoomLevel = 14;
-        
-    
-        if (screenWidth < 768) {
-            zoomLevel = 13;
-        }
-        if (screenWidth < 480) {
-            zoomLevel = 12;
-        }
-        
-        
-        const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
-        
-        
-        const churchicon = L.divIcon({
-            html: '<i class="fas fa-church" style="font-size: 30px; color: #829672;"></i>',
-            iconSize: [30, 30],
-            className: 'myDivIcon'
-        });
-
-        const partyicon = L.divIcon({
-            html: '<i class="fas fa-glass-cheers" style="font-size: 30px; color: #829672;"></i>',
-            iconSize: [30, 30],
-            className: 'myDivIcon'
-        });
-
-        const bedicon = L.divIcon({
-            html: '<i class="fas fa-bed" style="font-size: 30px; color: #829672;"></i>',
-            iconSize: [30, 30],
-            className: 'myDivIcon'
-        });
-        
-       
-        const markers = [
-            L.marker(weddingLocation, { icon: churchicon }),
-            L.marker(partyLocation, { icon: partyicon }),
-            L.marker(bedLocation, { icon: bedicon })
-        ];
-        
-       
-        markers.forEach(marker => marker.addTo(map));
-        
-       
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            subdomains: 'abcd',
-            maxZoom: 20
-        }).addTo(map);
-        
-     
-        const group = new L.featureGroup(markers);
-        map.fitBounds(group.getBounds().pad(0.1));
-        
-    } catch (error) {
-        console.error("Error initializing map:", error);
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
-    updateLanguage(preferredLanguage);
-    
-
-    initCountdown();
-    
-
+	function initMap() {
+		const mapElement = document.getElementById('interactive-map');
+		if(!mapElement) return;
+		try {
+			const weddingLocation = [45.929585674218764, 25.09248460621327];
+			const partyLocation = [45.951143208213, 25.051906816582328];
+			const bedLocation = [45.9441090720315, 25.04846811817492];
+			const screenWidth = window.innerWidth;
+			let zoomLevel = 14;
+			if(screenWidth < 768) {
+				zoomLevel = 13;
+			}
+			if(screenWidth < 480) {
+				zoomLevel = 12;
+			}
+			const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
+			const churchicon = L.divIcon({
+				html: '<i class="fas fa-church" style="font-size: 30px; color: #829672;"></i>',
+				iconSize: [30, 30],
+				className: 'myDivIcon'
+			});
+			const partyicon = L.divIcon({
+				html: '<i class="fas fa-glass-cheers" style="font-size: 30px; color: #829672;"></i>',
+				iconSize: [30, 30],
+				className: 'myDivIcon'
+			});
+			const bedicon = L.divIcon({
+				html: '<i class="fas fa-bed" style="font-size: 30px; color: #829672;"></i>',
+				iconSize: [30, 30],
+				className: 'myDivIcon'
+			});
+			const markers = [
+				L.marker(weddingLocation, {
+					icon: churchicon
+				}),
+				L.marker(partyLocation, {
+					icon: partyicon
+				}),
+				L.marker(bedLocation, {
+					icon: bedicon
+				})
+			];
+			markers.forEach(marker => marker.addTo(map));
+			L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+				subdomains: 'abcd',
+				maxZoom: 20
+			}).addTo(map);
+			const group = new L.featureGroup(markers);
+			map.fitBounds(group.getBounds().pad(0.1));
+		} catch (error) {
+			console.error("Error initializing map:", error);
+		}
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+		const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
+		updateLanguage(preferredLanguage);
+		initCountdown();
 		initSections();
-		
-
 		setTimeout(initMap, 500);
 	});
-	
+	document.addEventListener('DOMContentLoaded', function() {
+		const rsvpForm = document.getElementById('rsvp-form');
+		if(rsvpForm) {
+			const iframe = document.createElement('iframe');
+			iframe.name = 'hidden-form-iframe';
+			iframe.style.display = 'none';
+			document.body.appendChild(iframe);
+			rsvpForm.addEventListener('submit', function(e) {
+				try {
+					const formData = new FormData(rsvpForm);
+					const formDataObject = {};
+					formData.forEach((value, key) => {
+						formDataObject[key] = value;
+						console.log(`Form field: ${key} = ${value}`);
+					});
+					if(formDataObject.accommodation === 'yes') {
+						const bookingHelp = formDataObject['booking-help'];
+						console.log(`Booking help value: ${bookingHelp}`);
+						if(bookingHelp === 'hotel-books') {
+							formDataObject.accommodationNights = '2';
+						} else if(bookingHelp === 'self-book') {
+							formDataObject.accommodationNights = '1';
+						}
+						console.log(`Set accommodation nights to: ${formDataObject.accommodationNights}`);
+					} else {
+						formDataObject.accommodationNights = '0';
+						console.log('No accommodation requested, set nights to 0');
+					}
+					console.log('Final form data object:', formDataObject);
+					formData.forEach((value, key) => {
+						formDataObject[key] = value;
+					});
+					if(formDataObject.plusone === 'yes') {
+						formDataObject.plusoneName = document.getElementById('plusone-name').value;
+					}
+					const isAttending = document.getElementById('attendance').value === 'yes';
+					if(isAttending && formDataObject.children === 'yes') {
+						console.log('Children number:', formDataObject.childrenNumber);
+						const childrenNames = [];
+						const childInputs = document.querySelectorAll('[id^="child-name-"]');
+						childInputs.forEach(input => {
+							if(input.value) {
+								childrenNames.push(input.value);
+								console.log('Found child name:', input.value);
+							}
+						});
+						formDataObject.childrenNames = childrenNames.join(', ');
+						console.log('Final children names:', formDataObject.childrenNames);
+					}
+					console.log('Collected form data:', formDataObject);
+					const hiddenForm = document.createElement('form');
+					hiddenForm.method = 'POST';
+					hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec';
+					hiddenForm.target = 'hidden-form-iframe';
+					for(const [key, value] of Object.entries(formDataObject)) {
+						if(value !== undefined && value !== null) {
+							const input = document.createElement('input');
+							input.type = 'hidden';
+							input.name = key;
+							input.value = value;
+							hiddenForm.appendChild(input);
+						}
+					}
+					document.body.appendChild(hiddenForm);
+					const notification = document.createElement('div');
+					notification.style.position = 'fixed';
+					notification.style.bottom = '20px';
+					notification.style.right = '20px';
+					notification.style.background = '#4CAF50';
+					notification.style.color = 'white';
+					notification.style.padding = '10px';
+					notification.style.borderRadius = '5px';
+					notification.style.zIndex = '1000';
+					notification.textContent = 'RSVP sent successfully!';
+					document.body.appendChild(notification);
+					hiddenForm.submit();
+					setTimeout(() => {
+						document.body.removeChild(hiddenForm);
+						notification.remove();
+					}, 3000);
+					console.log('Form data sent to Google Sheets:', formDataObject);
+				} catch (error) {
+					console.error('Error preparing form data:', error);
+				}
+			});
+		}
+	});
+	// Initialize slideshow with embedded image data
+	function initSlideshow() {
+		// Get slideshow containers
+		const slideshowInner = document.querySelector('.slideshow-inner');
+		const modal = document.getElementById('slideModal');
+		const modalSlides = document.querySelector('.modal-slides');
+		const modalContent = document.querySelector('.modal-content');
+		// Current slide index
+		let currentSlide = 0;
+		let slideInterval;
+		let modalInterval;
+		let playing = true;
+		let slides = [];
+		let modalSlideElements = [];
+		// Add photo counter to modal
+		const photoCounter = document.createElement('div');
+		photoCounter.className = 'photo-counter';
+		modalContent.appendChild(photoCounter);
+		// Embedded image data - REPLACE THIS ARRAY WITH YOUR ACTUAL IMAGES
+		const images = ["pics/20150820.jpg", "pics/20150828.jpg", "pics/20150905.jpg", "pics/20151109.jpg", "pics/20151115.jpg", "pics/20160220.jpg", "pics/20160722.jpg", "pics/20161011.jpg", "pics/20161018.jpg", "pics/20161020.jpg", "pics/20161025.jpg", "pics/20170513.jpg", "pics/20170520.jpg", "pics/20170523.jpg", "pics/20170528.jpg", "pics/20170528_2.jpg", "pics/20170530.jpg", "pics/20170531.jpg", "pics/20170906.jpg", "pics/20170910.jpg", "pics/20180519.jpg", "pics/20180530.jpg", "pics/20180602.jpg", "pics/20180816.jpg", "pics/20180816_2.jpg", "pics/20180817.jpg", "pics/20181104.jpg", "pics/20181115.jpg", "pics/20181222.jpg", "pics/20181231.jpg", "pics/20190823.jpg", "pics/20190913.jpg", "pics/20190922.jpg", "pics/20190930.jpg", "pics/20200422.jpg", "pics/20200620.jpg", "pics/20201003.jpg", "pics/20210115.jpg", "pics/20210719.jpg", "pics/20210919.jpg", "pics/20210924.jpg", "pics/20211117.jpg", "pics/20220508.jpg", "pics/20230803.jpg", "pics/20230912.jpg", "pics/20240529.jpg", "pics/20240531.jpg", "pics/20240817.jpg", "pics/20240929.jpg", "pics/20241117.jpg", "pics/20250101.jpg", "pics/20250124.jpg", "pics/20250330.jpg", "pics/20250330_10.jpg", "pics/20250330_11.jpg", "pics/20250330_12.jpg", "pics/20250330_13.jpg", "pics/20250330_14.jpg", "pics/20250330_15.jpg", "pics/20250330_16.jpg", "pics/20250330_17.jpg", "pics/20250330_2.jpg", "pics/20250330_3.jpg", "pics/20250330_4.jpg", "pics/20250330_5.jpg", "pics/20250330_6.jpg", "pics/20250330_7.jpg", "pics/20250330_8.jpg", "pics/20250330_9.jpg"];
+		// Create slides based on image array
+		function createSlides() {
+			// Clear containers
+			slideshowInner.innerHTML = '';
+			modalSlides.innerHTML = '';
+			slides = [];
+			modalSlideElements = [];
+			// Create slides
+			images.forEach((image, index) => {
+				// Create regular slide
+				const slide = document.createElement('div');
+				slide.className = 'slide';
+				if(index === 0) slide.classList.add('active');
+				slide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
+				slideshowInner.appendChild(slide);
+				slides.push(slide);
+				// Create modal slide
+				const modalSlide = document.createElement('div');
+				modalSlide.className = 'modal-slide';
+				if(index === 0) modalSlide.classList.add('active');
+				modalSlide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
+				modalSlides.appendChild(modalSlide);
+				modalSlideElements.push(modalSlide);
+			});
+			// Update counter
+			updatePhotoCounter();
+			// Start the slideshow
+			startSlideshow();
+			// Setup event listeners for navigation
+			setupEventListeners();
+		}
+		// Function to go to a specific slide with transition
+		function goToSlide(n, isModal = false) {
+			// Remove active class from current slide
+			slides[currentSlide].classList.remove('active');
+			modalSlideElements[currentSlide].classList.remove('active');
+			// Update current slide index
+			currentSlide = n;
+			if(currentSlide >= images.length) currentSlide = 0;
+			if(currentSlide < 0) currentSlide = images.length - 1;
+			// Add active class to new current slide
+			slides[currentSlide].classList.add('active');
+			modalSlideElements[currentSlide].classList.add('active');
+			// Update counter
+			updatePhotoCounter();
+			// Reset the modal interval if we're in modal view and a slide was changed
+			if(isModal && modal.style.display === 'block') {
+				startModalSlideshow(); // This will clear and restart the interval
+			}
+		}
+		// Update photo counter
+		function updatePhotoCounter() {
+			photoCounter.textContent = `${currentSlide + 1} / ${images.length}`;
+		}
+		// Setup event listeners for navigation
+		function setupEventListeners() {
+			// Next/Previous controls
+			const prevButton = document.querySelector('.prev');
+			const nextButton = document.querySelector('.next');
+			if(prevButton) {
+				prevButton.addEventListener('click', function(e) {
+					e.stopPropagation();
+					goToSlide(currentSlide - 1);
+					resetInterval();
+				});
+			}
+			if(nextButton) {
+				nextButton.addEventListener('click', function(e) {
+					e.stopPropagation();
+					goToSlide(currentSlide + 1);
+					resetInterval();
+				});
+			}
+			// Modal Next/Previous controls
+			const modalPrevButton = document.querySelector('.modal-prev');
+			const modalNextButton = document.querySelector('.modal-next');
+			if(modalPrevButton) {
+				modalPrevButton.addEventListener('click', function() {
+					goToSlide(currentSlide - 1, true);
+				});
+			}
+			if(modalNextButton) {
+				modalNextButton.addEventListener('click', function() {
+					goToSlide(currentSlide + 1, true);
+				});
+			}
+			// Open modal on slideshow click
+			const slideContainer = document.querySelector('.slideshow-container');
+			if(slideContainer) {
+				slideContainer.addEventListener('click', function() {
+					modal.style.display = 'block';
+					// Start modal autoplay
+					startModalSlideshow();
+				});
+			}
+			// Close modal on X click
+			const closeButton = document.querySelector('.close-modal');
+			if(closeButton) {
+				closeButton.addEventListener('click', function() {
+					modal.style.display = 'none';
+					pauseModalSlideshow();
+				});
+			}
+			// Close modal when clicking outside of the image
+			if(modal) {
+				modal.addEventListener('click', function(e) {
+					if(e.target === modal) {
+						modal.style.display = 'none';
+						pauseModalSlideshow();
+					}
+				});
+			}
+			// Keyboard navigation
+			document.addEventListener('keydown', function(e) {
+				if(modal.style.display === 'block') {
+					if(e.key === 'ArrowLeft') {
+						goToSlide(currentSlide - 1, true);
+					} else if(e.key === 'ArrowRight') {
+						goToSlide(currentSlide + 1, true);
+					} else if(e.key === 'Escape') {
+						modal.style.display = 'none';
+						pauseModalSlideshow();
+					}
+				}
+			});
+		}
+		// Autoplay functionality for normal view
+		function startSlideshow() {
+			playing = true;
+			clearInterval(slideInterval); // Clear existing interval first
+			slideInterval = setInterval(function() {
+				goToSlide(currentSlide + 1);
+			}, 5000); // Change slide every 5 seconds
+		}
 
-document.addEventListener('DOMContentLoaded', function() {
-  const rsvpForm = document.getElementById('rsvp-form');
-  
-  if (rsvpForm) {
- 
-    const iframe = document.createElement('iframe');
-    iframe.name = 'hidden-form-iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    
- 
-    rsvpForm.addEventListener('submit', function(e) {
- 
- 
-      try {
+		function pauseSlideshow() {
+			clearInterval(slideInterval);
+			playing = false;
+		}
 
-const formData = new FormData(rsvpForm);
-const formDataObject = {};
+		function resumeSlideshow() {
+			if(!playing) {
+				playing = true;
+				startSlideshow();
+			}
+		}
 
+		function resetInterval() {
+			if(playing) {
+				clearInterval(slideInterval);
+				startSlideshow();
+			}
+		}
+		// Autoplay functionality for modal/fullscreen view
+		function startModalSlideshow() {
+			// Clear any existing interval first
+			clearInterval(modalInterval);
+			// Then set a new interval with consistent timing
+			modalInterval = setInterval(function() {
+				goToSlide(currentSlide + 1, true);
+			}, 8000); // Consistent 8 seconds for all slides
+		}
 
-formData.forEach((value, key) => {
-  formDataObject[key] = value;
-  console.log(`Form field: ${key} = ${value}`);
-});
-
-
-if (formDataObject.accommodation === 'yes') {
-
-  const bookingHelp = formDataObject['booking-help'];
-  console.log(`Booking help value: ${bookingHelp}`);
-  
-  
-  if (bookingHelp === 'hotel-books') {
-    formDataObject.accommodationNights = '2'; 
-  } else if (bookingHelp === 'self-book') {
-    formDataObject.accommodationNights = '1'; 
-  }
-  console.log(`Set accommodation nights to: ${formDataObject.accommodationNights}`); 
-} else {
-  
-  formDataObject.accommodationNights = '0';
-  console.log('No accommodation requested, set nights to 0');
-}
-
-
-console.log('Final form data object:', formDataObject);
-
-        formData.forEach((value, key) => {
-          formDataObject[key] = value;
-        });
-        
- 
-        if (formDataObject.plusone === 'yes') {
-          formDataObject.plusoneName = document.getElementById('plusone-name').value;
-        }
-        
- 
-        const isAttending = document.getElementById('attendance').value === 'yes';
-        if (isAttending && formDataObject.children === 'yes') {
- 
-          console.log('Children number:', formDataObject.childrenNumber);
-          
- 
-          const childrenNames = [];
-          const childInputs = document.querySelectorAll('[id^="child-name-"]');
-          
-          childInputs.forEach(input => {
-            if (input.value) {
-              childrenNames.push(input.value);
-              console.log('Found child name:', input.value);
-            }
-          });
-          
-          formDataObject.childrenNames = childrenNames.join(', ');
-          console.log('Final children names:', formDataObject.childrenNames);
-        }
-        
-        console.log('Collected form data:', formDataObject);
-        
-        
-        const hiddenForm = document.createElement('form');
-        hiddenForm.method = 'POST';
-        hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec';
-        hiddenForm.target = 'hidden-form-iframe';
-        
-        
-        for (const [key, value] of Object.entries(formDataObject)) {
-          if (value !== undefined && value !== null) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            hiddenForm.appendChild(input);
-          }
-        }
-        
-
-        document.body.appendChild(hiddenForm);
-        
-
-        const notification = document.createElement('div');
-        notification.style.position = 'fixed';
-        notification.style.bottom = '20px';
-        notification.style.right = '20px';
-        notification.style.background = '#4CAF50';
-        notification.style.color = 'white';
-        notification.style.padding = '10px';
-        notification.style.borderRadius = '5px';
-        notification.style.zIndex = '1000';
-        notification.textContent = 'RSVP sent successfully!';
-        document.body.appendChild(notification);
-        
-
-        hiddenForm.submit();
-        
-
-        setTimeout(() => {
-          document.body.removeChild(hiddenForm);
-          notification.remove();
-        }, 3000);
-        
-        console.log('Form data sent to Google Sheets:', formDataObject);
-      } catch (error) {
-        console.error('Error preparing form data:', error);
-      }
-    });
-  }
-});
-
-// Initialize slideshow with embedded image data
-function initSlideshow() {
-    // Get slideshow containers
-    const slideshowInner = document.querySelector('.slideshow-inner');
-    const modal = document.getElementById('slideModal');
-    const modalSlides = document.querySelector('.modal-slides');
-    const modalContent = document.querySelector('.modal-content');
-    
-    // Current slide index
-    let currentSlide = 0;
-    let slideInterval;
-    let modalInterval;
-    let playing = true;
-    let slides = [];
-    let modalSlideElements = [];
-    
-    // Add photo counter to modal
-    const photoCounter = document.createElement('div');
-    photoCounter.className = 'photo-counter';
-    modalContent.appendChild(photoCounter);
-    
-    // Embedded image data - REPLACE THIS ARRAY WITH YOUR ACTUAL IMAGES
-    const images = ["pics/20150820.jpg", "pics/20150828.jpg", "pics/20150905.jpg", "pics/20151109.jpg", "pics/20151115.jpg", "pics/20160220.jpg", "pics/20160722.jpg", "pics/20161011.jpg", "pics/20161018.jpg", "pics/20161020.jpg", "pics/20161025.jpg", "pics/20170513.jpg", "pics/20170520.jpg", "pics/20170523.jpg", "pics/20170528.jpg", "pics/20170528_2.jpg", "pics/20170530.jpg", "pics/20170531.jpg", "pics/20170906.jpg", "pics/20170910.jpg", "pics/20180519.jpg", "pics/20180530.jpg", "pics/20180602.jpg", "pics/20180816.jpg", "pics/20180816_2.jpg", "pics/20180817.jpg", "pics/20181104.jpg", "pics/20181115.jpg", "pics/20181222.jpg", "pics/20181231.jpg", "pics/20190823.jpg", "pics/20190913.jpg", "pics/20190922.jpg", "pics/20190930.jpg", "pics/20200422.jpg", "pics/20200620.jpg", "pics/20201003.jpg", "pics/20210115.jpg", "pics/20210719.jpg", "pics/20210919.jpg", "pics/20210924.jpg", "pics/20211117.jpg", "pics/20220508.jpg", "pics/20230803.jpg", "pics/20230912.jpg", "pics/20240529.jpg", "pics/20240531.jpg", "pics/20240817.jpg", "pics/20240929.jpg", "pics/20241117.jpg", "pics/20250101.jpg", "pics/20250124.jpg", "pics/20250330.jpg", "pics/20250330_10.jpg", "pics/20250330_11.jpg", "pics/20250330_12.jpg", "pics/20250330_13.jpg", "pics/20250330_14.jpg", "pics/20250330_15.jpg", "pics/20250330_16.jpg", "pics/20250330_17.jpg", "pics/20250330_2.jpg", "pics/20250330_3.jpg", "pics/20250330_4.jpg", "pics/20250330_5.jpg", "pics/20250330_6.jpg", "pics/20250330_7.jpg", "pics/20250330_8.jpg", "pics/20250330_9.jpg"];
-    
-    // Create slides based on image array
-    function createSlides() {
-        // Clear containers
-        slideshowInner.innerHTML = '';
-        modalSlides.innerHTML = '';
-        slides = [];
-        modalSlideElements = [];
-        
-        // Create slides
-        images.forEach((image, index) => {
-            // Create regular slide
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            if (index === 0) slide.classList.add('active');
-            slide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
-            slideshowInner.appendChild(slide);
-            slides.push(slide);
-            
-            // Create modal slide
-            const modalSlide = document.createElement('div');
-            modalSlide.className = 'modal-slide';
-            if (index === 0) modalSlide.classList.add('active');
-            modalSlide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}">`;
-            modalSlides.appendChild(modalSlide);
-            modalSlideElements.push(modalSlide);
-        });
-        
-        // Update counter
-        updatePhotoCounter();
-        
-        // Start the slideshow
-        startSlideshow();
-        
-        // Setup event listeners for navigation
-        setupEventListeners();
-    }
-    
-    // Function to go to a specific slide with transition
-    function goToSlide(n, isModal = false) {
-        // Remove active class from current slide
-        slides[currentSlide].classList.remove('active');
-        modalSlideElements[currentSlide].classList.remove('active');
-        
-        // Update current slide index
-        currentSlide = n;
-        if (currentSlide >= images.length) currentSlide = 0;
-        if (currentSlide < 0) currentSlide = images.length - 1;
-        
-        // Add active class to new current slide
-        slides[currentSlide].classList.add('active');
-        modalSlideElements[currentSlide].classList.add('active');
-        
-        // Update counter
-        updatePhotoCounter();
-        
-        // Reset the modal interval if we're in modal view and a slide was changed
-        if (isModal && modal.style.display === 'block') {
-            startModalSlideshow(); // This will clear and restart the interval
-        }
-    }
-    
-    // Update photo counter
-    function updatePhotoCounter() {
-        photoCounter.textContent = `${currentSlide + 1} / ${images.length}`;
-    }
-    
-    // Setup event listeners for navigation
-    function setupEventListeners() {
-        // Next/Previous controls
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-        
-        if (prevButton) {
-            prevButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                goToSlide(currentSlide - 1);
-                resetInterval();
-            });
-        }
-        
-        if (nextButton) {
-            nextButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                goToSlide(currentSlide + 1);
-                resetInterval();
-            });
-        }
-        
-        // Modal Next/Previous controls
-        const modalPrevButton = document.querySelector('.modal-prev');
-        const modalNextButton = document.querySelector('.modal-next');
-        
-        if (modalPrevButton) {
-            modalPrevButton.addEventListener('click', function() {
-                goToSlide(currentSlide - 1, true);
-            });
-        }
-        
-        if (modalNextButton) {
-            modalNextButton.addEventListener('click', function() {
-                goToSlide(currentSlide + 1, true);
-            });
-        }
-        
-        // Open modal on slideshow click
-        const slideContainer = document.querySelector('.slideshow-container');
-        if (slideContainer) {
-            slideContainer.addEventListener('click', function() {
-                modal.style.display = 'block';
-                
-                // Start modal autoplay
-                startModalSlideshow();
-            });
-        }
-        
-        // Close modal on X click
-        const closeButton = document.querySelector('.close-modal');
-        if (closeButton) {
-            closeButton.addEventListener('click', function() {
-                modal.style.display = 'none';
-                pauseModalSlideshow();
-            });
-        }
-        
-        // Close modal when clicking outside of the image
-        if (modal) {
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    pauseModalSlideshow();
-                }
-            });
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (modal.style.display === 'block') {
-                if (e.key === 'ArrowLeft') {
-                    goToSlide(currentSlide - 1, true);
-                } else if (e.key === 'ArrowRight') {
-                    goToSlide(currentSlide + 1, true);
-                } else if (e.key === 'Escape') {
-                    modal.style.display = 'none';
-                    pauseModalSlideshow();
-                }
-            }
-        });
-    }
-    
-    // Autoplay functionality for normal view
-    function startSlideshow() {
-        playing = true;
-        clearInterval(slideInterval); // Clear existing interval first
-        slideInterval = setInterval(function() {
-            goToSlide(currentSlide + 1);
-        }, 5000); // Change slide every 5 seconds
-    }
-    
-    function pauseSlideshow() {
-        clearInterval(slideInterval);
-        playing = false;
-    }
-    
-    function resumeSlideshow() {
-        if (!playing) {
-            playing = true;
-            startSlideshow();
-        }
-    }
-    
-    function resetInterval() {
-        if (playing) {
-            clearInterval(slideInterval);
-            startSlideshow();
-        }
-    }
-    
-    // Autoplay functionality for modal/fullscreen view
-    function startModalSlideshow() {
-        // Clear any existing interval first
-        clearInterval(modalInterval);
-        
-        // Then set a new interval with consistent timing
-        modalInterval = setInterval(function() {
-            goToSlide(currentSlide + 1, true);
-        }, 8000); // Consistent 8 seconds for all slides
-    }
-    
-    function pauseModalSlideshow() {
-        clearInterval(modalInterval);
-    }
-    
-    // Pause slideshow when page is not visible
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            pauseSlideshow();
-            pauseModalSlideshow();
-        } else {
-            resumeSlideshow();
-            if (modal.style.display === 'block') {
-                startModalSlideshow();
-            }
-        }
-    });
-    
-    // Start creating the slideshow
-    createSlides();
-}
-
-// Add slideshow initialization after page is fully loaded
-window.addEventListener('load', function() {
-    initSlideshow();
-});
+		function pauseModalSlideshow() {
+			clearInterval(modalInterval);
+		}
+		// Pause slideshow when page is not visible
+		document.addEventListener('visibilitychange', function() {
+			if(document.hidden) {
+				pauseSlideshow();
+				pauseModalSlideshow();
+			} else {
+				resumeSlideshow();
+				if(modal.style.display === 'block') {
+					startModalSlideshow();
+				}
+			}
+		});
+		// Start creating the slideshow
+		createSlides();
+	}
+	// Add slideshow initialization after page is fully loaded
+	window.addEventListener('load', function() {
+		initSlideshow();
+	});
 	</script>
-	</body>
-	</html>
+</body>
+
+</html>
