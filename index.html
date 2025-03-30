@@ -1508,20 +1508,29 @@ function initSections() {
         
         childrenNumber.addEventListener('change', updateChildrenFields);
         
-        function updateChildrenFields() {
-            const numChildren = parseInt(childrenNumber.value);
-            childrenNamesContainer.innerHTML = '';
-            
-            for (let i = 0; i < numChildren; i++) {
-                const childDiv = document.createElement('div');
-                childDiv.className = 'form-group';
-                childDiv.innerHTML = `
-                    <label for="child-name-${i}">Numele copilului ${i + 1}</label>
-                    <input type="text" id="child-name-${i}" name="child-name-${i}">
-                `;
-                childrenNamesContainer.appendChild(childDiv);
-            }
-        }
+	function updateChildrenFields() {
+	    const numChildren = parseInt(childrenNumber.value);
+	    childrenNamesContainer.innerHTML = '';
+	    
+	    // Get current language
+	    const currentLang = document.documentElement.lang || 'ro';
+	    
+	    for (let i = 0; i < numChildren; i++) {
+	        const childDiv = document.createElement('div');
+	        childDiv.className = 'form-group';
+	        
+	        // Create label with correct language 
+	        const labelText = currentLang === 'en' ? 
+	            `Child's name ${i + 1}` : 
+	            `Numele copilului ${i + 1}`;
+	        
+	        childDiv.innerHTML = `
+	            <label for="child-name-${i}">${labelText}</label>
+	            <input type="text" id="child-name-${i}" name="child-name-${i}">
+	        `;
+	        childrenNamesContainer.appendChild(childDiv);
+	    }
+	}
     }
     
 
