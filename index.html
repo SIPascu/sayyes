@@ -1401,6 +1401,9 @@
 		const childrenNumber = document.getElementById('children-number');
 		const childrenNamesContainer = document.getElementById('children-names-container');
 		if(childrenSelect && childrenNumberGroup && childrenNumber && childrenNamesContainer) {
+			childrenNumber.setAttribute('max', '5');
+			childrenNumber.setAttribute('min', '0');
+			
 			childrenSelect.addEventListener('change', function() {
 				if(this.value === 'yes') {
 					childrenNumberGroup.style.display = 'block';
@@ -1411,10 +1414,38 @@
 					childrenNamesContainer.innerHTML = '';
 				}
 			});
-			childrenNumber.addEventListener('change', updateChildrenFields);
-
+			
+			childrenNumber.addEventListener('change', function() {
+				let value = parseInt(this.value) || 0;
+				
+				if (value > 5) {
+					value = 5;
+					this.value = 5;
+					
+					// Apply the same styling as the browser's native validation
+					this.setCustomValidity(document.documentElement.lang === 'en' ? 'Maximum 5 children allowed' : 'Maximum 5 copii permis');
+					this.reportValidity();
+					
+					// Clear the validation message after showing it
+					setTimeout(() => {
+						this.setCustomValidity('');
+					}, 3000);
+				} else if (value < 0) {
+					value = 0;
+					this.value = 0;
+				} else {
+					this.setCustomValidity('');
+				}
+				
+				updateChildrenFields();
+			});
+			
+			childrenNumber.addEventListener('input', function() {
+				this.value = this.value.replace(/[^0-9]/g, '');
+			});
+			
 			function updateChildrenFields() {
-				const numChildren = parseInt(childrenNumber.value);
+				const numChildren = parseInt(childrenNumber.value) || 0;
 				childrenNamesContainer.innerHTML = '';
 				const currentLang = document.documentElement.lang || 'ro';
 				for(let i = 0; i < numChildren; i++) {
@@ -1422,9 +1453,9 @@
 					childDiv.className = 'form-group';
 					const labelText = currentLang === 'en' ? `Child's name ${i + 1}` : `Numele copilului ${i + 1}`;
 					childDiv.innerHTML = `
-            <label for="child-name-${i}">${labelText}</label>
-            <input type="text" id="child-name-${i}" name="child-name-${i}">
-        `;
+						<label for="child-name-${i}">${labelText}</label>
+						<input type="text" id="child-name-${i}" name="child-name-${i}">
+					`;
 					childrenNamesContainer.appendChild(childDiv);
 				}
 			}
@@ -1501,10 +1532,6 @@
 		const attendanceSelect = document.getElementById('attendance');
 		const additionalFields = document.getElementById('additional-fields');
 		if(rsvpForm && attendanceSelect && additionalFields) {
-			const iframe = document.createElement('iframe');
-			iframe.name = 'hidden-form-iframe';
-			iframe.style.display = 'none';
-			document.body.appendChild(iframe);
 			rsvpForm.addEventListener('submit', function(e) {
 				e.preventDefault();
 				const isAttending = attendanceSelect.value === 'yes';
@@ -1539,21 +1566,7 @@
 						formDataObject.childrenNames = childrenNames.join(', ');
 					}
 					console.log('Final form data:', formDataObject);
-					const hiddenForm = document.createElement('form');
-					hiddenForm.method = 'POST';
-					hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec';
-					hiddenForm.target = 'hidden-form-iframe';
-					for(const [key, value] of Object.entries(formDataObject)) {
-						if(value !== undefined && value !== null) {
-							const input = document.createElement('input');
-							input.type = 'hidden';
-							input.name = key;
-							input.value = value;
-							hiddenForm.appendChild(input);
-						}
-					}
-					document.body.appendChild(hiddenForm);
-							
+					
 					const formspreeData = new FormData();
 					const timestamp = new Date().toISOString();
 					const childrenNames = formDataObject.childrenNames || (() => {
@@ -1601,7 +1614,7 @@
 					}).catch(error => {
 						console.error('Formspree submission failed:', error);
 					});
-					hiddenForm.submit();
+					
 					const notification = document.createElement('div');
 					notification.style.position = 'fixed';
 					notification.style.bottom = '20px';
@@ -1611,10 +1624,9 @@
 					notification.style.padding = '10px';
 					notification.style.borderRadius = '5px';
 					notification.style.zIndex = '1000';
-					notification.textContent = 'RSVP OK!';
+					notification.textContent = document.documentElement.lang === 'en' ? 'RSVP Sent!' : 'RSVP Trimis!';
 					document.body.appendChild(notification);
 					setTimeout(() => {
-						document.body.removeChild(hiddenForm);
 						notification.remove();
 						rsvpForm.reset();
 						additionalFields.style.display = 'none';
@@ -1630,7 +1642,7 @@
 					errorNotification.style.padding = '10px';
 					errorNotification.style.borderRadius = '5px';
 					errorNotification.style.zIndex = '1000';
-					errorNotification.textContent = 'Error sending RSVP. Please try again.';
+					errorNotification.textContent = document.documentElement.lang === 'en' ? 'Error sending RSVP. Please try again.' : 'Eroare la trimiterea RSVP. Vă rugăm să încercați din nou.';
 					document.body.appendChild(errorNotification);
 					setTimeout(() => {
 						errorNotification.remove();
@@ -1824,7 +1836,8 @@
 	window.addEventListener('load', function() {
 		initSlideshow();
 	});
-	</script>
+
+</script>
 </body>
 
 </html>
