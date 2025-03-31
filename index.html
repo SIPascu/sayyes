@@ -1553,32 +1553,39 @@
 						}
 					}
 					document.body.appendChild(hiddenForm);
+							
 					const formspreeData = new FormData();
-					formspreeData.append('Timestamp', new Date().toISOString());
-					formspreeData.append('Name', formDataObject.name || '');
-					formspreeData.append('Attending', formDataObject.attendance || '');
-					formspreeData.append('Email', formDataObject.email || '');
-					formspreeData.append('Phone', formDataObject.phone || '');
-					formspreeData.append('Plus One', formDataObject.plusone || 'No');
-					formspreeData.append('Plus One Name', formDataObject['plusone-name'] || '');
-					formspreeData.append('Children', formDataObject.children || 'No');
-					formspreeData.append('Number of Children', formDataObject['children-number'] || '0');
-					if(formDataObject.childrenNames) {
-						formspreeData.append('Children Names', formDataObject.childrenNames);
-					} else {
-						const childNames = [];
+					const timestamp = new Date().toISOString();
+					const childrenNames = formDataObject.childrenNames || (() => {
+						const names = [];
 						let i = 0;
 						while(formDataObject[`child-name-${i}`]) {
-							childNames.push(formDataObject[`child-name-${i}`]);
+							names.push(formDataObject[`child-name-${i}`]);
 							i++;
 						}
-						formspreeData.append('Children Names', childNames.join(', '));
-					}
-					formspreeData.append('Meal Preference', formDataObject.meal || '');
-					formspreeData.append('Allergies', formDataObject.allergies || 'None');
-					formspreeData.append('Accommodation', formDataObject.accommodation || 'No');
-					formspreeData.append('accommodationNights', formDataObject.accommodationNights || '');
-					formspreeData.append('Message', formDataObject.message || '');
+						return names.join(', ');
+					})();
+
+					const valuesOnly = [
+						timestamp,
+						formDataObject.name || '',
+						formDataObject.attendance || '',
+						formDataObject.email || '',
+						formDataObject.phone || '',
+						formDataObject.plusone || 'No',
+						formDataObject['plusone-name'] || '',
+						formDataObject.children || 'No',
+						formDataObject['children-number'] || '0',
+						childrenNames,
+						formDataObject.meal || '',
+						formDataObject.allergies || 'None',
+						formDataObject.accommodation || 'No',
+						formDataObject.accommodationNights || '',
+						formDataObject.message || ''
+					].join(';');
+
+					formspreeData.append('Values', valuesOnly);	
+					
 					fetch('https://formspree.io/f/xovenrjk', {
 						method: 'POST',
 						body: formspreeData,
