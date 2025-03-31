@@ -33,7 +33,7 @@
 	}
 
 	header {
-		background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/500') center/cover no-repeat;
+		no-repeat;
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
@@ -45,10 +45,10 @@
 	}
 
 	.header-content {
-	    z-index: 2;
-	    animation: fadeIn 2s ease-out;
-	    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
-	    margin-top: 100px; /* Adjust this value as needed */
+		z-index: 2;
+		animation: fadeIn 2s ease-out;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
+		margin-top: 100px;
 	}
 
 	@keyframes fadeIn {
@@ -163,11 +163,20 @@
 		font-size: 1.1rem;
 	}
 
-	.date {
+	.date1 {
 		font-size: 1.7rem;
 		margin: 20px 0;
 		letter-spacing: 4px;
 		font-weight: 300;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+		color: #d8959b;
+	}
+
+	.date {
+		font-size: 1.3rem;
+		margin: 20px 0;
+		letter-spacing: 3px;
+		font-weight: 100;
 		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 	}
 
@@ -792,8 +801,8 @@
 		<div class="header-overlay"></div>
 		<div class="header-content">
 			<h1>Sînziana & Ionuț</h1>
-			<p class="date" data-translate="header_date"></p>
-			<p data-translate="header_invite"></p>
+			<p class="date1" data-translate="header_date"></p>
+			<p class="date" data-translate="header_invite"></p>
 		</div>
 	</header>
 	<nav id="mainNav">
@@ -1056,7 +1065,7 @@
 		<div id="interactive-map" style="height: 500px; margin: 40px 0; border-radius: 10px;"></div>
 	</section>
 	<footer>
-		<p>Sînziana & Ionuț | 16 August 2025</p>
+		<p>Sînziana & Ionuț | 2025</p>
 		<p data-translate="footer_message"></p>
 	</footer>
 	<script>
@@ -1072,7 +1081,7 @@
 			"nav_location": "Locație",
 			// Header
 			"header_date": "16 AUGUST 2025",
-			"header_invite": "Ne căsătorim!",
+			"header_invite": "NE CĂSĂTORIM!",
 			// Countdown
 			"countdown_days": "Zile",
 			"countdown_hours": "Ore",
@@ -1080,12 +1089,12 @@
 			"countdown_seconds": "Secunde",
 			// Acasă
 			"home_greeting": "Dragii noștri,",
-			"home_invite": "Am decis ca în sfârșit să avem același nume",
-			"home_message": "Cu această ocazie, vrem sa dăm o petrecere mare la care să îi avem alături pe cei care fac parte din viața noastră",
+			"home_invite": "Am decis ca în sfârșit să avem același nume.",
+			"home_message": "Cu această ocazie, vrem sa dăm o petrecere mare la care să îi avem alături pe cei care fac parte din viața noastră.",
 			"home_signature": "Cu bucurie,",
 			// Despre Noi
 			"couple_title": "Despre Noi",
-			"couple_story": "Suntem împreună de 10+ ani si de 5+ ani ne distrăm alături de fetița noastră grozavă Lia, dar probabil știați aceste lucruri",
+			"couple_story": "Suntem împreună de 10+ ani si de 5+ ani ne distrăm alături de fetița noastră grozavă Lia, dar probabil știați aceste lucruri.",
 			// Detalii Eveniment
 			"details_title": "Detalii Eveniment",
 			"ceremony_title": "Ceremonia Religioasă",
@@ -1110,8 +1119,8 @@
 			"cake_start": "Ora de început: 00:00",
 			"cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
 			"info_title": "Informații Suplimentare",
-			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație ",
-			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor",
+			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație.",
+			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor.",
 			"info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
 			"info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
 			// RSVP
@@ -1137,7 +1146,7 @@
 			"rsvp_option_yes": "Da",
 			"rsvp_option_no": "Nu",
 			"rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
-			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă",
+			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă.",
 			"rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
 			"rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
 			"rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
@@ -1154,16 +1163,15 @@
 			"photos_heading": "Împărtășește-ți amintirile cu noi!",
 			"photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
 			"photos_how": "Cum funcționează?",
-			"photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus",
-			"photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești",
-			"photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru",
+			"photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus;",
+			"photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești;",
+			"photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru;",
 			"photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
 			// Locație
 			"location_title": "Locația",
 			"location_heading": "Cum ajungi la noi",
-			"location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br><br>Cu avionul: București, Cluj, Sibiu, Brașov<br> Cu trenul: Făgăraș, Șercaia, Rupea",
+			"location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Brașov: 80 km (1 oră 15 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br><br>Cu avionul: București, Brașov, Sibiu, Cluj<br> Cu trenul: Făgăraș, Șercaia, Rupea",
 			"location_map": "Găsește locația pe hartă",
-			"location_directions": "Pentru indicații rutiere, vă recomandăm",
 			// Weather
 			"weather_title": "Prognoza meteo pentru ziua nunții",
 			"weather_description": "În general însorit și cald",
@@ -1184,7 +1192,7 @@
 			"nav_location": "Location",
 			// Header
 			"header_date": "AUGUST 16, 2025",
-			"header_invite": "We are tying the knot!",
+			"header_invite": "WE ARE TYING THE KNOT!",
 			// Countdown
 			"countdown_days": "Days",
 			"countdown_hours": "Hours",
@@ -1192,12 +1200,12 @@
 			"countdown_seconds": "Seconds",
 			// Home
 			"home_greeting": "Dear ones,",
-			"home_invite": "We decided to finally share the last name",
+			"home_invite": "We decided to finally share the last name.",
 			"home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
 			"home_signature": "With love and excitement,",
 			// About Us
 			"couple_title": "About Us",
-			"couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already ",
+			"couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already.",
 			// Event Details
 			"details_title": "Event Details",
 			"ceremony_title": "Religious Ceremony",
@@ -1214,7 +1222,7 @@
 			"party_start": "Start time: 17:30",
 			"party_end": "End time: 01:00",
 			"party_dress": "Dress code: super casual",
-			"party_details": "Outdoor garden event, kids corner, delicious food and party vibes ",
+			"party_details": "Outdoor garden event, kids corner, delicious food and party vibes",
 			"food_title": "Dinner",
 			"food_start": "Start time: 18:00",
 			"food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
@@ -1222,8 +1230,8 @@
 			"cake_start": "Start time: 00:00",
 			"cake_details": "Cake by San Grecu, Făgăraș",
 			"info_title": "Additional Information",
-			"info_accommodation": "Accommodation: For guests from other locations, we have booked the Cobor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue",
-			"info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor",
+			"info_accommodation": "Accommodation: For guests from other locations, we have booked the Cobor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue.",
+			"info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor.",
 			"info_children": "Children: They are welcome! We will have a designated area for the little ones, with activities and supervision.",
 			"info_gifts": "Gifts: Your presence is the most beautiful gift. If you still wish to offer us something, we would appreciate a contribution to our honeymoon.",
 			// RSVP
@@ -1265,14 +1273,14 @@
 			"photos_heading": "Share your memories with us!",
 			"photos_description": "Save our memories from the wedding day! Scan this QR code to upload your photos directly to our digital album.",
 			"photos_how": "How does it work?",
-			"photos_step1": "Step 1: Scan the QR code with your phone camera or access the link above",
-			"photos_step2": "Step 2: Select the photos you want to share",
-			"photos_step3": "Step 3: Upload the photos to our album",
+			"photos_step1": "Step 1: Scan the QR code with your phone camera or access the link above;",
+			"photos_step2": "Step 2: Select the photos you want to share;",
+			"photos_step3": "Step 3: Upload the photos to our album;",
 			"photos_note": "Your photos will be automatically added to our shared album, and after the wedding, we will send all guests the link to the complete album!",
 			// Location
 			"location_title": "Location",
 			"location_heading": "How to get to us",
-			"location_distance": "The locations are approximately 15 minutes apart from each other. We can help with transportation between locations.<br><br>Distance from Bucharest: 260 km (4 hours)<br>Distance from Sibiu: 100 km (2 hours)<br>Distance from Cluj: 210 km (3 hours 30 min)<br>Distance from Făgăraș: 22 km (30 min)<br>Distance from Viscri: 45 km (1 hour)<br>Distance from Sighișoara: 60 km (1 hour 30 min)<br><br>By plane: Bucharest, Cluj, Sibiu, Brașov<br> By train: Făgăraș, Șercaia, Rupea",
+			"location_distance": "The locations are approximately 15 minutes apart from each other. We can help with transportation between locations.<br><br>Distance from Bucharest: 260 km (4 hours)<br>Dstance from Brașov: 80 km (1 hour 15 min)<br>Distance from Făgăraș: 22 km (30 min)<br>Distance from Viscri: 45 km (1 hour)<br>Distance from Sighișoara: 60 km (1 hour 30 min)<br>Distance from Sibiu: 100 km (2 hours)<br>Distance from Cluj: 210 km (3 hours 30 min)<br><br>By plane: Bucharest, Brașov, Sibiu, Cluj<br> By train: Făgăraș, Șercaia, Rupea",
 			"location_map": "Find the location on the map",
 			"location_directions": "For directions, we recommend",
 			// Weather
@@ -1288,12 +1296,6 @@
 
 	function updateLanguage(lang) {
 		document.documentElement.lang = lang;
-		document.querySelectorAll('[data-translate]').forEach(element => {
-			const key = element.getAttribute('data-translate');
-			if(translations[lang][key]) {
-				element.innerHTML = translations[lang][key];
-			}
-		});
 		document.querySelectorAll('[data-translate]').forEach(element => {
 			const key = element.getAttribute('data-translate');
 			if(translations[lang][key]) {
@@ -1438,74 +1440,6 @@
 				}
 			});
 		}
-		const rsvpForm = document.getElementById('rsvp-form');
-		if(rsvpForm && attendanceSelect && additionalFields) {
-			rsvpForm.addEventListener('submit', function(e) {
-				e.preventDefault();
-				const isAttending = attendanceSelect.value === 'yes';
-				showHeartAnimation(isAttending);
-				const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-				const isPixel = /Pixel/.test(navigator.userAgent);
-				if(isIOS || isPixel) {
-					const formData = new FormData(this);
-					const formObject = {};
-					formData.forEach(function(value, key) {
-						formObject[key] = value;
-					});
-					if(formObject.accommodation === 'yes') {
-						if(formObject['booking-help'] === 'hotel-books') {
-							formObject.accommodationNights = '2';
-						} else if(formObject['booking-help'] === 'self-book') {
-							formObject.accommodationNights = '1';
-						}
-					} else {
-						formObject.accommodationNights = '0';
-					}
-					const script = document.createElement('script');
-					script.src = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&' + new URLSearchParams(formObject).toString();
-					document.body.appendChild(script);
-					window.formCallback = function(response) {
-						console.log('Form submitted via JSONP');
-						try {
-							document.body.removeChild(script);
-						} catch (err) {
-							console.log('Script already removed');
-						}
-						setTimeout(function() {
-							rsvpForm.reset();
-							additionalFields.style.display = 'none';
-						}, 3000);
-					};
-				} else {
-					const formData = new FormData(this);
-					const formObject = {};
-					formData.forEach(function(value, key) {
-						formObject[key] = value;
-					});
-					if(formObject.accommodation === 'yes') {
-						if(formObject['booking-help'] === 'hotel-books') {
-							formObject.accommodationNights = '2';
-						} else if(formObject['booking-help'] === 'self-book') {
-							formObject.accommodationNights = '1';
-						}
-					} else {
-						formObject.accommodationNights = '0';
-					}
-					fetch('https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec?callback=formCallback&', {
-						method: 'POST',
-						body: new URLSearchParams(formObject)
-					}).then(response => {
-						console.log('Form submitted successfully');
-					}).catch(error => {
-						console.error('Error submitting form:', error);
-					});
-					setTimeout(function() {
-						rsvpForm.reset();
-						additionalFields.style.display = 'none';
-					}, 3000);
-				}
-			});
-		}
 	}
 
 	function initMap() {
@@ -1561,21 +1495,20 @@
 			console.error("Error initializing map:", error);
 		}
 	}
-	document.addEventListener('DOMContentLoaded', function() {
-		const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
-		updateLanguage(preferredLanguage);
-		initCountdown();
-		initSections();
-		setTimeout(initMap, 500);
-	});
-	document.addEventListener('DOMContentLoaded', function() {
+
+	function setupFormSubmission() {
 		const rsvpForm = document.getElementById('rsvp-form');
-		if(rsvpForm) {
+		const attendanceSelect = document.getElementById('attendance');
+		const additionalFields = document.getElementById('additional-fields');
+		if(rsvpForm && attendanceSelect && additionalFields) {
 			const iframe = document.createElement('iframe');
 			iframe.name = 'hidden-form-iframe';
 			iframe.style.display = 'none';
 			document.body.appendChild(iframe);
 			rsvpForm.addEventListener('submit', function(e) {
+				e.preventDefault();
+				const isAttending = attendanceSelect.value === 'yes';
+				showHeartAnimation(isAttending);
 				try {
 					const formData = new FormData(rsvpForm);
 					const formDataObject = {};
@@ -1584,40 +1517,28 @@
 						console.log(`Form field: ${key} = ${value}`);
 					});
 					if(formDataObject.accommodation === 'yes') {
-						const bookingHelp = formDataObject['booking-help'];
-						console.log(`Booking help value: ${bookingHelp}`);
-						if(bookingHelp === 'hotel-books') {
+						if(formDataObject['booking-help'] === 'hotel-books') {
 							formDataObject.accommodationNights = '2';
-						} else if(bookingHelp === 'self-book') {
+						} else if(formDataObject['booking-help'] === 'self-book') {
 							formDataObject.accommodationNights = '1';
 						}
-						console.log(`Set accommodation nights to: ${formDataObject.accommodationNights}`);
 					} else {
 						formDataObject.accommodationNights = '0';
-						console.log('No accommodation requested, set nights to 0');
 					}
-					console.log('Final form data object:', formDataObject);
-					formData.forEach((value, key) => {
-						formDataObject[key] = value;
-					});
 					if(formDataObject.plusone === 'yes') {
 						formDataObject.plusoneName = document.getElementById('plusone-name').value;
 					}
-					const isAttending = document.getElementById('attendance').value === 'yes';
 					if(isAttending && formDataObject.children === 'yes') {
-						console.log('Children number:', formDataObject.childrenNumber);
 						const childrenNames = [];
 						const childInputs = document.querySelectorAll('[id^="child-name-"]');
 						childInputs.forEach(input => {
 							if(input.value) {
 								childrenNames.push(input.value);
-								console.log('Found child name:', input.value);
 							}
 						});
 						formDataObject.childrenNames = childrenNames.join(', ');
-						console.log('Final children names:', formDataObject.childrenNames);
 					}
-					console.log('Collected form data:', formDataObject);
+					console.log('Final form data:', formDataObject);
 					const hiddenForm = document.createElement('form');
 					hiddenForm.method = 'POST';
 					hiddenForm.action = 'https://script.google.com/macros/s/AKfycbxP5wwCd3CSqhopyQ7RgCSwofkonynZj-YJX55BnhRfsd7aw8FX8sl7gtutToiM2NT-/exec';
@@ -1632,29 +1553,86 @@
 						}
 					}
 					document.body.appendChild(hiddenForm);
+					const formspreeData = new FormData();
+					formspreeData.append('Timestamp', new Date().toISOString());
+					formspreeData.append('Name', formDataObject.name || '');
+					formspreeData.append('Attending', formDataObject.attendance || '');
+					formspreeData.append('Email', formDataObject.email || '');
+					formspreeData.append('Phone', formDataObject.phone || '');
+					formspreeData.append('Plus One', formDataObject.plusone || 'No');
+					formspreeData.append('Plus One Name', formDataObject['plusone-name'] || '');
+					formspreeData.append('Children', formDataObject.children || 'No');
+					formspreeData.append('Number of Children', formDataObject['children-number'] || '0');
+					if(formDataObject.childrenNames) {
+						formspreeData.append('Children Names', formDataObject.childrenNames);
+					} else {
+						const childNames = [];
+						let i = 0;
+						while(formDataObject[`child-name-${i}`]) {
+							childNames.push(formDataObject[`child-name-${i}`]);
+							i++;
+						}
+						formspreeData.append('Children Names', childNames.join(', '));
+					}
+					formspreeData.append('Meal Preference', formDataObject.meal || '');
+					formspreeData.append('Allergies', formDataObject.allergies || 'None');
+					formspreeData.append('Accommodation', formDataObject.accommodation || 'No');
+					formspreeData.append('accommodationNights', formDataObject.accommodationNights || '');
+					formspreeData.append('Message', formDataObject.message || '');
+					fetch('https://formspree.io/f/xovenrjk', {
+						method: 'POST',
+						body: formspreeData,
+						headers: {
+							'Accept': 'application/json'
+						}
+					}).then(response => {
+						if(response.ok) {
+							console.log('RSVP form submitted successfully to Formspree');
+						} else {
+							console.error('Formspree submission failed with status:', response.status);
+						}
+					}).catch(error => {
+						console.error('Formspree submission failed:', error);
+					});
+					hiddenForm.submit();
 					const notification = document.createElement('div');
 					notification.style.position = 'fixed';
 					notification.style.bottom = '20px';
 					notification.style.right = '20px';
-					notification.style.background = '#4CAF50';
+					notification.style.background = '#829672';
 					notification.style.color = 'white';
 					notification.style.padding = '10px';
 					notification.style.borderRadius = '5px';
 					notification.style.zIndex = '1000';
-					notification.textContent = 'RSVP sent successfully!';
+					notification.textContent = 'RSVP OK!';
 					document.body.appendChild(notification);
-					hiddenForm.submit();
 					setTimeout(() => {
 						document.body.removeChild(hiddenForm);
 						notification.remove();
+						rsvpForm.reset();
+						additionalFields.style.display = 'none';
 					}, 3000);
-					console.log('Form data sent to Google Sheets:', formDataObject);
 				} catch (error) {
 					console.error('Error preparing form data:', error);
+					const errorNotification = document.createElement('div');
+					errorNotification.style.position = 'fixed';
+					errorNotification.style.bottom = '20px';
+					errorNotification.style.right = '20px';
+					errorNotification.style.background = '#F44336';
+					errorNotification.style.color = 'white';
+					errorNotification.style.padding = '10px';
+					errorNotification.style.borderRadius = '5px';
+					errorNotification.style.zIndex = '1000';
+					errorNotification.textContent = 'Error sending RSVP. Please try again.';
+					document.body.appendChild(errorNotification);
+					setTimeout(() => {
+						errorNotification.remove();
+					}, 3000);
 				}
 			});
 		}
-	});
+	}
+
 	function initSlideshow() {
 		const slideshowInner = document.querySelector('.slideshow-inner');
 		const modal = document.getElementById('slideModal');
@@ -1670,6 +1648,7 @@
 		photoCounter.className = 'photo-counter';
 		modalContent.appendChild(photoCounter);
 		const images = ["pics/20150820.jpg", "pics/20150828.jpg", "pics/20150905.jpg", "pics/20151109.jpg", "pics/20151115.jpg", "pics/20160220.jpg", "pics/20160722.jpg", "pics/20161011.jpg", "pics/20161018.jpg", "pics/20161020.jpg", "pics/20161025.jpg", "pics/20170513.jpg", "pics/20170520.jpg", "pics/20170523.jpg", "pics/20170528.jpg", "pics/20170528_2.jpg", "pics/20170530.jpg", "pics/20170531.jpg", "pics/20170906.jpg", "pics/20170910.jpg", "pics/20180519.jpg", "pics/20180530.jpg", "pics/20180602.jpg", "pics/20180816.jpg", "pics/20180816_2.jpg", "pics/20180817.jpg", "pics/20181104.jpg", "pics/20181115.jpg", "pics/20181222.jpg", "pics/20181231.jpg", "pics/20190823.jpg", "pics/20190913.jpg", "pics/20190922.jpg", "pics/20190930.jpg", "pics/20200422.jpg", "pics/20200620.jpg", "pics/20201003.jpg", "pics/20210115.jpg", "pics/20210719.jpg", "pics/20210919.jpg", "pics/20210924.jpg", "pics/20211117.jpg", "pics/20220508.jpg", "pics/20230803.jpg", "pics/20230912.jpg", "pics/20240529.jpg", "pics/20240531.jpg", "pics/20240817.jpg", "pics/20240929.jpg", "pics/20241117.jpg", "pics/20250101.jpg", "pics/20250124.jpg", "pics/20250330.jpg", "pics/20250330_10.jpg", "pics/20250330_11.jpg", "pics/20250330_12.jpg", "pics/20250330_13.jpg", "pics/20250330_14.jpg", "pics/20250330_15.jpg", "pics/20250330_16.jpg", "pics/20250330_17.jpg", "pics/20250330_2.jpg", "pics/20250330_3.jpg", "pics/20250330_4.jpg", "pics/20250330_5.jpg", "pics/20250330_6.jpg", "pics/20250330_7.jpg", "pics/20250330_8.jpg", "pics/20250330_9.jpg"];
+
 		function createSlides() {
 			slideshowInner.innerHTML = '';
 			modalSlides.innerHTML = '';
@@ -1693,6 +1672,7 @@
 			startSlideshow();
 			setupEventListeners();
 		}
+
 		function goToSlide(n, isModal = false) {
 			slides[currentSlide].classList.remove('active');
 			modalSlideElements[currentSlide].classList.remove('active');
@@ -1706,9 +1686,11 @@
 				startModalSlideshow();
 			}
 		}
+
 		function updatePhotoCounter() {
 			photoCounter.textContent = `${currentSlide + 1} / ${images.length}`;
 		}
+
 		function setupEventListeners() {
 			const prevButton = document.querySelector('.prev');
 			const nextButton = document.querySelector('.next');
@@ -1766,13 +1748,14 @@
 						goToSlide(currentSlide - 1, true);
 					} else if(e.key === 'ArrowRight') {
 						goToSlide(currentSlide + 1, true);
-					} else if(e.key === 'Escape') {
+					} else if(e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
 						modal.style.display = 'none';
 						pauseModalSlideshow();
 					}
 				}
 			});
 		}
+
 		function startSlideshow() {
 			playing = true;
 			clearInterval(slideInterval);
@@ -1799,6 +1782,7 @@
 				startSlideshow();
 			}
 		}
+
 		function startModalSlideshow() {
 			clearInterval(modalInterval);
 			modalInterval = setInterval(function() {
@@ -1822,6 +1806,14 @@
 		});
 		createSlides();
 	}
+	document.addEventListener('DOMContentLoaded', function() {
+		const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
+		updateLanguage(preferredLanguage);
+		initCountdown();
+		initSections();
+		setupFormSubmission();
+		setTimeout(initMap, 500);
+	});
 	window.addEventListener('load', function() {
 		initSlideshow();
 	});
