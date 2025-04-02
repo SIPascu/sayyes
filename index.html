@@ -225,7 +225,7 @@
 		margin-bottom: 20px;
 		opacity: 0.9;
 	}
-
+	
 	.gallery {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -791,6 +791,27 @@
 		animation: fadeIn 2s ease-out;
 		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
 	}
+
+	.icon-pot-food {
+		display: inline-block;
+		width: 1.1em;
+		height: 1.1em;
+		background-image: url('pot.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		vertical-align: middle;
+		margin-right: 0.5em;
+	}
+	
+	#accommodation-details a {
+		text-decoration: none;
+		color: #829672;
+	}
+	
+	#accommodation-details a:hover {
+		background-color: rgba(130, 150, 114, 0.2); /* Slight darker olive green with transparency */
+		transform: translateY(-2px); /* Small slide up effect */
+	}
 	</style>
 </head>
 
@@ -893,6 +914,15 @@
 				<p data-translate="cake_start"></p>
 				<p data-translate="cake_details"></p>
 			</div>
+			<div class="event">
+				<i class="icon-pot-food"></i>
+				<h3 data-translate="pot_title"></h3>
+				<p data-translate="pot_date"></p>
+				<p data-translate="pot_start"></p>
+				<p data-translate="pot_location"></p>
+				<p data-translate="pot_details"></p>
+			</div>
+			</div>
 		</div>
 		<div class="info-box">
 			<h3 data-translate="info_title"></h3>
@@ -904,7 +934,7 @@
 	</section>
 	<section id="rsvp" class="container">
 		<h2 data-translate="rsvp_title"></h2>
-		<p class="text-center" data-translate="rsvp_deadline"></p>
+		<p class="info-box" data-translate="rsvp_deadline" style="margin: 15px 0; padding: 20px; background-color: #efd4d7; color: gray"></p>
 		<form id="rsvp-form">
 			<div class="form-group">
 				<label for="name" data-translate="rsvp_name"></label>
@@ -970,18 +1000,22 @@
 					</select>
 				</div>
 				<div id="accommodation-details" style="display: none;">
-					<div class="info-box" style="margin: 15px 0; padding: 20px; background-color: #f8fff9;">
-						<p><strong data-translate="rsvp_accommodation_recommendation"></strong></p>
-						<p data-translate="rsvp_accommodation_details"></p>
-						<p data-translate="rsvp_accommodation_dates"></p>
-					</div>
-					<div class="form-group">
-						<label for="booking-help" data-translate="rsvp_booking_help"></label>
-						<select id="booking-help" name="booking-help">
-							<option value="hotel-books" data-translate="rsvp_booking_hotel"></option>
-							<option value="self-book" data-translate="rsvp_booking_self"></option>
-						</select>
-					</div>
+				  <div class="info-box" style="margin: 15px 0; padding: 20px; background-color: #f8fff9;">
+					<p>
+					  <a href="https://cobor-farm.ro/ro/" target="_blank" style="text-decoration: none; color: #829672; padding: 2px 4px; transition: all 0.3s ease; display: inline-block;">
+						<strong data-translate="rsvp_accommodation_recommendation"></strong>
+					  </a>
+					</p>
+					<p data-translate="rsvp_accommodation_details"></p>
+					<p data-translate="rsvp_accommodation_dates"></p>
+				  </div>
+				  <div class="form-group">
+					<label for="booking-help" data-translate="rsvp_booking_help"></label>
+					<select id="booking-help" name="booking-help">
+					  <option value="hotel-books" data-translate="rsvp_booking_hotel"></option>
+					  <option value="self-book" data-translate="rsvp_booking_self"></option>
+					</select>
+				  </div>
 				</div>
 				<div class="form-group">
 					<label for="message" data-translate="rsvp_message"></label>
@@ -1099,12 +1133,12 @@
 			// Detalii Eveniment
 			"details_title": "Detalii Eveniment",
 			"ceremony_title": "Ceremonia Religioasă",
-			"ceremony_date": "Data: 16 August 2025",
+			"ceremony_date": "Data: 16 august 2025",
 			"ceremony_time": "Ora: 12:00",
 			"ceremony_location": "Locația: Biserica Buna Vestire",
 			"ceremony_address": "Adresa: Ticușu Vechi",
 			"reception_title": "Recepția",
-			"reception_date": "Data: 16 August 2025",
+			"reception_date": "Data: 16 august 2025",
 			"reception_time": "Ora: 17:00",
 			"reception_location": "Locația: Gospodăria Cobor - Șura-n bucate",
 			"reception_address": "Adresa: Strada Mare 199, Cobor",
@@ -1119,6 +1153,11 @@
 			"cake_title": "Tort",
 			"cake_start": "Ora de început: 00:00",
 			"cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
+			"pot_title": "Brunch de dres",
+			"pot_date": "Data: 17 august 2025",
+			"pot_start": "Ora de început: 11:00",
+			"pot_location": "Locația: Gospodăria Cobor - Șura-n bucate",
+			"pot_details": "Potroace si gulyás",
 			"info_title": "Informații Suplimentare",
 			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație.",
 			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor.",
@@ -1147,7 +1186,7 @@
 			"rsvp_option_yes": "Da",
 			"rsvp_option_no": "Nu",
 			"rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
-			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm sa ne confirmați dacă alegeți această variantă.",
+			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm să ne confirmați dacă alegeți această variantă.",
 			"rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
 			"rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
 			"rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
@@ -1192,7 +1231,7 @@
 			"nav_photos": "Upload Photos",
 			"nav_location": "Location",
 			// Header
-			"header_date": "AUGUST 16, 2025",
+			"header_date": "AUGUST 16TH, 2025",
 			"header_invite": "WE ARE TYING THE KNOT!",
 			// Countdown
 			"countdown_days": "Days",
@@ -1210,12 +1249,12 @@
 			// Event Details
 			"details_title": "Event Details",
 			"ceremony_title": "Religious Ceremony",
-			"ceremony_date": "Date: August 16, 2025",
+			"ceremony_date": "Date: August 16th, 2025",
 			"ceremony_time": "Time: 12:00",
 			"ceremony_location": "Location: Church Buna Vestire",
 			"ceremony_address": "Address: Ticușu Vechi",
 			"reception_title": "Reception",
-			"reception_date": "Date: August 16, 2025",
+			"reception_date": "Date: August 16th, 2025",
 			"reception_time": "Time: 17:00",
 			"reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
 			"reception_address": "Address: Strada Mare 199, Cobor",
@@ -1230,6 +1269,11 @@
 			"cake_title": "Cake",
 			"cake_start": "Start time: 00:00",
 			"cake_details": "Cake by San Grecu, Făgăraș",
+			"pot_title": "Day-After Brunch",
+			"pot_date": "Date: August 17th 2025",
+			"pot_start": "Start time: 11:00",
+			"pot_location": "Location: Gospodăria Cobor - Șura-n bucate",
+			"pot_details": "Traditional potroace & goulash dishes",
 			"info_title": "Additional Information",
 			"info_accommodation": "Accommodation: For guests from other locations, we have booked the Cobor Biodiversity Farm in its entirety, which is located 5 minutes from the reception venue. Please indicate in the RSVP form if you need accommodation. There are also other accommodation options in the city of Făgăraș, ~22km away from the venue.",
 			"info_transport": "Transport: If needed, we can help organize the transfer between Făgăraș and Cobor.",
@@ -1827,7 +1871,7 @@
 		createSlides();
 	}
 	document.addEventListener('DOMContentLoaded', function() {
-		const preferredLanguage = localStorage.getItem('preferred_language') || 'ro';
+		const preferredLanguage = 'ro';
 		updateLanguage(preferredLanguage);
 		initCountdown();
 		initSections();
