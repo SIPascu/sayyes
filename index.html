@@ -826,7 +826,7 @@
 		align-items: flex-start;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: 20px;
+		gap: 15px;
 	}
 
 	.weather-day {
@@ -837,13 +837,15 @@
 		padding: 15px 12px 12px 12px;
 		border-radius: 12px;
 		transition: all 0.3s ease;
-		min-height: 180px;
+		min-height: 160px;
 		justify-content: flex-start;
+		width: 140px;
 	}
 
 	.weather-day.saturday {
 		background-color: rgba(130, 150, 114, 0.08);
 		transform: scale(1.05);
+		min-height: 180px;
 	}
 
 	.weather-day.friday,
@@ -903,14 +905,11 @@
 		color: #829672;
 	}
 
-	.weather-day.friday .weather-icon,
-	.weather-day.sunday .weather-icon {
-		font-size: 2.2rem;
-	}
-
 	.weather-desc {
 		text-align: center;
-		margin: 15px 0;
+		margin: 15px 0 0 0;
+		font-style: italic;
+		color: #666;
 	}
 
 	.weather-details-3day {
@@ -919,6 +918,9 @@
 		gap: 8px;
 		margin-top: 15px;
 		width: 100%;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.weather-detail-row {
@@ -932,6 +934,7 @@
 	.weather-detail-main {
 		text-align: center;
 		font-size: 1rem;
+		width: 200px;
 	}
 
 	.weather-detail-side {
@@ -939,6 +942,7 @@
 		font-size: 0.85rem;
 		opacity: 0.8;
 		position: absolute;
+		width: 100px;
 	}
 
 	.weather-detail-side.friday {
@@ -1423,6 +1427,122 @@
 			"food_title": "Servirea Mesei",
 			"food_start": "Ora de început: 18:00",
 			"food_details": "Bufet, urmat de fel principal. Preparate concepute și realizate de Chef Daniela Graura",
+			"cake_title": "Tort",
+			"cake_start": "Ora de început: 00:00",
+			"cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
+			"pot_title": "Brunch de dres",
+			"pot_date": "Data: 17 august 2025",
+			"pot_start": "Ora de început: 11:00",
+			"pot_location": "Locația: Gospodăria Cobor - Șura-n bucate",
+			"pot_details": "Potroace si gulyás",
+			"info_title": "Informații Suplimentare",
+			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație.",
+			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor.",
+			"info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
+			"info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
+			// RSVP
+			"rsvp_title": "Confirmă Prezența (RSVP)",
+			"rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 1 iunie 2025",
+			"rsvp_name": "Nume și Prenume",
+			"rsvp_attendance": "Vei participa?",
+			"rsvp_yes": "Da, voi participa",
+			"rsvp_no": "Nu pot participa",
+			"rsvp_email": "Email",
+			"rsvp_phone": "Telefon",
+			"rsvp_plusone": "Vei veni cu partener/parteneră?",
+			"rsvp_plusone_name": "Numele partenerului/partenerei",
+			"rsvp_children_q": "Vei veni cu copii?",
+			"rsvp_children_number": "Câți copii?",
+			"rsvp_child_name": "Numele copilului",
+			"rsvp_meal": "Preferințe alimentare",
+			"rsvp_meal_standard": "Meniu standard",
+			"rsvp_meal_vegetarian": "Meniu vegetarian",
+			"rsvp_meal_vegan": "Meniu vegan",
+			"rsvp_allergies": "Alergii sau restricții alimentare",
+			"rsvp_accommodation_q": "Ai nevoie de cazare?",
+			"rsvp_option_yes": "Da",
+			"rsvp_option_no": "Nu",
+			"rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
+			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm să ne confirmați dacă alegeți această variantă.",
+			"rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
+			"rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
+			"rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
+			"rsvp_booking_self": "Da, 1 noapte (16-17 august)",
+			"rsvp_booking_neg": "Nu",
+			"rsvp_message": "Mesaj pentru miri (opțional)",
+			"rsvp_submit": "Trimite",
+			"rsvp_success": "Mulțumim pentru confirmare!",
+			"rsvp_regret": "Ne pare rău că nu poți participa!",
+			"rsvp_option_yes": "Da",
+			"rsvp_option_no": "Nu",
+			// Upload Poze
+			"photos_title": "Încarcă Fotografii",
+			"photos_heading": "Împărtășește-ți amintirile cu noi!",
+			"photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
+			"photos_how": "Cum funcționează?",
+			"photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus;",
+			"photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești;",
+			"photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru;",
+			"photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
+			// Locație
+			"location_title": "Locația",
+			"location_heading": "Cum ajungi la noi",
+			"location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Brașov: 80 km (1 oră 15 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br><br>Cu avionul: București, Brașov, Sibiu, Cluj<br> Cu trenul: Făgăraș, Șercaia, Rupea",
+			"location_map": "Găsește locația pe hartă",
+			// Weather
+			"weather_title": "Prognoza meteo pentru ziua nunții",
+			"weather_description": weatherData.general_description.ro,
+			"weather_clouds": "Acoperire nori:",
+			"weather_rain": "Șanse ploaie:",
+			"weather_wind": "Vânt:",
+			// Footer
+			"footer_message": "Abia așteptăm să vă vedem!"
+		},
+		en: {
+			// Navigation
+			"nav_home": "Home",
+			"nav_couple": "About Us",
+			"nav_details": "Event Details",
+			"nav_rsvp": "RSVP",
+			"nav_gallery": "Gallery",
+			"nav_photos": "Upload Photos",
+			"nav_location": "Location",
+			// Header
+			"header_date": "AUGUST 16TH, 2025",
+			"header_invite": "WE ARE TYING THE KNOT!",
+			// Countdown
+			"countdown_days": "Days",
+			"countdown_hours": "Hours",
+			"countdown_minutes": "Minutes",
+			"countdown_seconds": "Seconds",
+			// Home
+			"home_greeting": "Dear ones,",
+			"home_invite": "We decided to finally share the last name.",
+			"home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
+			"home_signature": "With love and excitement,",
+			// About Us
+			"couple_title": "About Us",
+			"couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already.",
+			// Event Details
+			"details_title": "Event Details",
+			"ceremony_title": "Religious Ceremony",
+			"ceremony_date": "Date: August 16th, 2025",
+			"ceremony_time": "Time: 12:00",
+			"ceremony_location": "Location: Church Buna Vestire",
+			"ceremony_address": "Address: Ticușu Vechi",
+			"reception_title": "Reception",
+			"reception_date": "Date: August 16th, 2025",
+			"reception_time": "Time: 17:00",
+			"reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
+			"reception_address": "Address: Strada Mare 199, Cobor",
+			"party_title": "Party",
+			"party_start": "Start time: 17:30",
+			"party_end": "End time: 01:00",
+			"party_dress": "Dress code: super casual",
+			"party_details": "Outdoor garden event, kids corner, delicious food and party vibes",
+			"food_title": "Dinner",
+			"food_start": "Start time: 18:00",
+			"food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
 			"cake_title": "Cake",
 			"cake_start": "Start time: 00:00",
 			"cake_details": "Cake by San Grecu, Făgăraș",
@@ -2145,120 +2265,4 @@ function initMap() {
 </script>
 </body>
 
-</html>Tort",
-			"cake_start": "Ora de început: 00:00",
-			"cake_details": "Tort realizat de Cofetăria San Grecu, Făgăraș",
-			"pot_title": "Brunch de dres",
-			"pot_date": "Data: 17 august 2025",
-			"pot_start": "Ora de început: 11:00",
-			"pot_location": "Locația: Gospodăria Cobor - Șura-n bucate",
-			"pot_details": "Potroace si gulyás",
-			"info_title": "Informații Suplimentare",
-			"info_accommodation": "Cazare: Pentru invitații din alte localități, am rezervat camere la Ferma de Biodiversitate Cobor, situat la 900m de locația recepției. Vă rugăm să menționați în formularul RSVP dacă aveți nevoie de cazare. Alte opțiuni de cazare sunt disponibile in Făgăraș, ~22km de locație.",
-			"info_transport": "Transport: Dacă este nevoie, putem organiza transport între Făgăraș si Cobor.",
-			"info_children": "Copii: Sunt bineveniți! Vom avea o zonă special amenajată pentru cei mici, cu activități și supraveghere.",
-			"info_gifts": "Cadouri: Prezența voastră este cel mai frumos cadou. Dacă totuși doriți să ne oferiți ceva, am aprecia o contribuție la călătoria noastră de nuntă.",
-			// RSVP
-			"rsvp_title": "Confirmă Prezența (RSVP)",
-			"rsvp_deadline": "Vă rugăm să confirmați prezența până la data de 1 iunie 2025",
-			"rsvp_name": "Nume și Prenume",
-			"rsvp_attendance": "Vei participa?",
-			"rsvp_yes": "Da, voi participa",
-			"rsvp_no": "Nu pot participa",
-			"rsvp_email": "Email",
-			"rsvp_phone": "Telefon",
-			"rsvp_plusone": "Vei veni cu partener/parteneră?",
-			"rsvp_plusone_name": "Numele partenerului/partenerei",
-			"rsvp_children_q": "Vei veni cu copii?",
-			"rsvp_children_number": "Câți copii?",
-			"rsvp_child_name": "Numele copilului",
-			"rsvp_meal": "Preferințe alimentare",
-			"rsvp_meal_standard": "Meniu standard",
-			"rsvp_meal_vegetarian": "Meniu vegetarian",
-			"rsvp_meal_vegan": "Meniu vegan",
-			"rsvp_allergies": "Alergii sau restricții alimentare",
-			"rsvp_accommodation_q": "Ai nevoie de cazare?",
-			"rsvp_option_yes": "Da",
-			"rsvp_option_no": "Nu",
-			"rsvp_accommodation_recommendation": "Recomandarea noastră: Ferma de Biodiversitate Cobor",
-			"rsvp_accommodation_details": "Am rezervat întreaga locație, însă vă rugăm să ne confirmați dacă alegeți această variantă.",
-			"rsvp_accommodation_dates": "Disponibilitate: 15-17 august 2025",
-			"rsvp_booking_help": "Doriți să stați la Ferma de Biodiversitate Cobor?",
-			"rsvp_booking_hotel": "Da, 2 nopți (15-17 august)",
-			"rsvp_booking_self": "Da, 1 noapte (16-17 august)",
-			"rsvp_booking_neg": "Nu",
-			"rsvp_message": "Mesaj pentru miri (opțional)",
-			"rsvp_submit": "Trimite",
-			"rsvp_success": "Mulțumim pentru confirmare!",
-			"rsvp_regret": "Ne pare rău că nu poți participa!",
-			"rsvp_option_yes": "Da",
-			"rsvp_option_no": "Nu",
-			// Upload Poze
-			"photos_title": "Încarcă Fotografii",
-			"photos_heading": "Împărtășește-ți amintirile cu noi!",
-			"photos_description": "Salvează amintirile tale din ziua nunții! Scanează acest cod QR pentru a încărca fotografiile tale direct în albumul nostru digital.",
-			"photos_how": "Cum funcționează?",
-			"photos_step1": "Pasul 1: Scanează codul QR cu camera telefonului sau accesează link-ul de mai sus;",
-			"photos_step2": "Pasul 2: Selectează fotografiile pe care dorești să le împărtășești;",
-			"photos_step3": "Pasul 3: Încarcă fotografiile în albumul nostru;",
-			"photos_note": "Fotografiile tale vor fi adăugate automat în albumul nostru comun, iar după nuntă, vom trimite tuturor invitaților link-ul către albumul complet!",
-			// Locație
-			"location_title": "Locația",
-			"location_heading": "Cum ajungi la noi",
-			"location_distance": "Locațiile sunt la aproximativ 15 minute distanță una de cealaltă. Putem ajuta cu transportul între locații.<br><br>Distanța de la București: 260 km (4 ore)<br>Distanța de la Brașov: 80 km (1 oră 15 min)<br>Distanța de la Făgăraș: 22 km (30 min)<br>Distanța de la Viscri: 45 km (1 oră)<br>Distanța de la Sighișoara: 60 km (1 oră 30 min)<br>Distanța de la Sibiu: 100 km (2 ore)<br>Distanța de la Cluj: 210 km (3 ore 30 min)<br><br>Cu avionul: București, Brașov, Sibiu, Cluj<br> Cu trenul: Făgăraș, Șercaia, Rupea",
-			"location_map": "Găsește locația pe hartă",
-			// Weather
-			"weather_title": "Prognoza meteo pentru ziua nunții",
-			"weather_description": weatherData.general_description.ro,
-			"weather_clouds": "Acoperire nori:",
-			"weather_rain": "Șanse ploaie:",
-			"weather_wind": "Vânt:",
-			// Footer
-			"footer_message": "Abia așteptăm să vă vedem!"
-		},
-		en: {
-			// Navigation
-			"nav_home": "Home",
-			"nav_couple": "About Us",
-			"nav_details": "Event Details",
-			"nav_rsvp": "RSVP",
-			"nav_gallery": "Gallery",
-			"nav_photos": "Upload Photos",
-			"nav_location": "Location",
-			// Header
-			"header_date": "AUGUST 16TH, 2025",
-			"header_invite": "WE ARE TYING THE KNOT!",
-			// Countdown
-			"countdown_days": "Days",
-			"countdown_hours": "Hours",
-			"countdown_minutes": "Minutes",
-			"countdown_seconds": "Seconds",
-			// Home
-			"home_greeting": "Dear ones,",
-			"home_invite": "We decided to finally share the last name.",
-			"home_message": "And to celebrate this, we want to throw a big party together with everyone who is in one way or another, part of our lives.",
-			"home_signature": "With love and excitement,",
-			// About Us
-			"couple_title": "About Us",
-			"couple_story": "We got together more than 10 years ago, and it's been more than 5 years when we started enjoying life together with our lovely daughter Lia. Which probably you knew all about it already.",
-			// Event Details
-			"details_title": "Event Details",
-			"ceremony_title": "Religious Ceremony",
-			"ceremony_date": "Date: August 16th, 2025",
-			"ceremony_time": "Time: 12:00",
-			"ceremony_location": "Location: Church Buna Vestire",
-			"ceremony_address": "Address: Ticușu Vechi",
-			"reception_title": "Reception",
-			"reception_date": "Date: August 16th, 2025",
-			"reception_time": "Time: 17:00",
-			"reception_location": "Location: Gospodăria Cobor - Șura-n bucate",
-			"reception_address": "Address: Strada Mare 199, Cobor",
-			"party_title": "Party",
-			"party_start": "Start time: 17:30",
-			"party_end": "End time: 01:00",
-			"party_dress": "Dress code: super casual",
-			"party_details": "Outdoor garden event, kids corner, delicious food and party vibes",
-			"food_title": "Dinner",
-			"food_start": "Start time: 18:00",
-			"food_details": "Buffet/Finger food, followed by the main course. Menu concept and preparation by Chef Daniela Graura",
-			"cake_title": "
+</html>
