@@ -915,7 +915,7 @@
 	.weather-details-3day {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: 15px;
 		margin-top: 15px;
 		width: 100%;
 		max-width: 500px;
@@ -946,11 +946,11 @@
 	}
 
 	.weather-detail-side.friday {
-		left: 15%;
+		left: 10%;
 	}
 
 	.weather-detail-side.sunday {
-		right: 15%;
+		right: 10%;
 	}
 
 	@media (max-width: 768px) {
@@ -1265,50 +1265,44 @@
 					</div>
 					
 					<div class="weather-details-3day">
-						<div class="weather-detail-row">
-							<div class="weather-detail-side friday">
-								<i class="fas fa-cloud"></i>
-								<div><span id="weather-clouds-friday">30%</span></div>
-							</div>
-							<div class="weather-detail-main">
-								<i class="fas fa-cloud"></i>
-								<div><span data-translate="weather_clouds">Acoperire nori:</span> <span id="weather-clouds-saturday">30%</span></div>
-							</div>
-							<div class="weather-detail-side sunday">
-								<i class="fas fa-cloud"></i>
-								<div><span id="weather-clouds-sunday">30%</span></div>
-							</div>
-						</div>
-						
-						<div class="weather-detail-row">
-							<div class="weather-detail-side friday">
-								<i class="fas fa-tint"></i>
-								<div><span id="weather-rain-friday">6%</span></div>
-							</div>
-							<div class="weather-detail-main">
-								<i class="fas fa-tint"></i>
-								<div><span data-translate="weather_rain">Șanse ploaie:</span> <span id="weather-rain-saturday">24%</span></div>
-							</div>
-							<div class="weather-detail-side sunday">
-								<i class="fas fa-tint"></i>
-								<div><span id="weather-rain-sunday">20%</span></div>
-							</div>
-						</div>
-						
-						<div class="weather-detail-row">
-							<div class="weather-detail-side friday">
-								<i class="fas fa-wind"></i>
-								<div><span id="weather-wind-friday">10 km/h ESE</span></div>
-							</div>
-							<div class="weather-detail-main">
-								<i class="fas fa-wind"></i>
-								<div><span data-translate="weather_wind">Vânt:</span> <span id="weather-wind-saturday">8 km/h ESE</span></div>
-							</div>
-							<div class="weather-detail-side sunday">
-								<i class="fas fa-wind"></i>
-								<div><span id="weather-wind-sunday">8 km/h SE</span></div>
-							</div>
-						</div>
+<div class="weather-detail-row">
+    <div class="weather-detail-side friday">
+        <div><span id="weather-clouds-friday">30%</span></div>
+    </div>
+    <div class="weather-detail-main">
+        <i class="fas fa-cloud"></i>
+        <div><span data-translate="weather_clouds">Acoperire nori:</span> <span id="weather-clouds-saturday">30%</span></div>
+    </div>
+    <div class="weather-detail-side sunday">
+        <div><span id="weather-clouds-sunday">30%</span></div>
+    </div>
+</div>
+
+<div class="weather-detail-row">
+    <div class="weather-detail-side friday">
+        <div><span id="weather-rain-friday">6%</span></div>
+    </div>
+    <div class="weather-detail-main">
+        <i class="fas fa-tint"></i>
+        <div><span data-translate="weather_rain">Șanse ploaie:</span> <span id="weather-rain-saturday">24%</span></div>
+    </div>
+    <div class="weather-detail-side sunday">
+        <div><span id="weather-rain-sunday">20%</span></div>
+    </div>
+</div>
+
+<div class="weather-detail-row">
+    <div class="weather-detail-side friday">
+        <div><span id="weather-wind-friday">10 km/h ESE</span></div>
+    </div>
+    <div class="weather-detail-main">
+        <i class="fas fa-wind"></i>
+        <div><span data-translate="weather_wind">Vânt:</span> <span id="weather-wind-saturday">8 km/h ESE</span></div>
+    </div>
+    <div class="weather-detail-side sunday">
+        <div><span id="weather-wind-sunday">8 km/h SE</span></div>
+    </div>
+</div>
 					</div>
 				</div>
 			</div>
