@@ -1609,8 +1609,8 @@ function initMap() {
 
 		// Crearea iconițelor cu shadow și culori diferite
 		function createIcon(iconType, locationKey) {
-			// Biserica și party au culoarea #efd4d7, restul #829672
-			const color = (locationKey === 'wedding' || locationKey === 'party') ? '#efd4d7' : '#829672';
+			// Biserica și party au culoarea roz închis, restul #829672
+			const color = (locationKey === 'wedding' || locationKey === 'party') ? '#c7919a' : '#829672';
 			
 			return L.divIcon({
 				html: `<div style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));"><i class="fas fa-${iconType}" style="font-size: 24px; color: ${color};"></i></div>`,
