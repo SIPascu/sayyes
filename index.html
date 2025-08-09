@@ -1530,95 +1530,109 @@ function initMap() {
 	if(!mapElement) return;
 	
 	try {
-		// Definirea locațiilor cu coordonate originale și pozițiile pentru zoom mic
+		// Locațiile originale
 		const locations = {
 			wedding: {
 				originalCoords: [45.929585674218764, 25.09248460621327],
-				zoomedOutCoords: [45.944, 25.07], // Centru
 				label: "Biserica Buna Vestire",
 				icon: "church"
 			},
 			party: {
 				originalCoords: [45.951143208213, 25.051906816582328],
-				zoomedOutCoords: [45.948, 25.065], // Nord-vest
 				label: "Șura-n bucate",
 				icon: "glass-cheers"
 			},
 			bed1: {
 				originalCoords: [45.9441090720315, 25.04846811817492],
-				zoomedOutCoords: [45.940, 25.075], // Sud-est
 				label: "Casa 282",
 				icon: "bed"
 			},
 			bed2: {
 				originalCoords: [45.943368, 25.048693],
-				zoomedOutCoords: [45.940, 25.065], // Sud-vest
 				label: "Casa 21",
 				icon: "bed"
 			},
 			bed3: {
 				originalCoords: [45.951325, 25.052006],
-				zoomedOutCoords: [45.948, 25.075], // Nord-est
 				label: "Gospodaria Cobor",
 				icon: "bed"
 			},
 			bed4: {
 				originalCoords: [45.943802, 25.055619],
-				zoomedOutCoords: [45.936, 25.07], // Sud
 				label: "Casa Joliff",
 				icon: "bed"
 			}
 		};
 
+		// Zoom logic original
 		const screenWidth = window.innerWidth;
-		let initialZoom = 14;
+		let zoomLevel = 14;
 		if(screenWidth < 768) {
-			initialZoom = 13;
+			zoomLevel = 13;
 		}
 		if(screenWidth < 480) {
-			initialZoom = 12;
+			zoomLevel = 12;
 		}
 
-		const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), initialZoom);
+		// Crearea hărții cu setările originale
+		const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
 
-		// Funcție pentru crearea iconițelor
-		function createIcon(iconType) {
-			return L.divIcon({
-				html: `<i class="fas fa-${iconType}" style="font-size: 30px; color: #829672;"></i>`,
-				iconSize: [30, 30],
-				className: 'myDivIcon'
-			});
-		}
-
-		// Funcție pentru deschiderea Google Maps cu coordonatele ORIGINALE
+		// Funcție pentru deschiderea Google Maps
 		function openGoogleMaps(lat, lng) {
 			const url = `https://www.google.com/maps?q=${lat},${lng}`;
 			window.open(url, '_blank');
 		}
 
-		// Crearea și stocarea markerilor
-		const markers = {};
-		
-		function getMarkerPosition(locationKey, currentZoom) {
-			const location = locations[locationKey];
-			// La zoom 15+ folosește coordonatele reale, altfel folosește poziții separate
-			return currentZoom >= 15 ? location.originalCoords : location.zoomedOutCoords;
+		// Funcție pentru shift-ul coordonatelor la zoom-urile inițiale
+		function getShiftedCoords(locationKey, originalCoords, currentZoom) {
+			// Aplicăm shift doar la zoom-urile inițiale (12, 13, 14)
+			if (currentZoom < 12 || currentZoom > 14) {
+				return originalCoords;
+			}
+
+			const shifts = {
+				wedding: [0, 0], // Biserica rămâne la poziția originală
+				party: [-0.004, 0.010], // Nord-vest
+				bed1: [0.008, -0.004], // Sud-est
+				bed2: [0.010, -0.008], // Est-sud
+				bed3: [-0.008, 0.006], // Nord-vest
+				bed4: [0.005, 0.012] // Nord-est
+			};
+
+			const shift = shifts[locationKey] || [0, 0];
+			return [
+				originalCoords[0] + shift[0],
+				originalCoords[1] + shift[1]
+			];
 		}
 
+		// Crearea iconițelor cu shadow și mărime mai mică
+		function createIcon(iconType) {
+			return L.divIcon({
+				html: `<div style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));"><i class="fas fa-${iconType}" style="font-size: 24px; color: #829672;"></i></div>`,
+				iconSize: [24, 24],
+				className: 'myDivIcon'
+			});
+		}
+
+		// Crearea și stocarea markerilor
+		const markers = [];
+		const markerObjects = {};
+		
 		function createMarkers() {
 			Object.entries(locations).forEach(([key, location]) => {
 				const currentZoom = map.getZoom();
-				const coords = getMarkerPosition(key, currentZoom);
+				const coords = getShiftedCoords(key, location.originalCoords, currentZoom);
 				
 				const marker = L.marker(coords, {
 					icon: createIcon(location.icon)
 				});
 				
-				// Tooltip
+				// Tooltip pentru hover
 				marker.bindTooltip(location.label, {
 					permanent: false,
 					direction: 'top',
-					offset: [0, -20]
+					offset: [0, -15]
 				});
 
 				// Click pentru Google Maps cu coordonatele ORIGINALE
@@ -1626,7 +1640,8 @@ function initMap() {
 					openGoogleMaps(location.originalCoords[0], location.originalCoords[1]);
 				});
 
-				markers[key] = marker;
+				markers.push(marker);
+				markerObjects[key] = marker;
 				marker.addTo(map);
 			});
 		}
@@ -1636,9 +1651,9 @@ function initMap() {
 			const currentZoom = map.getZoom();
 			
 			Object.entries(locations).forEach(([key, location]) => {
-				if (markers[key]) {
-					const coords = getMarkerPosition(key, currentZoom);
-					markers[key].setLatLng(coords);
+				if (markerObjects[key]) {
+					const coords = getShiftedCoords(key, location.originalCoords, currentZoom);
+					markerObjects[key].setLatLng(coords);
 				}
 			});
 		}
@@ -1649,18 +1664,13 @@ function initMap() {
 		// Event listener pentru schimbarea zoom-ului
 		map.on('zoomend', updateMarkerPositions);
 
-		// Adăugarea layer-ului de hartă
+		// Tile layer original
 		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 			subdomains: 'abcd',
 			maxZoom: 20
 		}).addTo(map);
 
-		// Ajustarea view-ului
-		const allMarkers = Object.values(markers);
-		if (allMarkers.length > 0) {
-			const group = new L.featureGroup(allMarkers);
-			map.fitBounds(group.getBounds().pad(0.1));
-		}
+		// NU schimbăm zoom-ul sau centrul - păstrăm exact ca în original
 		
 	} catch (error) {
 		console.error("Error initializing map:", error);
