@@ -920,15 +920,15 @@
 	}
 
 	.weather-details-3day {
-		display: flex;
-		flex-direction: column;
-		gap: 15px;
-		margin-top: 15px;
-		width: 100%;
-		max-width: 500px;
-		margin-left: auto;
-		margin-right: auto;
-	}
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 800px; /* Mărește de la 500px la 800px */
+    margin-left: auto;
+    margin-right: auto;
+}
 
 	.weather-detail-row {
 		display: flex;
@@ -938,30 +938,30 @@
 		min-height: 40px;
 	}
 
-	.weather-detail-main {
-		text-align: center;
-		font-size: 1rem;
-		width: 200px;
-	}
+.weather-detail-main {
+    text-align: center;
+    font-size: 1rem;
+    width: 350px; /* Mărește de la 200px la 350px */
+}
 
 .weather-detail-side {
     text-align: center;
     font-size: 0.85rem;
     opacity: 0.8;
     position: absolute;
-    width: 100px;
+    width: 150px; /* Mărește de la 100px la 150px */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Ocupă întreaga înălțime a containerului părinte */
+    height: 100%;
 }
 
 	.weather-detail-side.friday {
-		left: 10%;
+		left: 5%;
 	}
 
 	.weather-detail-side.sunday {
-		right: 10%;
+		right: 5%;
 	}
 
 	@media (max-width: 768px) {
