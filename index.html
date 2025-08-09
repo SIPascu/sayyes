@@ -829,18 +829,18 @@
 		gap: 15px;
 	}
 
-	.weather-day {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		position: relative;
-		padding: 15px 12px 12px 12px;
-		border-radius: 12px;
-		transition: all 0.3s ease;
-		min-height: 160px;
-		justify-content: flex-start;
-		width: 140px;
-	}
+.weather-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 15px 12px 12px 12px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    min-height: 160px;
+    justify-content: flex-start;
+    width: 180px; /* Mărește de la 140px la 180px */
+}
 
 	.weather-day.saturday {
 		background-color: rgba(130, 150, 114, 0.08);
@@ -937,13 +937,17 @@
 		width: 200px;
 	}
 
-	.weather-detail-side {
-		text-align: center;
-		font-size: 0.85rem;
-		opacity: 0.8;
-		position: absolute;
-		width: 100px;
-	}
+.weather-detail-side {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    position: absolute;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ocupă întreaga înălțime a containerului părinte */
+}
 
 	.weather-detail-side.friday {
 		left: 10%;
