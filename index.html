@@ -1530,35 +1530,41 @@ function initMap() {
 	if(!mapElement) return;
 	
 	try {
-		// Definirea locațiilor cu coordonate originale și etichete
+		// Definirea locațiilor cu coordonate originale și pozițiile pentru zoom mic
 		const locations = {
 			wedding: {
 				originalCoords: [45.929585674218764, 25.09248460621327],
+				zoomedOutCoords: [45.944, 25.07], // Centru
 				label: "Biserica Buna Vestire",
 				icon: "church"
 			},
 			party: {
 				originalCoords: [45.951143208213, 25.051906816582328],
+				zoomedOutCoords: [45.948, 25.065], // Nord-vest
 				label: "Șura-n bucate",
 				icon: "glass-cheers"
 			},
 			bed1: {
 				originalCoords: [45.9441090720315, 25.04846811817492],
+				zoomedOutCoords: [45.940, 25.075], // Sud-est
 				label: "Casa 282",
 				icon: "bed"
 			},
 			bed2: {
 				originalCoords: [45.943368, 25.048693],
+				zoomedOutCoords: [45.940, 25.065], // Sud-vest
 				label: "Casa 21",
 				icon: "bed"
 			},
 			bed3: {
 				originalCoords: [45.951325, 25.052006],
+				zoomedOutCoords: [45.948, 25.075], // Nord-est
 				label: "Gospodaria Cobor",
 				icon: "bed"
 			},
 			bed4: {
 				originalCoords: [45.943802, 25.055619],
+				zoomedOutCoords: [45.936, 25.07], // Sud
 				label: "Casa Joliff",
 				icon: "bed"
 			}
@@ -1584,53 +1590,31 @@ function initMap() {
 			});
 		}
 
-		// Funcție pentru deschiderea Google Maps
+		// Funcție pentru deschiderea Google Maps cu coordonatele ORIGINALE
 		function openGoogleMaps(lat, lng) {
 			const url = `https://www.google.com/maps?q=${lat},${lng}`;
 			window.open(url, '_blank');
 		}
 
-		// Funcție pentru calcularea pozițiilor ajustate în funcție de zoom
-		function calculateAdjustedPosition(originalCoords, locationKey, currentZoom) {
-			const minZoomForAccuracy = 15; // Zoom-ul minim pentru poziții precise
-			
-			if (currentZoom >= minZoomForAccuracy) {
-				return originalCoords; // Returnează pozițiile originale
-			}
-			
-			// Calculează factorul de deplasare bazat pe zoom
-			const displacementFactor = (minZoomForAccuracy - currentZoom) * 0.001;
-			
-			// Definește deplasări specifice pentru fiecare locație
-			const offsets = {
-				wedding: [0, 0], // Biserica rămâne centrală
-				party: [-displacementFactor * 0.5, displacementFactor * 2],
-				bed1: [displacementFactor * 1.5, -displacementFactor * 1.5],
-				bed2: [displacementFactor * 2, -displacementFactor * 0.5],
-				bed3: [-displacementFactor * 1.2, displacementFactor * 1.8],
-				bed4: [displacementFactor * 1.8, displacementFactor * 0.8]
-			};
-			
-			const offset = offsets[locationKey] || [0, 0];
-			return [
-				originalCoords[0] + offset[0],
-				originalCoords[1] + offset[1]
-			];
-		}
-
 		// Crearea și stocarea markerilor
 		const markers = {};
 		
+		function getMarkerPosition(locationKey, currentZoom) {
+			const location = locations[locationKey];
+			// La zoom 15+ folosește coordonatele reale, altfel folosește poziții separate
+			return currentZoom >= 15 ? location.originalCoords : location.zoomedOutCoords;
+		}
+
 		function createMarkers() {
 			Object.entries(locations).forEach(([key, location]) => {
 				const currentZoom = map.getZoom();
-				const adjustedCoords = calculateAdjustedPosition(location.originalCoords, key, currentZoom);
+				const coords = getMarkerPosition(key, currentZoom);
 				
-				const marker = L.marker(adjustedCoords, {
+				const marker = L.marker(coords, {
 					icon: createIcon(location.icon)
 				});
 				
-				// Adăugarea tooltip-ului pentru hover
+				// Tooltip
 				marker.bindTooltip(location.label, {
 					permanent: false,
 					direction: 'top',
@@ -1653,8 +1637,8 @@ function initMap() {
 			
 			Object.entries(locations).forEach(([key, location]) => {
 				if (markers[key]) {
-					const adjustedCoords = calculateAdjustedPosition(location.originalCoords, key, currentZoom);
-					markers[key].setLatLng(adjustedCoords);
+					const coords = getMarkerPosition(key, currentZoom);
+					markers[key].setLatLng(coords);
 				}
 			});
 		}
@@ -1671,10 +1655,12 @@ function initMap() {
 			maxZoom: 20
 		}).addTo(map);
 
-		// Ajustarea view-ului pentru a include toate markerele
+		// Ajustarea view-ului
 		const allMarkers = Object.values(markers);
-		const group = new L.featureGroup(allMarkers);
-		map.fitBounds(group.getBounds().pad(0.1));
+		if (allMarkers.length > 0) {
+			const group = new L.featureGroup(allMarkers);
+			map.fitBounds(group.getBounds().pad(0.1));
+		}
 		
 	} catch (error) {
 		console.error("Error initializing map:", error);
