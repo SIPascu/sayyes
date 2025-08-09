@@ -1590,13 +1590,14 @@ function initMap() {
 				return originalCoords;
 			}
 
+			// Biserica și party rămân pe pozițiile corecte MEREU
 			const shifts = {
-				wedding: [0, 0], // Biserica rămâne la poziția originală
-				party: [-0.004, 0.010], // Nord-vest
-				bed1: [0.008, -0.004], // Sud-est
-				bed2: [0.010, -0.008], // Est-sud
-				bed3: [-0.008, 0.006], // Nord-vest
-				bed4: [0.005, 0.012] // Nord-est
+				wedding: [0, 0], // NICIODATĂ nu se schimbă
+				party: [0, 0], // NICIODATĂ nu se schimbă
+				bed1: [0.001, -0.001], // Shift minimal sud-est
+				bed2: [0.002, -0.0015], // Shift minimal est
+				bed3: [-0.0015, 0.001], // Shift minimal nord-vest
+				bed4: [0.0015, 0.002] // Shift minimal nord-est
 			};
 
 			const shift = shifts[locationKey] || [0, 0];
