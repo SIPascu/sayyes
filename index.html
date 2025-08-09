@@ -990,6 +990,22 @@
 nav ul li a[href="#rsvp"] {
     display: none;
 }
+
+/* Animație de tremurat */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+/* Când sunt puține zile, tremură doar ziua */
+.countdown-item.urgent {
+    animation: shake 0.5s infinite;
+    background-color: #d8959b !important;
+    box-shadow: 0 5px 25px rgba(216, 149, 155, 0.6) !important;
+}
+
+		
 	</style>
 </head>
 
@@ -1655,25 +1671,35 @@ nav ul li a[href="#rsvp"] {
 	function initCountdown() {
 		const weddingDate = new Date("Aug 16, 2025 12:00:00").getTime();
 
-		function updateCountdown() {
-			const now = new Date().getTime();
-			const distance = weddingDate - now;
-			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-			document.getElementById("days").textContent = days;
-			document.getElementById("hours").textContent = hours;
-			document.getElementById("minutes").textContent = minutes;
-			document.getElementById("seconds").textContent = seconds;
-			if(distance < 0) {
-				clearInterval(countdown);
-				document.getElementById("days").textContent = "0";
-				document.getElementById("hours").textContent = "0";
-				document.getElementById("minutes").textContent = "0";
-				document.getElementById("seconds").textContent = "0";
-			}
-		}
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+    
+    // Fă dreptunghiul zilelor să tremure când sunt sub 30 zile
+    const daysElement = document.querySelector('.countdown-item:first-child');
+    if (days <= 30 && days > 0) {
+        daysElement.classList.add('urgent');
+    } else {
+        daysElement.classList.remove('urgent');
+    }
+    
+    if(distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+    }
+}
 		updateCountdown();
 		const countdown = setInterval(updateCountdown, 1000);
 	}
