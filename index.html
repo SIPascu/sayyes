@@ -1525,59 +1525,108 @@
 		}
 	}
 
-	function initMap() {
-		const mapElement = document.getElementById('interactive-map');
-		if(!mapElement) return;
-		try {
-			const weddingLocation = [45.929585674218764, 25.09248460621327];
-			const partyLocation = [45.951143208213, 25.051906816582328];
-			const bedLocation = [45.9441090720315, 25.04846811817492];
-			const screenWidth = window.innerWidth;
-			let zoomLevel = 14;
-			if(screenWidth < 768) {
-				zoomLevel = 13;
+function initMap() {
+	const mapElement = document.getElementById('interactive-map');
+	if(!mapElement) return;
+	
+	try {
+		// Definirea locațiilor cu coordonate și etichete
+		const locations = {
+			wedding: {
+				coords: [45.929585674218764, 25.09248460621327],
+				label: "Biserica Buna Vestire",
+				icon: "church"
+			},
+			party: {
+				coords: [45.951143208213, 25.051906816582328],
+				label: "Șura-n bucate",
+				icon: "glass-cheers"
+			},
+			bed1: {
+				coords: [45.9441090720315, 25.04846811817492],
+				label: "Casa 282",
+				icon: "bed"
+			},
+			bed2: {
+				coords: [45.943368, 25.048693],
+				label: "Casa 21",
+				icon: "bed"
+			},
+			bed3: {
+				coords: [45.951325, 25.052006],
+				label: "Gospodaria Cobor",
+				icon: "bed"
+			},
+			bed4: {
+				coords: [45.943802, 25.055619],
+				label: "Casa Joliff",
+				icon: "bed"
 			}
-			if(screenWidth < 480) {
-				zoomLevel = 12;
-			}
-			const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
-			const churchicon = L.divIcon({
-				html: '<i class="fas fa-church" style="font-size: 30px; color: #829672;"></i>',
-				iconSize: [30, 30],
-				className: 'myDivIcon'
-			});
-			const partyicon = L.divIcon({
-				html: '<i class="fas fa-glass-cheers" style="font-size: 30px; color: #829672;"></i>',
-				iconSize: [30, 30],
-				className: 'myDivIcon'
-			});
-			const bedicon = L.divIcon({
-				html: '<i class="fas fa-bed" style="font-size: 30px; color: #829672;"></i>',
-				iconSize: [30, 30],
-				className: 'myDivIcon'
-			});
-			const markers = [
-				L.marker(weddingLocation, {
-					icon: churchicon
-				}),
-				L.marker(partyLocation, {
-					icon: partyicon
-				}),
-				L.marker(bedLocation, {
-					icon: bedicon
-				})
-			];
-			markers.forEach(marker => marker.addTo(map));
-			L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-				subdomains: 'abcd',
-				maxZoom: 20
-			}).addTo(map);
-			const group = new L.featureGroup(markers);
-			map.fitBounds(group.getBounds().pad(0.1));
-		} catch (error) {
-			console.error("Error initializing map:", error);
+		};
+
+		const screenWidth = window.innerWidth;
+		let zoomLevel = 14;
+		if(screenWidth < 768) {
+			zoomLevel = 13;
 		}
+		if(screenWidth < 480) {
+			zoomLevel = 12;
+		}
+
+		const map = L.map('interactive-map').setView(new L.LatLng(45.94, 25.07), zoomLevel);
+
+		// Funcție pentru crearea iconițelor
+		function createIcon(iconType) {
+			return L.divIcon({
+				html: `<i class="fas fa-${iconType}" style="font-size: 30px; color: #829672;"></i>`,
+				iconSize: [30, 30],
+				className: 'myDivIcon'
+			});
+		}
+
+		// Funcție pentru deschiderea Google Maps
+		function openGoogleMaps(lat, lng) {
+			const url = `https://www.google.com/maps?q=${lat},${lng}`;
+			window.open(url, '_blank');
+		}
+
+		// Crearea markerilor
+		const markers = [];
+		Object.entries(locations).forEach(([key, location]) => {
+			const marker = L.marker(location.coords, {
+				icon: createIcon(location.icon)
+			});
+			
+			// Adăugarea tooltip-ului pentru hover
+			marker.bindTooltip(location.label, {
+				permanent: false,
+				direction: 'top',
+				offset: [0, -20]
+			});
+
+			// Adăugarea event listener-ului pentru click
+			marker.on('click', function() {
+				openGoogleMaps(location.coords[0], location.coords[1]);
+			});
+
+			markers.push(marker);
+			marker.addTo(map);
+		});
+
+		// Adăugarea layer-ului de hartă
+		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+			subdomains: 'abcd',
+			maxZoom: 20
+		}).addTo(map);
+
+		// Ajustarea view-ului pentru a include toate markerele
+		const group = new L.featureGroup(markers);
+		map.fitBounds(group.getBounds().pad(0.1));
+		
+	} catch (error) {
+		console.error("Error initializing map:", error);
 	}
+}
 
 	function setupFormSubmission() {
 		const rsvpForm = document.getElementById('rsvp-form');
