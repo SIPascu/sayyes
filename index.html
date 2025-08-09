@@ -991,11 +991,28 @@ nav ul li a[href="#rsvp"] {
     display: none;
 }
 
-/* Animație de tremurat */
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
-    20%, 40%, 60%, 80% { transform: translateX(2px); }
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    5% { transform: translate(-2px, -1px) rotate(-2deg); }
+    10% { transform: translate(-4px, 1px) rotate(1deg); }
+    15% { transform: translate(2px, -3px) rotate(-1deg); }
+    20% { transform: translate(3px, 2px) rotate(2deg); }
+    25% { transform: translate(-1px, -2px) rotate(-2deg); }
+    30% { transform: translate(4px, 1px) rotate(1deg); }
+    35% { transform: translate(-2px, 3px) rotate(-1deg); }
+    40% { transform: translate(1px, -1px) rotate(2deg); }
+    45% { transform: translate(-3px, 2px) rotate(-2deg); }
+    50% { transform: translate(2px, -2px) rotate(1deg); }
+    55% { transform: translate(-1px, 3px) rotate(-1deg); }
+    60% { transform: translate(3px, -1px) rotate(2deg); }
+    65% { transform: translate(-2px, 1px) rotate(-2deg); }
+    70% { transform: translate(1px, 2px) rotate(1deg); }
+    75% { transform: translate(-3px, -1px) rotate(-1deg); }
+    80% { transform: translate(2px, 3px) rotate(2deg); }
+    85% { transform: translate(-1px, -2px) rotate(-2deg); }
+    90% { transform: translate(3px, 1px) rotate(1deg); }
+    95% { transform: translate(-2px, -1px) rotate(-1deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 /* Când sunt puține zile, tremură doar ziua */
