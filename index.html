@@ -1553,7 +1553,7 @@ function initMap() {
 				icon: "bed"
 			},
 			bed3: {
-				originalCoords: [45.951325, 25.052006],
+				originalCoords: [45.951438, 25.052034],
 				label: "Gospodaria Cobor",
 				icon: "bed"
 			},
@@ -1594,10 +1594,10 @@ function initMap() {
 			const shifts = {
 				wedding: [0, 0], // NICIODATĂ nu se schimbă
 				party: [0, 0], // NICIODATĂ nu se schimbă
-				bed1: [0.001, -0.001], // Shift minimal sud-est
-				bed2: [0.002, -0.0015], // Shift minimal est
-				bed3: [-0.0015, 0.001], // Shift minimal nord-vest
-				bed4: [0.0015, 0.002] // Shift minimal nord-est
+				bed1: [0, 0], // Casa 282 rămâne pe locul ei
+				bed2: [0.0015, -0.001], // Casa 21 - dreapta și puțin jos
+				bed3: [0.002, 0], // Gospodaria Cobor - doar în sus
+				bed4: [0, 0] // Casa Joliff rămâne pe locul ei
 			};
 
 			const shift = shifts[locationKey] || [0, 0];
