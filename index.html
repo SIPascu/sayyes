@@ -1022,6 +1022,15 @@ nav ul li a[href="#rsvp"] {
     box-shadow: 0 5px 25px rgba(216, 149, 155, 0.6) !important;
 }
 
+
+		.weather-icon .fa-wind {
+    position: absolute;
+    top: 33%; /* 1/3 mai jos */
+    left: 66%; /* 2/3 în dreapta */
+    font-size: 0.6em; /* mai mică decât soarele */
+    color: inherit; /* aceeași culoare ca soarele */
+    z-index: 1; /* deasupra soarelui */
+}
 		
 	</style>
 </head>
@@ -1295,9 +1304,10 @@ nav ul li a[href="#rsvp"] {
 						
 						<div class="weather-day saturday">
 							<div class="weather-date">16 AUG</div>
-							<div class="weather-icon">
-								<i class="fas fa-sun"></i>
-							</div>
+<div class="weather-icon">
+    <i class="fas fa-sun"></i>
+    <i class="fas fa-wind"></i>
+</div>
 							<div class="weather-main-temp" id="weather-temp-saturday">31°C</div>
 							<div class="weather-minmax">
 								<span class="temp-min">Min: <span id="weather-min-saturday">13°C</span></span> / 
